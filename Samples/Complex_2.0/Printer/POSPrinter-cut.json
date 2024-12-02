@@ -1,0 +1,17 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                    "percentage": 90
+                },
+                "name": "cutPaper"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "posprinter",
+    "topic": "pos/device/request"
+}

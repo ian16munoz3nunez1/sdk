@@ -1,0 +1,17 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                    "lightNumber": 1
+                },
+                "name": "switchOff"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "lanelights",
+    "topic": "pos/device/request"
+}

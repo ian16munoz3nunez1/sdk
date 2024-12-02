@@ -1,0 +1,22 @@
+{
+    "action": "MOVE_NOTES",
+    "topic": "pos/cash/pickup/bnr",
+    "keepFloat": true,
+    "denominations": [
+        {
+            "currencyCode": "USD",
+            "mediaType": "NOTE",
+            "unitValue": 5
+        },
+        {
+            "currencyCode": "USD",
+            "mediaType": "NOTE",
+            "unitValue": 2
+        },
+        {
+            "currencyCode": "USD",
+            "mediaType": "NOTE",
+            "unitValue": 1
+        }
+    ]
+}

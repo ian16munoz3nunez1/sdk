@@ -1,0 +1,37 @@
+zeroScale
+
+message No 1:
+{
+  "messageType": "request",
+  "sourceType": "tool",
+  "sourceId": "tester",
+  "targetId": "scale",
+  "object": {
+    "operations": [
+      {
+        "name": "zeroScale"
+      }
+    ]
+  },
+  "topic": "pos/device/request"
+}
+
+message No 2:
+
+{
+  "messageType": "request",
+  "sourceType": "tool",
+  "sourceId": "tester",
+  "targetId": "scale",
+  "object": {
+    "operations": [
+      {
+        "arguments": {
+          "name": "CapZeroScale"
+        },
+        "name": "getProperty"
+      }
+    ]
+  },
+  "topic": "pos/device/request"
+}

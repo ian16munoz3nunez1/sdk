@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JposEntries PUBLIC "-//JavaPOS//DTD//EN"
+                             "jpos/res/jcl.dtd">
+<JposEntries>
+	<JposEntry logicalName="GuidanceLight">
+		<creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.GuidanceLights"/>
+		<vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+		<jpos category="Lights" version="v1.14.10L15 2022-04-28"/>
+		<product description="Lights" name="Lights" url="http://www.toshibagcs.com"/>
+		<prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.lights.JposGuidanceLights"/>
+		<prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+		<prop name="abstractionClass" type="String" value="com.ibm.jpos.services.GuidanceLights"/>
+		<prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+		<prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.GuidanceLightsServiceImp"/>
+		<prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+		<prop name="deviceBus" type="String" value="HID"/>
+		<prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+		<prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+		<prop name="com.tgcs.jpos.GuidanceLights.Color.Primary" type="String" value="000000FF"/>
+		<prop name="com.tgcs.jpos.GuidanceLights.Color.Custom1" type="String" value="FFE00000"/>
+		<prop name="com.tgcs.jpos.GuidanceLights.Color.Custom2" type="String" value="0000FF00"/>
+		<prop name="com.tgcs.jpos.GuidanceLights.Color.Custom3" type="String" value="FF000000"/>
+		<prop name="com.tgcs.jpos.GuidanceLights.Color.Custom4" type="String" value="FFFF0000"/>
+		<prop name="com.tgcs.jpos.GuidanceLights.Color.Custom5" type="String" value="00FFF000"/>
+	</JposEntry>
+	<JposEntry logicalName="TALLight">
+		<creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.TALLights"/>
+		<vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+		<jpos category="Lights" version="v1.14.10L15 2022-04-28"/>
+		<product description="Lights" name="Lights" url="http://www.toshibagcs.com"/>
+		<prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.lights.JposTALLights"/>
+		<prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+		<prop name="abstractionClass" type="String" value="com.ibm.jpos.services.TALLights"/>
+		<prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+		<prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.TALLightsServiceImp"/>
+		<prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="2"/>
+		<prop name="deviceBus" type="String" value="HID"/>
+		<prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+		<prop name="com.ibm.posj.bus.deviceNumber" type="String" value="1"/>
+	</JposEntry>
+	<JposEntry logicalName="SuperTAFL">
+      <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.TALLights"/>
+      <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+      <jpos category="Lights" version="v1.14.10L15 2022-04-28"/>
+      <product description="Lights" name="Lights" url="http://www.toshibagcs.com"/>
+      <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.lights.JposSuperTALLights"/>
+      <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+      <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.TALLights"/>
+      <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+      <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.TALLightsServiceImp"/>
+      <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="2"/>
+      <prop name="deviceBus" type="String" value="HID"/>
+      <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+      <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="1"/>
+    </JposEntry>
+	<JposEntry logicalName="CouponSensor">
+      <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.tgcs.jpos.services.ToshibaAuthCouponSensorService"/>
+      <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+      <jpos category="MotionSensor" version="v1.14.10L14 2022-04-19"/>
+      <product description="MotionSensor" name="MotionSensor" url="http://www.toshibagcs.com"/>
+      
+      <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.sensors.JposCouponSensor"/>
+      <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+
+      <prop name="abstractionClass" type="String" value="com.tgcs.jpos.services.ToshibaAuthCouponSensorService"/>
+      <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+      <prop name="impClass" type="String" value="com.tgcs.jpos.services.ToshibaAuthCouponSensorServiceImp"/>
+      <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="2"/>
+      <prop name="deviceBus" type="String" value="HID"/>
+      <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+      <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="3"/>
+    </JposEntry>
+    <JposEntry logicalName="ProximitySensor">
+		<creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.tgcs.jpos.services.ToshibaAuthProximitySensorService"/>
+		<vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+		<jpos category="MotionSensor" version="v1.14.10L14 2022-04-19"/>
+		<product description="MotionSensor" name="MotionSensor" url="http://www.toshibagcs.com"/>
+		<prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.sensors.JposProximitySensor"/>
+		<prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+		<prop name="abstractionClass" type="String" value="com.tgcs.jpos.services.ToshibaAuthProximitySensorService"/>
+		<prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+		<prop name="impClass" type="String" value="com.tgcs.jpos.services.ToshibaAuthProximitySensorServiceImp"/>
+		<prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+		<prop name="deviceBus" type="String" value="HID"/>
+		<prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+		<prop name="com.ibm.posj.bus.deviceNumber" type="String" value="2"/>
+    </JposEntry>
+    <JposEntry logicalName="SecurityScale">
+      <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.tgcs.jpos.services.ToshibaAuthScaleService"/>
+      <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+      <jpos category="Scale" version="v1.14.11L6 2022-08-30"/>
+      <product description="Scale" name="Scale" url="http://www.toshibagcs.com"/>
+
+      <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+
+      <prop name="abstractionClass" type="String" value="com.tgcs.jpos.services.ToshibaAuthScaleService"/>
+      <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+      <prop name="impClass" type="String" value="com.tgcs.jpos.services.ToshibaAuthScaleServiceImp"/>
+      <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="2"/>
+      <prop name="deviceBus" type="String" value="HID"/>
+      <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+      <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="4"/>
+      <prop name="com.ibm.jpos.sdi.config.Scale.displayRequired" type="Boolean" value="false"/>
+      <prop name="com.ibm.jpos.sdi.config.Scale.operationMode" type="String" value="US"/>
+      <prop name="com.ibm.jpos.sdi.config.Scale.vibrationSensitivity" type="String" value="0"/>
+      <prop name="com.ibm.jpos.sdi.config.Scale.weighMode" type="String" value="0"/>
+      <prop name="com.ibm.jpos.sdi.config.Scale.enforceZeroReturn" type="Boolean" value="false"/>
+    </JposEntry>
+    <JposEntry logicalName="BNRDevice">
+		<creation factoryClass="com.cranepi.device.bnr.javapos.BNRCashChangerServiceInstanceFactory" serviceClass="com.cranepi.device.bnr.javapos.BNRCashChangerService"/>
+		<vendor name="CPI" url="https://www.cranepi.com"/>
+		<jpos category="CashChanger" version="1.14"/>
+		<product description="BNR" name="CPI BNR Bill Recycler" url="https://www.cranepi.com/en/products/payment-technology/note/recyclers/bnr-advance"/>
+		<prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.cashchanger.JposCashChanger"/>
+    </JposEntry>
+	<JposEntry logicalName="BCRDevice">
+		<creation factoryClass="com.cranepi.device.bcr.javapos.BCRCashChangerServiceInstanceFactory" serviceClass="com.cranepi.device.bcr.javapos.BCRCashChangerService"/>
+		<vendor name="CPI" url="http://www.digitalpersona.com"/>
+		<jpos category="CashChanger" version="1.13"/>
+		<product description="BCR" name="U.are.U 4000B Reader" url="http://www.digitalpersona.com"/>
+		<prop name="portName" type="String" value="COM3"/>
+		<prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.cashchanger.JposCashChanger"/>
+	</JposEntry>
+	<JposEntry logicalName="BCRDevice">
+        <creation factoryClass="com.cranepi.device.bcr.javapos.BCRCashChangerServiceInstanceFactory" serviceClass="com.cranepi.device.bcr.javapos.BCRCashChangerService"/>
+        <vendor name="CPI" url="http://www.digitalpersona.com"/>
+        <jpos category="CashChanger" version="1.14"/>
+        <product description="BCR" name="U.are.U 4000B Reader" url="http://www.digitalpersona.com"/>
+        <prop name="portName" type="String" value="/dev/ttyUSB0"/>
+	    <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.cashchanger.JposCashChanger"/>
+	</JposEntry>
+    <JposEntry logicalName="MSR">
+		<creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.IBMMSR"/>
+		<vendor name="Toshiba" url="https://commerce.toshiba.com/"/>
+		<jpos category="MSR" version="1.14.12"/>
+		<product description="Toshiba JavaPOS(TM) MSR USB Service for Toshiba ANKPOS/Keyboard V/Modular/NANPOS/133 key/4685/4820/50key Keyboard" name="Toshiba JavaPOS for Linux/Windows Version 1.14.12" url="https://commerce.toshiba.com/"/>
+		<prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x1600"/>
+		<prop name="deviceBus" type="String" value="HID"/>
+		<prop name="abstractionClass" type="String" value="com.ibm.jpos.services.IBMMSR"/>
+		<prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.MSRServiceImp"/>
+		<prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xFF45"/>
+		<prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+    </JposEntry>
+	<JposEntry logicalName="DL-Gryphon-GD45XX-USB-OEM">
+		<creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.ScannerUSBOEM"/>
+		<vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+		<jpos category="Scanner" version="v1.14.11L32 2022-12-09"/>
+		<product description="Scanner" name="Scanner" url="http://www.toshibagcs.com"/>
+		<prop name="setEnableCODE39" type="Boolean" value="true"/>
+		<prop name="setEnableCode39CheckDigit" type="Boolean" value="false"/>
+		<prop name="setEnableCode128" type="Boolean" value="true"/>
+		<prop name="setEnableInterleaved2of5" type="Boolean" value="false"/>
+		<prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+		<prop name="abstractionClass" type="String" value="com.ibm.jpos.services.ScannerUSBOEM"/>
+		<prop name="setEnableEAN_JAN_TwoLabelDecoding" type="Boolean" value="false"/>
+		<prop name="setEnableUCC_EAN128" type="Boolean" value="true"/>
+		<prop name="setEnable_5_DigitSupplementals" type="Boolean" value="false"/>
+		<prop name="setEnableCodabar" type="Boolean" value="false"/>
+		<prop name="setEnableCode93" type="Boolean" value="false"/>
+		<prop name="setEnableUPCD1D5" type="Boolean" value="false"/>
+		<prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.ScannerServiceImp"/>
+		<prop name="setEnable_2_DigitSupplementals" type="Boolean" value="false"/>
+		<prop name="setEnableUPCAE_EANJAN813" type="Boolean" value="true"/>
+		<prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+		<prop name="setEnableITFCheckDigit" type="Boolean" value="false"/>
+		<prop name="setEnableUPC_A_CheckDigit" type="Boolean" value="false"/>
+		<prop name="setEnableUPC_E_CheckDigit" type="Boolean" value="false"/>
+		<prop name="deviceBus" type="String" value="HID"/>
+		<prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x4b00"/>
+		<prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+	</JposEntry>
+	<JposEntry logicalName="Scanner1">
+		<creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.ScannerUSBOEM"/>
+		<vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+		<jpos category="Scanner" version="v1.14.11L32 2022-12-09"/>
+		<product description="Scanner" name="Scanner" url="http://www.toshibagcs.com"/>
+		<prop name="setEnableCODE39" type="Boolean" value="true"/>
+		<prop name="setEnableCode128" type="Boolean" value="true"/>
+		<prop name="setITFLengthSpecifiedTwo" type="Boolean" value="true"/>
+		<prop name="setEnableInterleaved2of5" type="Boolean" value="true"/>
+		<prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+		<prop name="abstractionClass" type="String" value="com.ibm.jpos.services.ScannerUSBOEM"/>
+		<prop name="setEnableUCC_EAN128" type="Boolean" value="true"/>
+		<prop name="setEnable_5_DigitSupplementals" type="Boolean" value="true"/>
+		<prop name="setEnableCodabar" type="Boolean" value="true"/>
+		<prop name="setEnableCode93" type="Boolean" value="true"/>
+		<prop name="setEnableUPCD1D5" type="Boolean" value="true"/>
+		<prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.ScannerServiceImp"/>
+		<prop name="setEnable_2_DigitSupplementals" type="Boolean" value="true"/>
+		<prop name="setEnableUPCAE_EANJAN813" type="Boolean" value="true"/>
+		<prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+		<prop name="setEnableUPC_A_CheckDigit" type="Boolean" value="true"/>
+		<prop name="setEnableUPC_E_CheckDigit" type="Boolean" value="true"/>
+		<prop name="deviceBus" type="String" value="HID"/>
+		<prop name="setITFLength2" type="Byte" value="16"/>
+		<prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x4a00"/>
+		<prop name="setITFLength1" type="Byte" value="12"/>
+		<prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+	</JposEntry>
+	<JposEntry logicalName="Scale1">
+		<creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.SdiOEMScale"/>
+		<vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+		<jpos category="Scale" version="v1.14.11L32 2022-12-09"/>
+		<product description="Scale" name="Scale" url="http://www.toshibagcs.com"/>
+		<prop name="com.ibm.jpos.sdi.config.Scale.displayRequired" type="Boolean" value="false"/>
+		<prop name="com.ibm.jpos.sdi.config.Scale.fiveDigitWeight" type="Boolean" value="true"/>
+		<prop name="com.ibm.jpos.sdi.config.Scale.centerOfZero" type="Boolean" value="false"/>
+		<prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+		<prop name="abstractionClass" type="String" value="com.ibm.jpos.services.SdiOEMScale"/>
+		<prop name="com.ibm.jpos.sdi.config.Scale.operationMode" type="String" value="UK"/>
+		<prop name="com.ibm.jpos.sdi.config.Scale.vibrationSensitivity" type="String" value="0"/>
+		<prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.ScaleServiceImp"/>
+		<prop name="com.ibm.jpos.sdi.config.Scale.weighMode" type="String" value="1"/>
+		<prop name="com.ibm.jpos.sdi.config.Scale.enforceZeroReturn" type="Boolean" value="false"/>
+		<prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+		<prop name="deviceBus" type="String" value="HID"/>
+		<prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x6e00"/>
+		<prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+	</JposEntry>
+	<JposEntry logicalName="MICR1">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.IBM4610MICR"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="MICR" version="v1.14.12L19 2023-04-19"/>
+        <product description="MICR" name="MICR" url="http://www.toshibagcs.com"/>
+
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x3500"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.IBM4610MICR"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.MICRServiceImp"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+	</JposEntry>
+	<JposEntry logicalName="POSPrinter1">
+		<creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.SdiIBM4610EPOSPrinter"/>
+		<vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+		<jpos category="POSPrinter" version="v1.14.12L19 2023-04-19"/>
+		<product description="POSPrinter" name="POSPrinter" url="http://www.toshibagcs.com"/>
+		<prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+		<prop name="abstractionClass" type="String" value="com.ibm.jpos.services.SdiIBM4610EPOSPrinter"/>
+		<prop name="SureOneVersion" type="String" value="standard"/>
+		<prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.IBM4610PrinterServiceImp"/>
+		<prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+		<prop name="deviceBus" type="String" value="HID"/>
+		<prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x3500"/>
+		<prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+	</JposEntry>
+	<JposEntry logicalName="CashDrawer0">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.IBMCashDrawer"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="CashDrawer" version="v1.14.13L22 2023-09-05"/>
+        <product description="CashDrawer" name="CashDrawer" url="http://www.toshibagcs.com"/>
+
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.IBMCashDrawer"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.CashDrawerServiceImp"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="2"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.jpos.sdi.config.CashDrawer.OpenDrawerRetries" type="String" value="0"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x5400"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="2"/>
+    </JposEntry>
+    <JposEntry logicalName="LineDisplay1">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.LineDisplayAnop0"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="LineDisplay" version="v1.14.14L42 2024-04-03"/>
+        <product description="LineDisplay" name="LineDisplay" url="http://www.toshibagcs.com"/>
+
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.LineDisplayAnop0"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.LineDisplayServiceImp"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.jpos.services.sdi.config.LineDisplay.CharacterSetASCIIBehavior" type="String" value="858"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x2400"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+    </JposEntry>
+</JposEntries>

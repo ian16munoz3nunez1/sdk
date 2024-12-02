@@ -1,0 +1,4 @@
+{
+  "action": "BULK_END",
+  "topic":"pos/cash/loan/bnr"
+}

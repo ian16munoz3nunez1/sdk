@@ -1,0 +1,14 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "name": "readWeight"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "scale/upos/Scale1",
+    "topic": "pos/device/request"
+}

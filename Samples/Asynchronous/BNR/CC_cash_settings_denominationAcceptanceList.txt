@@ -1,0 +1,25 @@
+{
+  "denominationAcceptanceList": [
+    {
+      "currencyCode": "USD",
+      "mediaType": "NOTE",
+      "unitValue": 1
+    }
+    {
+      "currencyCode": "USD",
+      "mediaType": "NOTE",
+      "unitValue": 2
+    },
+    {
+      "currencyCode": "USD",
+      "mediaType": "NOTE",
+      "unitValue": 5
+    },
+    {
+      "currencyCode": "USD",
+      "mediaType": "NOTE",
+      "unitValue": 10
+    },
+  ],
+    "topic":"pos/cash/settings/bnr"
+}

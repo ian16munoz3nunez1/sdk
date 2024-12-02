@@ -1,0 +1,18 @@
+{
+"messageType": "request",
+"object": {
+"operations": [
+{
+"arguments": {
+"weightCertification": "EU_NMI",
+"weightCertificationLibraryHash": "60510a154f96dd9b77e647cd9c5b2e6389a2c85a181b8f4a6d375a7c1ab3ec66"
+},
+"name": "setChecksumLibrary"
+}
+]
+},
+"sourceId": "tester",
+"sourceType": "tool",
+"targetId": "scale",
+"topic": "pos/device/request"
+}

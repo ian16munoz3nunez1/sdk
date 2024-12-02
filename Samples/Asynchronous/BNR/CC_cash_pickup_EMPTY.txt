@@ -1,0 +1,4 @@
+{
+    "action": "EMPTY",
+    "topic": "pos/cash/pickup"
+}

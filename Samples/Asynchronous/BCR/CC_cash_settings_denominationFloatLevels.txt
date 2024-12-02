@@ -1,0 +1,33 @@
+{
+  "denominationFloatLevels": [
+    {
+      "count": 2,
+      "currencyCode": "USD",
+      "deviceType": "RECYCLER",
+      "mediaType": "COIN",
+      "unitValue": 0.01
+    },
+    {
+      "count": 2,
+      "currencyCode": "USD",
+      "deviceType": "RECYCLER",
+      "mediaType": "COIN",
+      "unitValue": 0.05
+    },
+    {
+      "count": 2,
+      "currencyCode": "USD",
+      "deviceType": "RECYCLER",
+      "mediaType": "COIN",
+      "unitValue": 0.10
+    },
+    {
+      "count": 2,
+      "currencyCode": "USD",
+      "deviceType": "RECYCLER",
+      "mediaType": "COIN",
+      "unitValue": 0.25
+    },
+  ],
+  "topic":"pos/cash/settings/bcr"
+}

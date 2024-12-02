@@ -1,0 +1,17 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                    "cashCounts": ";200:1"
+                },
+                "name": "dispenseCash"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "cashchanger/upos/BNRDevice",
+    "topic": "pos/device/request"
+}

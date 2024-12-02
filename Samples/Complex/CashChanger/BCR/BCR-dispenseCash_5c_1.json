@@ -1,0 +1,17 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                    "cashCounts": "5:5"
+                },
+                "name": "dispenseCash"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "cashchanger/upos/BCRDevice",
+    "topic": "pos/device/request"
+}

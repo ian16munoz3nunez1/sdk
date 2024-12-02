@@ -1,0 +1,18 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                    "rotation": "PTR_RP_RIGHT90",
+                    "station": "PTR_S_RECEIPT"
+                },
+                "name": "rotatePrint"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "posprinter",
+    "topic": "pos/device/request"
+}

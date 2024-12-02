@@ -1,0 +1,12 @@
+{
+    "messageType": "request",
+    "sourceType": "fsmController",
+    "sourceId": "tester",
+    "targetId": "cashdrawer",
+    "object": {
+        "operations": [{
+            "name": "openDrawer"
+        }]
+    },
+    "topic": "pos/device/request"
+}

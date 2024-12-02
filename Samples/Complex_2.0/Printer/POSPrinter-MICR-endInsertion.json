@@ -1,0 +1,14 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "name": "endInsertion"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "micr",
+    "topic": "pos/device/request"
+}

@@ -1,0 +1,17 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                    "name": "ExpirationDate"
+                },
+                "name": "retrieveCardProperty"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "msr",
+    "topic": "pos/device/request"
+}

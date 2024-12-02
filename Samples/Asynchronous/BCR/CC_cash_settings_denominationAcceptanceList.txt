@@ -1,0 +1,25 @@
+{
+  "denominationAcceptanceList": [
+    {
+      "currencyCode": "USD",
+      "mediaType": "COIN",
+      "unitValue": 0.01
+    }
+    {
+      "currencyCode": "USD",
+      "mediaType": "COIN",
+      "unitValue": 0.05
+    },
+    {
+      "currencyCode": "USD",
+      "mediaType": "COIN",
+      "unitValue": 0.10
+    },
+    {
+      "currencyCode": "USD",
+      "mediaType": "COIN",
+      "unitValue": 0.25
+    },
+  ],
+    "topic":"pos/cash/settings/bcr"
+}

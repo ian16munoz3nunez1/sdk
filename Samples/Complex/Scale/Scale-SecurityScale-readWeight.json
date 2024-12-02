@@ -1,0 +1,17 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                    "timeout": -1
+                },
+                "name": "readWeight"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "scale/upos/SecurityScale",
+    "topic": "pos/device/request"
+}

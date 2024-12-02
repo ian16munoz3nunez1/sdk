@@ -1,0 +1,33 @@
+{
+  "denominationFloatLevels": [
+    {
+      "count": 2,
+      "currencyCode": "USD",
+      "deviceType": "RECYCLER",
+      "mediaType": "NOTE",
+      "unitValue": 1
+    },
+    {
+      "count": 2,
+      "currencyCode": "USD",
+      "deviceType": "RECYCLER",
+      "mediaType": "NOTE",
+      "unitValue": 5
+    },
+    {
+      "count": 2,
+      "currencyCode": "USD",
+      "deviceType": "RECYCLER",
+      "mediaType": "NOTE",
+      "unitValue": 10
+    },
+    {
+      "count": 2,
+      "currencyCode": "USD",
+      "deviceType": "RECYCLER",
+      "mediaType": "NOTE",
+      "unitValue": 20
+    }
+  ],
+  "topic":"pos/cash/settings/bnr"
+}

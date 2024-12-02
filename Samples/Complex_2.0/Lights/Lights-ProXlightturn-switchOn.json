@@ -1,0 +1,21 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                    "alarm": 1,
+                    "blinkOffCycle": 0,
+                    "blinkOnCycle": 0,
+                    "color": 65536,
+                    "lightNumber": 1
+                },
+                "name": "switchOn"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "lanelights",
+    "topic": "pos/device/request"
+}

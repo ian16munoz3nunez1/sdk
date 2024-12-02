@@ -1,0 +1,4 @@
+{
+  "realTimeDataEnabled": true,
+  "topic":"pos/cash/settings/bcr"
+}

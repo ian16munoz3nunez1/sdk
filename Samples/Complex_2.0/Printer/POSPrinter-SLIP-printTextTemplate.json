@@ -1,0 +1,18 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                    "data": "#title {\r\n    font-weight: bold;\r\n    font-size: 200%;\r\n    text-align: center;\r\n }\r\n \r\n #giftcardtitle {\r\n    font-weight: bold;\r\n    font-size: 200%;\r\n    text-align: center;\r\n }\r\n \r\n #transInfo {\r\n    text-align: left;\r\n }\r\n\r\n #payment {\r\n   font-weight: bold;\r\n }\r\n \r\n .barcode {\r\n    height: 100; \r\n    width: 150;\r\n   text-align: center;\r\n }\r\n\r\n .barcode_CODE128 {\r\n    height: 90; \r\n    width: 250;\r\n }\r\n\r\n [id^=barcode_CODE128] {height: 90; width: 250;}\r\n\r\n [id=qrcode] img {\r\n    height: 100; \r\n    width: 100;\r\n }\r\n\r\n .depositRefundVoucherTitle {\r\n    font-weight: bold;\r\n    font-size: 130%;\r\n    text-align: center;\r\n }\n\n .eftPrintDataTitle {\n    font-weight: bold;\n    text-align: center;\n   font-size: 120%\n }\n\n .eftPrintVoidedPaymentsTitle {\n    font-weight: bold;\n    text-align: center;\n   font-size: 130%\n }",
+                    "station": "PTR_S_SLIP"
+                },
+                "name": "printNormal"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "posprinter",
+    "topic": "pos/device/request"
+}

@@ -1,0 +1,23 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                    "alignment": "PTR_BC_CENTER",
+                    "data": "0123456",
+                    "height": 60,
+                    "station": "PTR_S_SLIP",
+                    "symbology": "PTR_BCS_UPCE",
+                    "textPosition": "PTR_BC_TEXT_BELOW",
+                    "width": 10
+                },
+                "name": "printBarCode"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "posprinter",
+    "topic": "pos/device/request"
+}

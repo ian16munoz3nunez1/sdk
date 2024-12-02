@@ -1,0 +1,34 @@
+{
+    "action": "MANUAL",
+    "denominations": [
+        {
+            "deviceType": "RECYCLER",
+            "count": 0,
+            "mediaType": "COIN",
+            "currencyCode": "USD",
+            "unitValue": 0.01
+        },
+        {
+            "deviceType": "RECYCLER",
+            "count": 0,
+            "mediaType": "COIN",
+            "currencyCode": "USD",
+            "unitValue": 0.05
+        },
+        {
+            "deviceType": "RECYCLER",
+            "count": 0,
+            "mediaType": "COIN",
+            "currencyCode": "USD",
+            "unitValue": 0.1
+        },
+        {
+            "deviceType": "RECYCLER",
+            "count": 0,
+            "mediaType": "COIN",
+            "currencyCode": "USD",
+            "unitValue": 0.25
+        }
+    ],
+	"topic":"pos/cash/loan/bcr"
+}

@@ -1,0 +1,20 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                    "alignment": "PTR_BM_CENTER",
+                    "fileName": "C:/Users/YOUR_USER/Documents/YOUR_IMAGE.gif",
+                    "station": "PTR_S_SLIP",
+                    "width": "PTR_BM_ASIS"
+                },
+                "name": "printBitmap"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "posprinter",
+    "topic": "pos/device/request"
+}

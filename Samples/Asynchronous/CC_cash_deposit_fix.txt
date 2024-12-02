@@ -1,0 +1,4 @@
+{
+    "action": "fix",
+	"topic":"pos/cash/deposit"
+}

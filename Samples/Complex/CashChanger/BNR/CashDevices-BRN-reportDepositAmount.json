@@ -1,0 +1,16 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                },
+                "name": "reportDepositAmount"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "cashchanger/upos/BNRDevice",
+    "topic": "pos/device/request"
+}

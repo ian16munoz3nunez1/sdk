@@ -1,0 +1,13 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!DOCTYPE ApplicationLoadDefinitionFile SYSTEM "ApplicationLoadDefinition.dtd" >
+<ApplicationLoadDefinitionFile>
+     <FileVersion version="v6r3"/>
+     <ApplicationLoadDefinition machineRange="100-200">
+         <!-- <LoadedApplication applName="SDK"/> -->
+		 <!-- <LoadedApplication applName="ADXQRSDK"/> -->
+		 <!-- <LoadedApplication applName="SDKBrowser"/> -->
+		 <!-- <LoadedApplication applName="jposCC"/> -->
+		 <!-- <LoadedApplication applName="POSControl"/> -->
+		 <!-- <LoadedApplication applName="Mbrowser"/> -->
+     </ApplicationLoadDefinition>
+</ApplicationLoadDefinitionFile>

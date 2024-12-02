@@ -1,0 +1,17 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                    "success": 1
+                },
+                "name": "endDeposit"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "cashchanger/upos/BCRDevice",
+    "topic": "pos/device/request"
+}

@@ -1,0 +1,4 @@
+{
+    "dispenseAmount": 8.35,
+	"topic":"pos/cash/dispense"
+}

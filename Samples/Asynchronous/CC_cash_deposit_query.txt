@@ -1,0 +1,4 @@
+{
+    "action": "query",
+	"topic":"pos/cash/deposit"
+}

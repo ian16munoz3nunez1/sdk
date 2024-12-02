@@ -1,0 +1,56 @@
+{
+  "denominationAcceptanceList": [
+    {
+      "currencyCode": "USD",
+      "mediaType": "COIN",
+      "unitValue": 0.01
+    }
+    {
+      "currencyCode": "USD",
+      "mediaType": "COIN",
+      "unitValue": 0.05
+    },
+    {
+      "currencyCode": "USD",
+      "mediaType": "COIN",
+      "unitValue": 0.10
+    },
+    {
+      "currencyCode": "USD",
+      "mediaType": "COIN",
+      "unitValue": 0.25
+    },
+  ],
+  "denominationFloatLevels": [
+    {
+      "count": 2,
+      "currencyCode": "USD",
+      "deviceType": "RECYCLER",
+      "mediaType": "COIN",
+      "unitValue": 0.01
+    },
+    {
+      "count": 2,
+      "currencyCode": "USD",
+      "deviceType": "RECYCLER",
+      "mediaType": "COIN",
+      "unitValue": 0.05
+    },
+    {
+      "count": 2,
+      "currencyCode": "USD",
+      "deviceType": "RECYCLER",
+      "mediaType": "COIN",
+      "unitValue": 0.10
+    },
+    {
+      "count": 2,
+      "currencyCode": "USD",
+      "deviceType": "RECYCLER",
+      "mediaType": "COIN",
+      "unitValue": 0.25
+    },
+  ],
+  "realTimeDataEnabled": true,
+  "topic":"pos/cash/settings/bcr"
+}

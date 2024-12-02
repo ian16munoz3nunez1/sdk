@@ -1,0 +1,16 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                    "fileName": "/opt/tgcs/javapos/config/jpos.xml"
+                },
+                "name": "loadJposEntry"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "topic": "pos/device/registry/jpos/request"
+}

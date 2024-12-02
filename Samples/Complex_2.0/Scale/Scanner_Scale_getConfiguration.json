@@ -1,0 +1,17 @@
+{
+  "messageType": "request",
+  "sourceType": "tool",
+  "sourceId": "tester",
+  "targetId": "scale/upos/Scale1",
+  "object": {
+    "operations": [
+      {
+        "arguments": {
+          "timeout": -1
+        },
+        "name": "getConfiguration"
+      }
+    ]
+  },
+  "topic": "pos/device/request"
+}

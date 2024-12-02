@@ -1,0 +1,18 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                    "data": "\u001b|bCThis is an example of bold, bigger, centered and underlined text FOR SLIP",
+                    "station": "PTR_S_SLIP"
+                },
+                "name": "printNormal"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "posprinter",
+    "topic": "pos/device/request"
+}

@@ -1,0 +1,6 @@
+{
+    "object": {
+        "command": "takeExtract"
+    },
+    "topic": "system/services"
+}

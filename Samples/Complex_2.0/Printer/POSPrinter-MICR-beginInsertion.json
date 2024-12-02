@@ -1,0 +1,17 @@
+{
+    "messageType": "request",
+    "object": {
+        "operations": [
+            {
+                "arguments": {
+                    "timeout": 10000
+                },
+                "name": "beginInsertion"
+            }
+        ]
+    },
+    "sourceId": "tester",
+    "sourceType": "tool",
+    "targetId": "Simulatedposprinter",
+    "topic": "pos/device/request"
+}
