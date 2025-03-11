@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JposEntries PUBLIC "-//JavaPOS//DTD//EN"
+                             "jpos/res/jcl.dtd">
+<JposEntries>
+<!--Saved by JavaPOS jpos.config/loader (JCL) version 2.3.0-RC3 on 10/5/23 11:51 AM-->
+
+   <JposEntry logicalName="Scanner1">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.ScannerUSBOEM"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="Scanner" version="v1.14.13L22 2023-09-05"/>
+        <product description="Scanner" name="Scanner" url="http://www.toshibagcs.com"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="setEnableCODE39" type="Boolean" value="true"/>
+        <prop name="setEnableCode39CheckDigit" type="Boolean" value="false"/>
+        <prop name="setEnableCode128" type="Boolean" value="true"/>
+        <prop name="setEnableInterleaved2of5" type="Boolean" value="false"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.ScannerUSBOEM"/>
+        <prop name="setEnableEAN_JAN_TwoLabelDecoding" type="Boolean" value="false"/>
+        <prop name="setEnableUCC_EAN128" type="Boolean" value="true"/>
+        <prop name="setEnable_5_DigitSupplementals" type="Boolean" value="false"/>
+        <prop name="setEnableCodabar" type="Boolean" value="false"/>
+        <prop name="setEnableCode93" type="Boolean" value="false"/>
+        <prop name="setEnableUPCD1D5" type="Boolean" value="false"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.ScannerServiceImp"/>
+        <prop name="setEnable_2_DigitSupplementals" type="Boolean" value="false"/>
+        <prop name="setEnableUPCAE_EANJAN813" type="Boolean" value="true"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="setEnableITFCheckDigit" type="Boolean" value="false"/>
+        <prop name="setEnableUPC_A_CheckDigit" type="Boolean" value="false"/>
+        <prop name="setEnableUPC_E_CheckDigit" type="Boolean" value="false"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x4b00"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+   </JposEntry>
+   <JposEntry logicalName="ProXLight">
+        <creation factoryClass="jpos.tec.Factory.light.JposServiceFactory" serviceClass="jpos.tec.Light.Services.LightService"></creation>
+        <vendor name="TOSHIBA TEC Corporation" url="http://www.toshibatec.co.jp"></vendor>
+        <jpos category="LaneLights" version="1.14"></jpos>
+        <product description="TEC Light Service" name="TECLight" url="http://www.toshibatec.co.jp"/>
+        <!-- This line distinguishes ProX lights from other TALLights -->
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.lights.JposProXLights"/>
+        <prop name="DeviceModel" type="String" value="KLC1X"/>
+        <prop name="InterfaceType" type="String" value="USBIntf"/>
+        <prop name="VendorID" type="String" value="0x8A6"/>
+        <prop name="ProductID" type="String" value="0xA002"/>
+        <!-- Setting to control System Management Information -->
+        <prop name="SMIEnable" type="String" value="FALSE"/>
+        <prop name="SMIPollInterval" type="String" value="30000"/>
+        <prop name="SMIListenPort" type="String" value="9999"/>
+        <prop name="SMIEventPort" type="String" value="9998"/>
+        <prop name="LogLevel" type="String" value="0"/>
+        <prop name="LogFileCount" type="String" value="0"/>
+        <prop name="LogFilename" type="String" value="./log/tecjavapos_LEDHybrid.log"/>
+        <prop name="LibLogLevel" type="String" value="0"/>
+        <prop name="LibLogFileCount" type="String" value="0"/>
+        <prop name="LibLogFilename" type="String" value="./log/tecjposlib.log"/>
+   </JposEntry>
+   <JposEntry logicalName="KOP3X">
+        <creation factoryClass="jpos.tec.Factory.JposServiceFactory" serviceClass="jpos.tec.PosPrinter.Services.POSPrinterService"/>
+        <vendor name="TOSHIBA TEC Corporation" url="http://www.toshibatec.co.jp"/>
+        <jpos category="POSPrinter" version="1.14"/>
+        <product description="TEC POSPrinter Service" name="TECPOSPrinter" url="http://www.toshibatec.co.jp"/>
+
+        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="LibLogLevel" type="String" value="0"/>
+        <prop name="LibLogFilename" type="String" value="./log/tecjposlib.log"/>
+        <prop name="PresenterTimeout" type="String" value="0"/>
+        <prop name="InterfaceType" type="String" value="USBIntf"/>
+        <prop name="BarcodeHeightParam" type="String" value=""/>
+        <prop name="MultiAlignment" type="String" value="FALSE"/>
+        <prop name="VendorID" type="String" value="0x8A6"/>
+        <prop name="SMIEnable" type="String" value="FALSE"/>
+        <prop name="LogFilename" type="String" value="./log/tecjavapos_KOP3X.log"/>
+        <prop name="LogLevel" type="String" value="0"/>
+        <prop name="EnablePartialCut" type="String" value="TRUE"/>
+        <prop name="DeviceModel" type="String" value="KOP3X"/>
+        <prop name="UPCEDataPattern" type="String" value="UPCE7Digits"/>
+        <prop name="CodePage" type="String" value="437"/>
+        <prop name="RetractFunction" type="String" value="FALSE"/>
+        <prop name="BarcodeWidthParam" type="String" value="2"/>
+        <prop name="ProductID" type="String" value="0xC049"/>
+        <prop name="LibLogFileCount" type="String" value="0"/>
+        <prop name="PaperWidth" type="String" value="80mm"/>
+        <prop name="FontType" type="String" value="FontA"/>
+        <prop name="UnicodeConversion" type="String" value="CharacterSetProp"/>
+        <prop name="SMIPollInterval" type="String" value="30000"/>
+        <prop name="Code128Default" type="String" value="A"/>
+        <prop name="LogFileCount" type="String" value="0"/>
+        <prop name="PresenterRetryNumber" type="String" value="3"/>
+        <prop name="FontSize" type="String" value="Font1"/>
+        <prop name="DirectIOWaitDataTimeout" type="String" value="10000"/>
+        <prop name="SMIListenPort" type="String" value="9999"/>
+        <prop name="SMIEventPort" type="String" value="9998"/>
+   </JposEntry>
+</JposEntries>

@@ -12,9 +12,9 @@ aipdifx.exe -i "C:\POS\drivers\oem\psc\javaxusb_oem_psc.inf" -v
 
 "%1\sdk.msi"
 
-"%1\setupBNRWinUSBDriver.exe"
+"%1\BNR USB Driver\setupBNRWinUSBDriver.exe"
 
-"%1\BCRVCPInstaller_x64.exe"
+"%1\BCR COM Driver\BCRVCPInstaller_x64.exe"
 
 setx /m path "%PATH%;C:\TCx SDK\DeviceBroker\lib\dll"
 

@@ -1,0 +1,368 @@
+{
+    "system7":
+    {
+        "TestCase0":
+        {
+            "LaneLight":
+            {
+                "state": "off"
+            },
+
+            "Pinpad":
+            {
+                "state": "off"
+            },
+
+            "Printer":
+            {
+                "state": "off"
+            },
+
+            "Coupon":
+            {
+                "state": "off"
+            },
+
+            "Cash":
+            {
+                "state": "off"
+            }
+        },
+
+        "TestCase1":
+        {
+            "LaneLight":
+            {
+                "state": "off"
+            },
+
+            "Pinpad":
+            {
+                "state": "off"
+            },
+
+            "Printer":
+            {
+                "state": "off"
+            },
+
+            "Coupon":
+            {
+                "state": "off"
+            },
+
+            "Cash":
+            {
+                "state": "off"
+            }
+        },
+
+        "TestCase2":
+        {
+            "LaneLight":
+            {
+                "state": "off"
+            },
+
+            "Pinpad":
+            {
+                "state": "off"
+            },
+
+            "Printer":
+            {
+                "state": "off"
+            },
+
+            "Coupon":
+            {
+                "state": "off"
+            },
+
+            "Cash":
+            {
+                "state": "off"
+            }
+        },
+
+        "TestCase3":
+        {
+            "LaneLight":
+            {
+                "state": "off"
+            },
+
+            "Pinpad":
+            {
+                "state": "off"
+            },
+
+            "Printer":
+            {
+                "state": "off"
+            },
+
+            "Coupon":
+            {
+                "state": "off"
+            },
+
+            "Cash":
+            {
+                "state": "off"
+            }
+        },
+
+        "TestCase4":
+        {
+            "LaneLight":
+            {
+                "state": "off"
+            },
+
+            "Pinpad":
+            {
+                "state": "off"
+            },
+
+            "Printer":
+            {
+                "state": "off"
+            },
+
+            "Coupon":
+            {
+                "state": "off"
+            },
+
+            "Cash":
+            {
+                "state": "off"
+            }
+        },
+
+        "TestCase5":
+        {
+            "LaneLight":
+            {
+                "state": "off"
+            },
+
+            "Pinpad":
+            {
+                "state": "off"
+            },
+
+            "Printer":
+            {
+                "state": "off"
+            },
+
+            "Coupon":
+            {
+                "state": "off"
+            },
+
+            "Cash":
+            {
+                "state": "off"
+            }
+        },
+
+        "TestCase6":
+        {
+            "LaneLight":
+            {
+                "state": "off"
+            },
+
+            "Pinpad":
+            {
+                "state": "off"
+            },
+
+            "Printer":
+            {
+                "state": "off"
+            },
+
+            "Coupon":
+            {
+                "state": "off"
+            },
+
+            "Cash":
+            {
+                "state": "off"
+            }
+        },
+
+        "TestCase7":
+        {
+            "LaneLight":
+            {
+                "state": "off"
+            },
+
+            "Pinpad":
+            {
+                "state": "off"
+            },
+
+            "Printer":
+            {
+                "state": "off"
+            },
+
+            "Coupon":
+            {
+                "state": "off"
+            },
+
+            "Cash":
+            {
+                "state": "off"
+            }
+        },
+
+        "TestCase8":
+        {
+            "LaneLight":
+            {
+                "state": "off"
+            },
+
+            "Pinpad":
+            {
+                "state": "off"
+            },
+
+            "Printer":
+            {
+                "state": "off"
+            },
+
+            "Coupon":
+            {
+                "state": "off"
+            },
+
+            "Cash":
+            {
+                "state": "off"
+            }
+        },
+
+        "TestCase9":
+        {
+            "LaneLight":
+            {
+                "state": "off"
+            },
+
+            "Pinpad":
+            {
+                "state": "off"
+            },
+
+            "Printer":
+            {
+                "state": "off"
+            },
+
+            "Coupon":
+            {
+                "state": "off"
+            },
+
+            "Cash":
+            {
+                "state": "off"
+            }
+        },
+
+        "TestCase10":
+        {
+            "LaneLight":
+            {
+                "state": "off"
+            },
+
+            "Pinpad":
+            {
+                "state": "off"
+            },
+
+            "Printer":
+            {
+                "state": "off"
+            },
+
+            "Coupon":
+            {
+                "state": "off"
+            },
+
+            "Cash":
+            {
+                "state": "off"
+            }
+        },
+
+        "TestCase11":
+        {
+            "LaneLight":
+            {
+                "state": "off"
+            },
+
+            "Pinpad":
+            {
+                "state": "off"
+            },
+
+            "Printer":
+            {
+                "state": "off"
+            },
+
+            "Coupon":
+            {
+                "state": "off"
+            },
+
+            "Cash":
+            {
+                "state": "off"
+            }
+        },
+
+        "TestCase12":
+        {
+            "LaneLight":
+            {
+                "state": "off"
+            },
+
+            "Pinpad":
+            {
+                "state": "off"
+            },
+
+            "Printer":
+            {
+                "state": "off"
+            },
+
+            "Coupon":
+            {
+                "state": "off"
+            },
+
+            "Cash":
+            {
+                "state": "off"
+            }
+        },
+    }
+}
