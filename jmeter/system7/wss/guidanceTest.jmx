@@ -45,7 +45,7 @@
         <boolProp name="ResultCollector.success_only_logging">true</boolProp>
       </ResultCollector>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="initialize" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="initialize">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -113,7 +113,7 @@
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/v1/lights/info (tafl)" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/v1/lights/info">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -133,7 +133,7 @@
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
@@ -141,35 +141,7 @@
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/v1/lights/info (tal)">
-        <intProp name="ThreadGroup.num_threads">1</intProp>
-        <intProp name="ThreadGroup.ramp_time">1</intProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <stringProp name="LoopController.loops">1</stringProp>
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-        </elementProp>
-      </ThreadGroup>
-      <hashTree>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="/v1/lights/info" enabled="true">
-          <boolProp name="createNewConnection">true</boolProp>
-          <boolProp name="TLS">true</boolProp>
-          <stringProp name="server">localhost</stringProp>
-          <stringProp name="port">2525</stringProp>
-          <stringProp name="path">/v1/lights/info</stringProp>
-          <stringProp name="connectTimeout">20000</stringProp>
-          <stringProp name="payloadType">Text</stringProp>
-          <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tal&quot;
-}</stringProp>
-          <stringProp name="readTimeout">6000</stringProp>
-          <boolProp name="loadDataFromFile">false</boolProp>
-          <stringProp name="dataFile"></stringProp>
-        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
-        <hashTree/>
-      </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="talTest">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="guidanceTestClassic">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -180,73 +152,203 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="Once Only Controller"/>
-        <hashTree>
-          <eu.luminis.jmeter.wssampler.OpenWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.OpenWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.OpenWebSocketSampler" testname="startConnection">
-            <boolProp name="TLS">true</boolProp>
-            <stringProp name="server">localhost</stringProp>
-            <stringProp name="port">2525</stringProp>
-            <stringProp name="path">/v1/lights/state</stringProp>
-            <stringProp name="connectTimeout">20000</stringProp>
-            <stringProp name="readTimeout">6000</stringProp>
-          </eu.luminis.jmeter.wssampler.OpenWebSocketSampler>
-          <hashTree/>
-        </hashTree>
         <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer">
-          <stringProp name="ConstantTimer.delay">1000</stringProp>
+          <stringProp name="ConstantTimer.delay">500</stringProp>
         </ConstantTimer>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="white">
-          <boolProp name="createNewConnection">false</boolProp>
+        <eu.luminis.jmeter.wssampler.OpenWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.OpenWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.OpenWebSocketSampler" testname="startConnection" enabled="true">
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
           <stringProp name="port">2525</stringProp>
           <stringProp name="path">/v1/lights/state</stringProp>
           <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+        </eu.luminis.jmeter.wssampler.OpenWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test1" enabled="true">
+          <boolProp name="createNewConnection">false</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/li</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tal&quot;,
-    &quot;white&quot;: &quot;normal&quot;,
-    &quot;red&quot;: &quot;off&quot;,
-    &quot;green&quot;: &quot;off&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;monitor&quot;: &quot;blue&quot;,
+    &quot;coupon&quot;: &quot;blue&quot;,
+    &quot;cash&quot;: &quot;blue&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="red">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test2" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
           <stringProp name="port">2525</stringProp>
-          <stringProp name="path">/v1/lights/state</stringProp>
+          <stringProp name="path">/v1/li</stringProp>
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tal&quot;,
-    &quot;white&quot;: &quot;off&quot;,
-    &quot;red&quot;: &quot;normal&quot;,
-    &quot;green&quot;: &quot;off&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;monitor&quot;: &quot;yellow&quot;,
+    &quot;coupon&quot;: &quot;yellow&quot;,
+    &quot;cash&quot;: &quot;yellow&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="green">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test3" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
           <stringProp name="port">2525</stringProp>
-          <stringProp name="path">/v1/lights/state</stringProp>
+          <stringProp name="path">/v1/li</stringProp>
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tal&quot;,
-    &quot;white&quot;: &quot;off&quot;,
-    &quot;red&quot;: &quot;off&quot;,
-    &quot;green&quot;: &quot;normal&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;monitor&quot;: &quot;cyan&quot;,
+    &quot;coupon&quot;: &quot;cyan&quot;,
+    &quot;cash&quot;: &quot;cyan&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test4" enabled="true">
+          <boolProp name="createNewConnection">false</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/li</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;monitor&quot;: &quot;red&quot;,
+    &quot;coupon&quot;: &quot;red&quot;,
+    &quot;cash&quot;: &quot;red&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test5" enabled="true">
+          <boolProp name="createNewConnection">false</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/li</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;monitor&quot;: &quot;red&quot;,
+    &quot;coupon&quot;: &quot;blue&quot;,
+    &quot;cash&quot;: &quot;yellow&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test6" enabled="true">
+          <boolProp name="createNewConnection">false</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/li</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;monitor&quot;: &quot;yellow&quot;,
+    &quot;coupon&quot;: &quot;red&quot;,
+    &quot;cash&quot;: &quot;blue&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test7" enabled="true">
+          <boolProp name="createNewConnection">false</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/li</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;monitor&quot;: &quot;blue&quot;,
+    &quot;coupon&quot;: &quot;yellow&quot;,
+    &quot;cash&quot;: &quot;red&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test8" enabled="true">
+          <boolProp name="createNewConnection">false</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/li</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;monitor&quot;: &quot;yellow&quot;,
+    &quot;coupon&quot;: &quot;cyan&quot;,
+    &quot;cash&quot;: &quot;white&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test9" enabled="true">
+          <boolProp name="createNewConnection">false</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/li</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;monitor&quot;: &quot;white&quot;,
+    &quot;coupon&quot;: &quot;yellow&quot;,
+    &quot;cash&quot;: &quot;cyan&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test10" enabled="true">
+          <boolProp name="createNewConnection">false</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/li</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;monitor&quot;: &quot;cyan&quot;,
+    &quot;coupon&quot;: &quot;white&quot;,
+    &quot;cash&quot;: &quot;yellow&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
@@ -254,7 +356,7 @@
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="taflTestColor">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="guidanceTestNew">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -265,23 +367,20 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="Once Only Controller"/>
-        <hashTree>
-          <eu.luminis.jmeter.wssampler.OpenWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.OpenWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.OpenWebSocketSampler" testname="startConnection">
-            <boolProp name="TLS">true</boolProp>
-            <stringProp name="server">localhost</stringProp>
-            <stringProp name="port">2525</stringProp>
-            <stringProp name="path">/v1/lights/state</stringProp>
-            <stringProp name="connectTimeout">20000</stringProp>
-            <stringProp name="readTimeout">6000</stringProp>
-          </eu.luminis.jmeter.wssampler.OpenWebSocketSampler>
-          <hashTree/>
-        </hashTree>
-        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer">
-          <stringProp name="ConstantTimer.delay">1000</stringProp>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+          <stringProp name="ConstantTimer.delay">500</stringProp>
         </ConstantTimer>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="white">
+        <eu.luminis.jmeter.wssampler.OpenWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.OpenWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.OpenWebSocketSampler" testname="startConnection" enabled="true">
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/lights/state</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+        </eu.luminis.jmeter.wssampler.OpenWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase0" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
@@ -290,18 +389,15 @@
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;white&quot;: &quot;normal&quot;,
-    &quot;red&quot;: &quot;off&quot;,
-    &quot;green&quot;: &quot;off&quot;,
-    &quot;blue&quot;: &quot;off&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase0&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="red">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase1" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
@@ -310,18 +406,15 @@
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;white&quot;: &quot;off&quot;,
-    &quot;red&quot;: &quot;normal&quot;,
-    &quot;green&quot;: &quot;off&quot;,
-    &quot;blue&quot;: &quot;off&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase1&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="green">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase2" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
@@ -330,18 +423,15 @@
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;white&quot;: &quot;off&quot;,
-    &quot;red&quot;: &quot;off&quot;,
-    &quot;green&quot;: &quot;normal&quot;,
-    &quot;blue&quot;: &quot;off&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase2&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="blue">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase3" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
@@ -350,18 +440,15 @@
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;white&quot;: &quot;off&quot;,
-    &quot;red&quot;: &quot;off&quot;,
-    &quot;green&quot;: &quot;off&quot;,
-    &quot;blue&quot;: &quot;normal&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase3&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="yellow">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase4" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
@@ -370,18 +457,15 @@
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;white&quot;: &quot;off&quot;,
-    &quot;red&quot;: &quot;normal&quot;,
-    &quot;green&quot;: &quot;normal&quot;,
-    &quot;blue&quot;: &quot;off&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase4&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="purple">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase5" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
@@ -390,18 +474,15 @@
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;white&quot;: &quot;off&quot;,
-    &quot;red&quot;: &quot;normal&quot;,
-    &quot;green&quot;: &quot;off&quot;,
-    &quot;blue&quot;: &quot;normal&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase5&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="cyan">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase6" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
@@ -410,46 +491,15 @@
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;white&quot;: &quot;off&quot;,
-    &quot;red&quot;: &quot;off&quot;,
-    &quot;green&quot;: &quot;normal&quot;,
-    &quot;blue&quot;: &quot;normal&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase6&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-      </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="taflTestCode">
-        <intProp name="ThreadGroup.num_threads">1</intProp>
-        <intProp name="ThreadGroup.ramp_time">1</intProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <intProp name="LoopController.loops">-1</intProp>
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-        </elementProp>
-      </ThreadGroup>
-      <hashTree>
-        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="Once Only Controller"/>
-        <hashTree>
-          <eu.luminis.jmeter.wssampler.OpenWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.OpenWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.OpenWebSocketSampler" testname="startConnection">
-            <boolProp name="TLS">true</boolProp>
-            <stringProp name="server">localhost</stringProp>
-            <stringProp name="port">2525</stringProp>
-            <stringProp name="path">/v1/lights/state</stringProp>
-            <stringProp name="connectTimeout">20000</stringProp>
-            <stringProp name="readTimeout">6000</stringProp>
-          </eu.luminis.jmeter.wssampler.OpenWebSocketSampler>
-          <hashTree/>
-        </hashTree>
-        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer">
-          <stringProp name="ConstantTimer.delay">1000</stringProp>
-        </ConstantTimer>
-        <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="FF000000">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase7" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
@@ -458,16 +508,15 @@
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;color&quot;: &quot;primary&quot;,
-    &quot;state&quot;: &quot;normal&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase7&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="00FFFF00">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase8" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
@@ -476,16 +525,15 @@
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;color&quot;: &quot;custom1&quot;,
-    &quot;state&quot;: &quot;normal&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase8&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="00FF0000">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase9" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
@@ -494,16 +542,15 @@
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;color&quot;: &quot;custom2&quot;,
-    &quot;state&quot;: &quot;normal&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase9&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="FF00FF00">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase10" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
@@ -512,16 +559,15 @@
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;color&quot;: &quot;custom3&quot;,
-    &quot;state&quot;: &quot;normal&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase10&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="0000FF00">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase11" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
@@ -530,16 +576,15 @@
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;color&quot;: &quot;custom4&quot;,
-    &quot;state&quot;: &quot;normal&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase11&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="FFFF0000">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase12" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
           <boolProp name="TLS">true</boolProp>
           <stringProp name="server">localhost</stringProp>
@@ -548,153 +593,127 @@
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;color&quot;: &quot;custom5&quot;,
-    &quot;state&quot;: &quot;normal&quot;
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase12&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-      </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="taflTestPassAround">
-        <intProp name="ThreadGroup.num_threads">1</intProp>
-        <intProp name="ThreadGroup.ramp_time">1</intProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <intProp name="LoopController.loops">-1</intProp>
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-        </elementProp>
-      </ThreadGroup>
-      <hashTree>
-        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="Once Only Controller"/>
-        <hashTree>
-          <eu.luminis.jmeter.wssampler.OpenWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.OpenWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.OpenWebSocketSampler" testname="startConnection">
-            <boolProp name="TLS">true</boolProp>
-            <stringProp name="server">localhost</stringProp>
-            <stringProp name="port">2525</stringProp>
-            <stringProp name="path">/v1/lights/state</stringProp>
-            <stringProp name="connectTimeout">20000</stringProp>
-            <stringProp name="readTimeout">6000</stringProp>
-          </eu.luminis.jmeter.wssampler.OpenWebSocketSampler>
-          <hashTree/>
-        </hashTree>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test1">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase13" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
-          <boolProp name="TLS">false</boolProp>
-          <stringProp name="server"></stringProp>
-          <stringProp name="port">80</stringProp>
-          <stringProp name="path"></stringProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/lights/state</stringProp>
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;pass-around&quot;: {
-        &quot;colors&quot;: [&quot;Primary&quot;, &quot;Custom1&quot;],
-        &quot;frequency&quot;: 1
-    }
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase13&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test2">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase14" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
-          <boolProp name="TLS">false</boolProp>
-          <stringProp name="server"></stringProp>
-          <stringProp name="port">80</stringProp>
-          <stringProp name="path"></stringProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/lights/state</stringProp>
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;pass-around&quot;: {
-        &quot;colors&quot;: [&quot;Custom1&quot;, &quot;Custom2&quot;],
-        &quot;frequency&quot;: 1
-    }
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase14&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test3">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase15" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
-          <boolProp name="TLS">false</boolProp>
-          <stringProp name="server"></stringProp>
-          <stringProp name="port">80</stringProp>
-          <stringProp name="path"></stringProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/lights/state</stringProp>
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;pass-around&quot;: {
-        &quot;colors&quot;: [&quot;Custom2&quot;, &quot;Custom3&quot;],
-        &quot;frequency&quot;: 1
-    }
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase15&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test4">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase16" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
-          <boolProp name="TLS">false</boolProp>
-          <stringProp name="server"></stringProp>
-          <stringProp name="port">80</stringProp>
-          <stringProp name="path"></stringProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/lights/state</stringProp>
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;pass-around&quot;: {
-        &quot;colors&quot;: [&quot;Custom3&quot;, &quot;Custom4&quot;],
-        &quot;frequency&quot;: 1
-    }
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase16&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test5">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase17" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
-          <boolProp name="TLS">false</boolProp>
-          <stringProp name="server"></stringProp>
-          <stringProp name="port">80</stringProp>
-          <stringProp name="path"></stringProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/lights/state</stringProp>
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;pass-around&quot;: {
-        &quot;colors&quot;: [&quot;Custom4&quot;, &quot;Custom5&quot;],
-        &quot;frequency&quot;: 1
-    }
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase17&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
           <stringProp name="dataFile"></stringProp>
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
-        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="test6">
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase18" enabled="true">
           <boolProp name="createNewConnection">false</boolProp>
-          <boolProp name="TLS">false</boolProp>
-          <stringProp name="server"></stringProp>
-          <stringProp name="port">80</stringProp>
-          <stringProp name="path"></stringProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/lights/state</stringProp>
           <stringProp name="connectTimeout">20000</stringProp>
           <stringProp name="payloadType">Text</stringProp>
           <stringProp name="requestData">{
-    &quot;lightType&quot;: &quot;tafl&quot;,
-    &quot;pass-around&quot;: {
-        &quot;colors&quot;: [&quot;Custom5&quot;, &quot;Primary&quot;],
-        &quot;frequency&quot;: 1
-    }
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase18&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="TestCase19" enabled="true">
+          <boolProp name="createNewConnection">false</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/lights/state</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;lightType&quot;: &quot;guidance&quot;,
+    &quot;preset&quot;: &quot;TestCase19&quot;
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>

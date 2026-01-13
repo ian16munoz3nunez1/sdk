@@ -115,7 +115,7 @@
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/v1/printer/info" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/v1/printer/info">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -143,7 +143,7 @@
         </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/v1/printer/state" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/v1/printer/state">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -160,7 +160,7 @@
             <boolProp name="TLS">true</boolProp>
             <stringProp name="server">localhost</stringProp>
             <stringProp name="port">2525</stringProp>
-            <stringProp name="path">/v1/printer/print</stringProp>
+            <stringProp name="path">/v1/printer/state</stringProp>
             <stringProp name="connectTimeout">20000</stringProp>
             <stringProp name="payloadType">Text</stringProp>
             <stringProp name="requestData">{
@@ -196,20 +196,374 @@
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="printerTest" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/v1/printer/settings">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <stringProp name="LoopController.loops">10</stringProp>
+          <stringProp name="LoopController.loops">1</stringProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-          <stringProp name="ConstantTimer.delay">300</stringProp>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="enable">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/settings</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;deviceEnabled&quot;: true
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="disabled" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/settings</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;deviceEnabled&quot;: false
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="printerTest">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <intProp name="LoopController.loops">-1</intProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer">
+          <stringProp name="ConstantTimer.delay">1000</stringProp>
         </ConstantTimer>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="print">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;data&quot;: &quot;Hello\nWorld!!&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="printBold" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;data&quot;: &quot;\u001b|bCHello\nWorld!!&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="printItalic" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;data&quot;: &quot;\u001b|iCHello\nWorld!!&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="printUnderline" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;data&quot;: &quot;\u001b|1uCHello\nWorld!!&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="printBigger" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;data&quot;: &quot;\u001b|3CHello\nWorld!!&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="printCentered" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;data&quot;: &quot;\u001b|cAHello\nWorld!!&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="printRight" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;data&quot;: &quot;\u001b|rAHello\nWorld!!&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="printLeft" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;data&quot;: &quot;\u001b|lAHello\nWorld!!&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="printUPCA" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;data&quot;: &quot;\u001b|33Rs101h100w200a-2t-13d123456789012e&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="printUPCA" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;operation&quot;: &quot;printBarCode&quot;,
+    &quot;alignment&quot;: &quot;center&quot;,
+    &quot;width&quot;: 10,
+    &quot;height&quot;: 60,
+    &quot;textPosition&quot;: &quot;bottom&quot;,
+    &quot;symbology&quot;: &quot;UPC-A&quot;,
+    &quot;data&quot;: &quot;123456789012&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="printUPCE" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;data&quot;: &quot;\u001b|33Rs102h100w200a-2t-13d123456000000e&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="printUPCE" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;operation&quot;: &quot;printBarCode&quot;,
+    &quot;alignment&quot;: &quot;center&quot;,
+    &quot;width&quot;: 10,
+    &quot;height&quot;: 60,
+    &quot;textPosition&quot;: &quot;bottom&quot;,
+    &quot;symbology&quot;: &quot;UPC-E&quot;,
+    &quot;data&quot;: &quot;123456789012&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="printBitmap" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;operation&quot;: &quot;printBitmap&quot;,
+    &quot;fileName&quot;: &quot;&lt;path/to/image&gt;&quot;,
+    &quot;alignment&quot;: &quot;center&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="printLeft90" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+  &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+  &quot;station&quot;: &quot;receipt&quot;,
+  &quot;operation&quot;: &quot;rotatePrint&quot;,
+  &quot;rotation&quot;: &quot;left-90&quot;,
+  &quot;data&quot;: &quot;Hello World!!&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="printRight90" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+  &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+  &quot;station&quot;: &quot;receipt&quot;,
+  &quot;operation&quot;: &quot;rotatePrint&quot;,
+  &quot;rotation&quot;: &quot;right-90&quot;,
+  &quot;data&quot;: &quot;Hello World!!&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="printRotate180" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+  &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+  &quot;station&quot;: &quot;receipt&quot;,
+  &quot;operation&quot;: &quot;rotatePrint&quot;,
+  &quot;rotation&quot;: &quot;rotate-180&quot;,
+  &quot;data&quot;: &quot;Hello World!!&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
         <hashTree/>
         <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="print" enabled="true">
           <boolProp name="createNewConnection">true</boolProp>
@@ -222,7 +576,62 @@
           <stringProp name="requestData">{
     &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
     &quot;station&quot;: &quot;receipt&quot;,
-    &quot;data&quot;: &quot;Hello\nWorld!!&quot;
+    &quot;data&quot;: &quot;\n\n&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="cutPaper" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;data&quot;: &quot; \u001b|20P&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="print" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;data&quot;: &quot;\n\n&quot;
+}</stringProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="cutPaper" enabled="true">
+          <boolProp name="createNewConnection">true</boolProp>
+          <boolProp name="TLS">true</boolProp>
+          <stringProp name="server">localhost</stringProp>
+          <stringProp name="port">2525</stringProp>
+          <stringProp name="path">/v1/printer/print</stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="payloadType">Text</stringProp>
+          <stringProp name="requestData">{
+    &quot;deviceId&quot;: &quot;POSPrinter1&quot;,
+    &quot;station&quot;: &quot;receipt&quot;,
+    &quot;operation&quot;: &quot;cutPaper&quot;,
+    &quot;percentage&quot;: 90
 }</stringProp>
           <stringProp name="readTimeout">6000</stringProp>
           <boolProp name="loadDataFromFile">false</boolProp>
