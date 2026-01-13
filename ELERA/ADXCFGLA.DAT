@@ -1,0 +1,52 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!DOCTYPE ApplicationLoadDefinitionFile SYSTEM "ApplicationLoadDefinition.dtd" >
+<ApplicationLoadDefinitionFile>
+     <FileVersion version="v6r3"/>
+     <ApplicationLoadDefinition machineRange="101">
+         <LoadedApplication applName="SDKSELF1"/>
+         <LoadedApplication applName="SDKBrowser"/>
+         <LoadedApplication applName="XTERM"/>
+         <LoadedApplication applName="ELERAProxy"/>
+         <LoadedApplication applName="ELERAPayProxy"/>
+         <LoadedApplication applName="ELERAView1"/>
+         <LoadedApplication applName="ELERAPay"/>
+         <LoadedApplication applName="IngenicoBridge"/>
+        <!--<LoadedApplication applName="jposCC"/>-->
+     </ApplicationLoadDefinition>
+     <ApplicationLoadDefinition machineRange="103,105">
+         <LoadedApplication applName="SDKSELF2"/>
+         <LoadedApplication applName="SDKBrowser"/>
+         <LoadedApplication applName="XTERM"/>
+         <LoadedApplication applName="ELERAProxy"/>
+         <LoadedApplication applName="ELERAPayProxy"/>
+         <LoadedApplication applName="ELERAView1"/>
+         <LoadedApplication applName="ELERAPay"/>
+         <LoadedApplication applName="IngenicoBridge"/>
+        <!--<LoadedApplication applName="jposCC"/>-->
+     </ApplicationLoadDefinition>
+     <ApplicationLoadDefinition machineRange="102,104">
+         <LoadedApplication applName="SDKFIX"/>
+         <LoadedApplication applName="SDKBrowser"/>
+         <LoadedApplication applName="XTERM"/>
+         <LoadedApplication applName="ELERAProxy"/>
+         <LoadedApplication applName="ELERAPayProxy"/>
+         <LoadedApplication applName="ELERAView1"/>
+         <LoadedApplication applName="ELERAPay"/>
+         <LoadedApplication applName="IngenicoBridge"/>
+        <!--<LoadedApplication applName="jposCC"/>-->
+     </ApplicationLoadDefinition>
+     <ApplicationLoadDefinition machineRange="110">
+        <LoadedApplication applName="SDKS6"/>
+        <LoadedApplication applName="SDKBrowser"/>
+        <LoadedApplication applName="XTERM"/>
+        <LoadedApplication applName="FIREFOX"/>
+        <!--<LoadedApplication applName="jposCC"/>-->
+     </ApplicationLoadDefinition>
+     <ApplicationLoadDefinition machineRange="111-120">
+        <!--<LoadedApplication applName="SDK"/>-->
+        <!--<LoadedApplication applName="SDKBrowser"/>-->
+        <LoadedApplication applName="XTERM"/>
+        <!--<LoadedApplication applName="FIREFOX"/>-->
+        <LoadedApplication applName="jposCC"/>
+     </ApplicationLoadDefinition>
+</ApplicationLoadDefinitionFile>

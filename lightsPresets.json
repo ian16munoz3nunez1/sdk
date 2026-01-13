@@ -1,368 +1,524 @@
 {
-    "system7":
-    {
-        "TestCase0":
+"system7":{
+  "TestCase0":
+     {
+        "LaneLight":
         {
-            "LaneLight":
-            {
-                "state": "off"
-            },
-
-            "Pinpad":
-            {
-                "state": "off"
-            },
-
-            "Printer":
-            {
-                "state": "off"
-            },
-
-            "Coupon":
-            {
-                "state": "off"
-            },
-
-            "Cash":
-            {
-                "state": "off"
-            }
+           "state": "off"
         },
-
-        "TestCase1":
+        "Pinpad":
         {
-            "LaneLight":
-            {
-                "state": "off"
-            },
-
-            "Pinpad":
-            {
-                "state": "off"
-            },
-
-            "Printer":
-            {
-                "state": "off"
-            },
-
-            "Coupon":
-            {
-                "state": "off"
-            },
-
-            "Cash":
-            {
-                "state": "off"
-            }
+           "state": "off"
         },
-
-        "TestCase2":
+        "Printer":
         {
-            "LaneLight":
-            {
-                "state": "off"
-            },
-
-            "Pinpad":
-            {
-                "state": "off"
-            },
-
-            "Printer":
-            {
-                "state": "off"
-            },
-
-            "Coupon":
-            {
-                "state": "off"
-            },
-
-            "Cash":
-            {
-                "state": "off"
-            }
+           "state": "off"
         },
-
-        "TestCase3":
+        "Coupon":
         {
-            "LaneLight":
-            {
-                "state": "off"
-            },
-
-            "Pinpad":
-            {
-                "state": "off"
-            },
-
-            "Printer":
-            {
-                "state": "off"
-            },
-
-            "Coupon":
-            {
-                "state": "off"
-            },
-
-            "Cash":
-            {
-                "state": "off"
-            }
+           "state": "off"
         },
-
-        "TestCase4":
+        "Cash":
         {
-            "LaneLight":
-            {
-                "state": "off"
-            },
-
-            "Pinpad":
-            {
-                "state": "off"
-            },
-
-            "Printer":
-            {
-                "state": "off"
-            },
-
-            "Coupon":
-            {
-                "state": "off"
-            },
-
-            "Cash":
-            {
-                "state": "off"
-            }
-        },
-
-        "TestCase5":
+           "state": "off"
+        }
+     },
+  "TestCase1":
+     {
+        "LaneLight":
         {
-            "LaneLight":
-            {
-                "state": "off"
-            },
-
-            "Pinpad":
-            {
-                "state": "off"
-            },
-
-            "Printer":
-            {
-                "state": "off"
-            },
-
-            "Coupon":
-            {
-                "state": "off"
-            },
-
-            "Cash":
-            {
-                "state": "off"
-            }
+           "state": "on",
+           "color": "yellow"
         },
-
-        "TestCase6":
+        "Pinpad":
         {
-            "LaneLight":
-            {
-                "state": "off"
-            },
-
-            "Pinpad":
-            {
-                "state": "off"
-            },
-
-            "Printer":
-            {
-                "state": "off"
-            },
-
-            "Coupon":
-            {
-                "state": "off"
-            },
-
-            "Cash":
-            {
-                "state": "off"
-            }
+           "state": "off"
         },
-
-        "TestCase7":
+        "Printer":
         {
-            "LaneLight":
-            {
-                "state": "off"
-            },
-
-            "Pinpad":
-            {
-                "state": "off"
-            },
-
-            "Printer":
-            {
-                "state": "off"
-            },
-
-            "Coupon":
-            {
-                "state": "off"
-            },
-
-            "Cash":
-            {
-                "state": "off"
-            }
+           "state": "off"
         },
-
-        "TestCase8":
+        "Coupon":
         {
-            "LaneLight":
-            {
-                "state": "off"
-            },
-
-            "Pinpad":
-            {
-                "state": "off"
-            },
-
-            "Printer":
-            {
-                "state": "off"
-            },
-
-            "Coupon":
-            {
-                "state": "off"
-            },
-
-            "Cash":
-            {
-                "state": "off"
-            }
+           "state": "off"
         },
-
-        "TestCase9":
+        "Cash":
         {
-            "LaneLight":
-            {
-                "state": "off"
-            },
-
-            "Pinpad":
-            {
-                "state": "off"
-            },
-
-            "Printer":
-            {
-                "state": "off"
-            },
-
-            "Coupon":
-            {
-                "state": "off"
-            },
-
-            "Cash":
-            {
-                "state": "off"
-            }
-        },
-
-        "TestCase10":
+           "state": "off"
+        }
+     },
+  "TestCase2":
+     {
+        "LaneLight":
         {
-            "LaneLight":
-            {
-                "state": "off"
-            },
-
-            "Pinpad":
-            {
-                "state": "off"
-            },
-
-            "Printer":
-            {
-                "state": "off"
-            },
-
-            "Coupon":
-            {
-                "state": "off"
-            },
-
-            "Cash":
-            {
-                "state": "off"
-            }
+           "state": "off"
         },
-
-        "TestCase11":
+        "Pinpad":
         {
-            "LaneLight":
-            {
-                "state": "off"
-            },
+           "state": "on",
+           "color": "yellow"
 
-            "Pinpad":
-            {
-                "state": "off"
-            },
-
-            "Printer":
-            {
-                "state": "off"
-            },
-
-            "Coupon":
-            {
-                "state": "off"
-            },
-
-            "Cash":
-            {
-                "state": "off"
-            }
         },
-
-        "TestCase12":
+         "Printer":
         {
-            "LaneLight":
-            {
-                "state": "off"
-            },
-
-            "Pinpad":
-            {
-                "state": "off"
-            },
-
-            "Printer":
-            {
-                "state": "off"
-            },
-
-            "Coupon":
-            {
-                "state": "off"
-            },
-
-            "Cash":
-            {
-                "state": "off"
-            }
+        "state": "off"
         },
-    }
+        "Coupon":
+        {
+        "state": "off"
+        },
+        "Cash":
+       {
+       "state": "off"
+       }
+     },
+  "TestCase3":
+     {
+        "LaneLight":
+        {
+           "state": "off"
+        },
+        "Pinpad":
+        {
+           "state": "off"
+        },
+        "Printer":
+        {
+           "state": "on",
+           "color": "yellow"
+        },
+        "Coupon":
+        {
+           "state": "off"
+        },
+        "Cash":
+        {
+           "state": "off"
+        }
+     },
+  "TestCase4":
+     {
+        "LaneLight":
+        {
+           "state": "off"
+        },
+        "Pinpad":
+        {
+           "state": "off"
+        },
+        "Printer":
+        {
+           "state": "off"
+        },
+        "Coupon":
+        {
+           "state": "on",
+           "color": "yellow"
+        },
+        "Cash":
+        {
+           "state": "off"
+        }
+     },
+  "TestCase5":
+     {
+        "LaneLight":
+        {
+           "state": "off"
+        },
+        "Pinpad":
+        {
+           "state": "off"
+        },
+        "Printer":
+        {
+           "state": "off"
+        },
+        "Coupon":
+        {
+           "state": "off"
+        },
+        "Cash":
+        {
+           "state": "on",
+           "color": "yellow"
+        }
+     },
+  "TestCase6":
+     {
+        "LaneLight":
+        {
+           "state": "off"
+        },
+        "Pinpad":
+        {
+           "state": "on",
+           "color": "darkred"
+        },
+        "Printer":
+        {
+           "state": "on",
+           "color": "darkred"
+        },
+        "Coupon":
+        {
+           "state": "on",
+           "color": "darkred"
+        },
+        "Cash":
+        {
+           "state": "on",
+           "color": "darkred"
+        }
+     },
+  "TestCase7":
+     {
+        "LaneLight":
+        {
+           "state": "on",
+           "color": "red"
+        },
+        "Pinpad":
+        {
+           "state": "off"
+        },
+        "Printer":
+        {
+           "state": "on",
+           "color": "red"
+        },
+        "Coupon":
+        {
+           "state": "on",
+           "color": "red"
+        },
+        "Cash":
+        {
+           "state": "on",
+           "color": "red"
+        }
+     },
+  "TestCase8":
+     {
+        "LaneLight":
+        {
+           "state": "on",
+           "color": "deeppink"
+        },
+        "Pinpad":
+        {
+           "state": "on",
+           "color": "deeppink"
+        },
+        "Printer":
+        {
+           "state": "off"
+        },
+        "Coupon":
+        {
+           "state": "on",
+           "color": "deeppink"
+        },
+        "Cash":
+        {
+           "state": "on",
+           "color": "deeppink"
+        }
+     },
+  "TestCase9":
+     {
+        "LaneLight":
+        {
+           "state": "blinking",
+           "color": "mediumvioletred"
+        },
+        "Pinpad":
+        {
+           "state": "blinking",
+           "color": "mediumvioletred"
+        },
+        "Printer":
+        {
+           "state": "blinking",
+           "color": "mediumvioletred"
+        },
+        "Coupon":
+        {
+           "state": "off"
+        },
+        "Cash":
+        {
+           "state": "blinking",
+           "color": "mediumvioletred"
+        }
+     },
+  "TestCase10":
+     {
+        "LaneLight":
+        {
+           "state": "blinking",
+           "color": "orangered"
+        },
+        "Pinpad":
+        {
+           "state": "blinking",
+           "color": "orangered"
+        },
+        "Printer":
+        {
+           "state": "blinking",
+           "color": "orangered"
+        },
+        "Coupon":
+        {
+           "state": "blinking",
+           "color": "orangered"
+        },
+        "Cash":
+        {
+           "state": "off"
+        }
+     },
+  "TestCase11":
+     {
+        "LaneLight":
+        {
+           "state": "blinking",
+           "color": "yellow"
+        },
+        "Pinpad":
+        {
+           "state": "on",
+           "color": "darkorange"
+        },
+        "Printer":
+        {
+           "state": "off"
+        },
+        "Coupon":
+        {
+           "state": "on",
+           "color": "darkorange"
+        },
+        "Cash":
+        {
+           "state": "off"
+        }
+     },
+  "TestCase12":
+     {
+        "LaneLight":
+        {
+           "state": "on",
+           "color": "lawngreen"
+        },
+        "Pinpad":
+        {
+           "state": "blinking",
+           "color": "yellow"
+        },
+        "Printer":
+        {
+           "state": "off"
+        },
+        "Coupon":
+        {
+           "state": "off"
+        },
+        "Cash":
+        {
+           "state": "on",
+           "color": "lawngreen"
+        }
+     },
+  "TestCase13":
+     {
+        "LaneLight":
+        {
+           "state": "off"
+        },
+        "Pinpad":
+        {
+           "state": "on",
+           "color": "lime"
+        },
+        "Printer":
+        {
+           "state": "blinking",
+           "color": "yellow"
+        },
+        "Coupon":
+        {
+           "state": "off"
+        },
+        "Cash":
+        {
+           "state": "on",
+           "color": "lime"
+        }
+     },
+  "TestCase14":
+     {
+        "LaneLight":
+        {
+           "state": "on",
+           "color": "lightseagreen"
+        },
+        "Pinpad":
+        {
+           "state": "off"
+        },
+        "Printer":
+        {
+           "state": "off"
+        },
+        "Coupon":
+        {
+           "state": "blinking",
+           "color": "yellow"
+        },
+        "Cash":
+        {
+           "state": "off"
+        }
+     },
+  "TestCase15":
+     {
+        "LaneLight":
+        {
+           "state": "on",
+           "color": "darkcyan"
+        },
+        "Pinpad":
+        {
+           "state": "off"
+        },
+        "Printer":
+        {
+           "state": "on",
+           "color": "darkcyan"
+        },
+        "Coupon":
+        {
+           "state": "off"
+        },
+        "Cash":
+        {
+           "state": "blinking",
+           "color": "yellow"
+        }
+     },
+  "TestCase16":
+     {
+        "LaneLight":
+        {
+           "state": "on",
+           "color": "mediumseagreen"
+        },
+        "Pinpad":
+        {
+           "state": "on",
+           "color": "mediumseagreen"
+        },
+        "Printer":
+        {
+           "state": "on",
+           "color": "mediumseagreen"
+        },
+        "Coupon":
+        {
+           "state": "on",
+           "color": "mediumseagreen"
+        },
+        "Cash":
+        {
+           "state": "on",
+           "color": "mediumseagreen"
+        }
+     },
+  "TestCase17":
+     {
+        "LaneLight":
+        {
+           "state": "blinking",
+           "color": "darkgreen"
+        },
+        "Pinpad":
+        {
+           "state": "blinking",
+           "color": "darkgreen"
+        },
+        "Printer":
+        {
+           "state": "blinking",
+           "color": "darkgreen"
+        },
+        "Coupon":
+        {
+           "state": "blinking",
+           "color": "darkgreen"
+        },
+        "Cash":
+        {
+           "state": "blinking",
+           "color": "darkgreen"
+        }
+     },
+  "TestCase18":
+     {
+        "LaneLight":
+        {
+           "state": "on",
+           "color": "mediumslateblue"
+        },
+        "Pinpad":
+        {
+           "state": "on",
+           "color": "mediumslateblue"
+        },
+        "Printer":
+        {
+           "state": "on",
+           "color": "mediumslateblue"
+        },
+        "Coupon":
+        {
+           "state": "on",
+           "color": "mediumslateblue"
+        },
+        "Cash":
+        {
+           "state": "on",
+           "color": "mediumslateblue"
+        }
+     },
+ "TestCase19":
+     {
+        "LaneLight":
+        {
+           "state": "blinking",
+           "color": "royalblue"
+        },
+        "Pinpad":
+        {
+           "state": "blinking",
+           "color": "royalblue"
+        },
+        "Printer":
+        {
+           "state": "blinking",
+           "color": "royalblue"
+        },
+        "Coupon":
+        {
+           "state": "blinking",
+           "color": "royalblue"
+        },
+        "Cash":
+        {
+           "state": "blinking",
+           "color": "royalblue"
+        }
+     }
+}
 }

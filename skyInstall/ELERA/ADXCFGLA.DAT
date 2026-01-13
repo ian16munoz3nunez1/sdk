@@ -1,0 +1,61 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!DOCTYPE ApplicationLoadDefinitionFile SYSTEM "ApplicationLoadDefinition.dtd" >
+<ApplicationLoadDefinitionFile>
+     <FileVersion version="v6r3"/>
+     <ApplicationLoadDefinition machineRange="100>
+         <LoadedApplication applName="SDKSELF"/>
+         <LoadedApplication applName="SDKBrowser"/>
+         <LoadedApplication applName="XTERM"/>
+         <LoadedApplication applName="ELERAProxy"/>
+         <LoadedApplication applName="ELERAPayProxy"/>
+         <LoadedApplication applName="ELERAView1"/>
+         <LoadedApplication applName="ELERAPay"/>
+         <LoadedApplication applName="IngenicoBridge"/>
+        <!--<LoadedApplication applName="jposCC"/>-->
+     </ApplicationLoadDefinition>
+     <ApplicationLoadDefinition machineRange="101">
+         <LoadedApplication applName="SDKSELF"/>
+         <LoadedApplication applName="SDKBrowser"/>
+         <LoadedApplication applName="XTERM"/>
+         <LoadedApplication applName="ELERAProxy"/>
+         <LoadedApplication applName="ELERAPayProxy"/>
+         <LoadedApplication applName="ELERAView1"/>
+         <LoadedApplication applName="ELERAPay"/>
+         <LoadedApplication applName="IngenicoBridge"/>
+        <!--<LoadedApplication applName="jposCC"/>-->
+     </ApplicationLoadDefinition>
+     <ApplicationLoadDefinition machineRange="101">
+         <LoadedApplication applName="SDKSELF"/>
+         <LoadedApplication applName="SDKBrowser"/>
+         <LoadedApplication applName="XTERM"/>
+         <LoadedApplication applName="ELERAProxy"/>
+         <LoadedApplication applName="ELERAPayProxy"/>
+         <LoadedApplication applName="ELERAView1"/>
+         <LoadedApplication applName="ELERAPay"/>
+         <LoadedApplication applName="IngenicoBridge"/>
+        <!--<LoadedApplication applName="jposCC"/>-->
+     </ApplicationLoadDefinition>
+     <ApplicationLoadDefinition machineRange="102">
+         <LoadedApplication applName="SDKFIX"/>
+         <LoadedApplication applName="SDKBrowser"/>
+         <LoadedApplication applName="XTERM"/>
+         <LoadedApplication applName="ELERAProxy"/>
+         <LoadedApplication applName="ELERAPayProxy"/>
+         <LoadedApplication applName="ELERAView1"/>
+         <LoadedApplication applName="ELERAPay"/>
+         <LoadedApplication applName="IngenicoBridge"/>
+        <!--<LoadedApplication applName="jposCC"/>-->
+     </ApplicationLoadDefinition>
+     <ApplicationLoadDefinition machineRange="110-111">
+         <LoadedApplication applName="SDK"/>
+         <LoadedApplication applName="SDKBrowser"/>
+         <LoadedApplication applName="XTERM"/>
+        <!--<LoadedApplication applName="jposCC"/>-->
+     </ApplicationLoadDefinition>
+     <ApplicationLoadDefinition machineRange="112">
+         <LoadedApplication applName="SDKS6"/>
+         <LoadedApplication applName="SDKBrowser"/>
+         <LoadedApplication applName="XTERM"/>
+        <!--<LoadedApplication applName="jposCC"/>-->
+     </ApplicationLoadDefinition>
+</ApplicationLoadDefinitionFile>
