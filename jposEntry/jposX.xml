@@ -2,38 +2,6 @@
 <!DOCTYPE JposEntries PUBLIC "-//JavaPOS//DTD//EN"
                              "jpos/res/jcl.dtd">
 <JposEntries>
-<!--Saved by JavaPOS jpos.config/loader (JCL) version 2.3.0-RC3 on 10/5/23 11:51 AM-->
-
-   <JposEntry logicalName="Scanner1">
-        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.ScannerUSBOEM"/>
-        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
-        <jpos category="Scanner" version="v1.14.13L22 2023-09-05"/>
-        <product description="Scanner" name="Scanner" url="http://www.toshibagcs.com"/>
-
-        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
-        <prop name="setEnableCODE39" type="Boolean" value="true"/>
-        <prop name="setEnableCode39CheckDigit" type="Boolean" value="false"/>
-        <prop name="setEnableCode128" type="Boolean" value="true"/>
-        <prop name="setEnableInterleaved2of5" type="Boolean" value="false"/>
-        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
-        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.ScannerUSBOEM"/>
-        <prop name="setEnableEAN_JAN_TwoLabelDecoding" type="Boolean" value="false"/>
-        <prop name="setEnableUCC_EAN128" type="Boolean" value="true"/>
-        <prop name="setEnable_5_DigitSupplementals" type="Boolean" value="false"/>
-        <prop name="setEnableCodabar" type="Boolean" value="false"/>
-        <prop name="setEnableCode93" type="Boolean" value="false"/>
-        <prop name="setEnableUPCD1D5" type="Boolean" value="false"/>
-        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.ScannerServiceImp"/>
-        <prop name="setEnable_2_DigitSupplementals" type="Boolean" value="false"/>
-        <prop name="setEnableUPCAE_EANJAN813" type="Boolean" value="true"/>
-        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
-        <prop name="setEnableITFCheckDigit" type="Boolean" value="false"/>
-        <prop name="setEnableUPC_A_CheckDigit" type="Boolean" value="false"/>
-        <prop name="setEnableUPC_E_CheckDigit" type="Boolean" value="false"/>
-        <prop name="deviceBus" type="String" value="HID"/>
-        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x4b00"/>
-        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
-   </JposEntry>
    <JposEntry logicalName="ProXLight">
         <creation factoryClass="jpos.tec.Factory.light.JposServiceFactory" serviceClass="jpos.tec.Light.Services.LightService"></creation>
         <vendor name="TOSHIBA TEC Corporation" url="http://www.toshibatec.co.jp"></vendor>

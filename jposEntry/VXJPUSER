@@ -1,0 +1,3516 @@
+#!/usr/bin/env python
+# Do not modify this file - it may be overwritten by system updates
+#
+# Make any required changes in adx_upgm:vxjpuser
+#
+#
+
+import os
+
+defaults = {
+
+'etc/sysmgmt.properties':'''\
+[default]
+#
+# Events port name for CIM Provider.
+#
+provider.eventSocket.Port=42114
+
+#
+# Timeout property for requests from CIM provider to UPOS (default 30000 msecs)
+#
+provider.response.timeout=30000
+
+#
+# Request port name for UPOS 
+#
+upos.requestSocket.Port=42115
+
+#
+# Event Destination IP Address 
+#
+provider.eventSocket.IP=127.0.0.1
+
+#
+# Maximum number of querying threads on Java
+#
+provider.maxQueryThreads=1
+
+#
+# Defines the value of the frequency in which the driver should try to 
+# update the data of the device, it will depend if the device is use or
+# not, the driver will decide if it is possible to update the data at that 
+# moment, if not, it should ignore the request or enqueue it until 
+# it can be executed.  This value is configured in minutes.
+#
+# provider.dataUpdate.frequency=60
+''',
+
+'etc/posj.autoconfig.Scale.properties':'''\
+# Properties for Scale
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=Scale1
+
+# This specifies the regulations that the system must conform to.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "US" and "UK".
+#com.ibm.jpos.sdi.config.Scale.operationMode=US
+
+# This specifies if a remote scale display is required.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "true" and "false".
+#com.ibm.jpos.sdi.config.Scale.displayRequired=false
+
+# If true, center-of-zero is indicated with the LED.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "true" and "false".
+#com.ibm.jpos.sdi.config.Scale.centerOfZero=false
+
+# This specifies if the weight is returned in pounds or kilograms.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "0" (for pounds) and "1" (for kilograms).
+#com.ibm.jpos.sdi.config.Scale.weighMode=0
+
+# This specifies whether zero protection is required.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "true" and "false".
+#com.ibm.jpos.sdi.config.Scale.enforceZeroReturn=false
+
+# This controls the sensitivity to vibration.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "0" (normal), "1" (low), "2" (very low), and "3" (ultra low).
+#com.ibm.jpos.sdi.config.Scale.vibrationSensitivity=0
+
+# This specifies the number of digits to return for an English weight (pounds).
+# See the JavaPOS User's Guide for details.
+# Allowable values are "true" (five digits of weight) and "false" (four digits of weight).
+#com.ibm.jpos.sdi.config.Scale.fiveDigitWeight=false
+''',
+
+'etc/sdicc.properties':'''\
+#
+# %Z%%W% %I%
+# ===========================================================================
+
+#
+#SDI Control Center properties file
+#@author Julio C. Sanchez
+#
+
+#
+# Language. See the ISO-639 standard for key value
+#
+sdicc.language=en
+
+#
+# Version of the SDI Control Center App
+#
+sdicc.version=1.6
+
+#
+# MultiProperties for sub-tools (Plugins)
+# Expected format: sdicc.pluginClass.<n>=<Class name>
+# Properties used to get the classes that implements "Plugin" interface. These 
+# plugins are used as sub-tools in the SDI Control Center App.
+#
+sdicc.pluginClass.1=com.ibm.jpos.tools.sdicc.info.InfoPlugin
+sdicc.pluginClass.2=com.ibm.jpos.tools.sdicc.flashupdate.FlashUpdatePlugin
+sdicc.pluginClass.3=com.ibm.jpos.tools.sdicc.fontdownload.FontDownloadPlugin
+sdicc.pluginClass.4=com.ibm.jpos.tools.sdicc.displayfontdownload.DisplayFontDownloadPlugin
+sdicc.pluginClass.5=com.ibm.jpos.tools.sdicc.demo.DemoPlugin
+sdicc.pluginClass.6=com.ibm.jpos.tools.sdicc.statistics.StatsPlugin
+sdicc.pluginClass.7=com.ibm.jpos.tools.sdicc.codepagedemo.CodePageDemoPlugin
+sdicc.pluginClass.8=com.ibm.jpos.tools.sdicc.printercodepagedemo.PrinterCodePageDemoPlugin
+sdicc.pluginClass.9=com.ibm.jpos.tools.sdicc.configurationupdate.ConfigurationUpdatePlugin
+sdicc.pluginClass.10=com.ibm.jpos.tools.sdicc.calibration.CalibrationPlugin
+sdicc.pluginClass.11=com.ibm.jpos.tools.sdicc.lightsconfiguration.LightsConfigurationPlugin
+#
+# MultiProperties for Properties files to be displaied
+# Expected format: sdicc.propertiesFile.<n>=<relative path to properties file>
+#
+sdicc.propertiesFile.1=jutil.properties
+sdicc.propertiesFile.2=posj.properties
+
+#
+# Directory to save the properties
+# the prefix "<home>" is used to indicate the user's home directory
+# notice that absolute paths are required to be able of save the properites files
+#
+#sdicc.propertiesDirectory=/opt/tgcs/javapos/etc/
+
+#
+# Property to indicate whether the "Useful Tips window" is 
+# displayed at start up or not.
+#
+sdicc.displayUsefulTipsWindow=ON
+''',
+
+'etc/posj.autoconfig.ToneIndicator.properties':'''\
+# Properties for ToneIndicator
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=ToneIndicator1
+''',
+
+'etc/posj.autoconfig.CashDrawer.properties':'''\
+# Properties for CashDrawer
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=CashDrawer1
+
+# This specifies if the CashDrawer has reversed signal lines.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "true" and "false".
+#signalsReversed=false
+
+
+# NOTE : The only currently supported RS232 CashDrawer is the SurePOS 500 CashDrawer.
+# NOTE : This CashDrawer is the ONLY auto-detected RS232 device, and it does NOT
+# NOTE : need to be specified here.  These are NOT NEEDED for POSPrinter-connected CashDrawers.
+#
+# These are RS232 properties.  These should only be used if the device
+# is directly connected to the RS232 port, not for subdevices.
+
+# This specifies the device is connected via the RS232 bus.
+# This must be specified for a RS232-connected device.
+# The only allowable value is "RS232", no other value should be used.
+# For devices that are not RS232-connected, this should not be specified.
+#deviceBus.1=RS232
+
+# This specifies the port that the device is connected to.
+# This must be specified for a RS232-connected device.
+# The value should be the RS232 port name in DOS nomenclature, i.e. "COM1", "COM2", etc.
+# Note that "COM1" is the first RS232 port, there is no "COM0".
+#portName.1=COM4
+
+# This specifies the baud rate that the device uses.
+# This will default to a predetermined value if not specified.
+# The value should be the baud rate as a decimal number.
+#baudRate.1=9600
+
+# This specifies the flow control that the device uses.
+# This will default to a predetermined value if not specified.
+# Allowable values are "Xon/Xoff", "Hardware", and "None".
+#flowControl.1=Xon/Xoff
+''',
+
+'etc/posj.autoconfig.LineDisplay.properties':'''\
+# Properties for LineDisplay
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=LineDisplay1
+
+# This specifies the number of rows for an EIA232 APA display.
+# This is only valid for APA displays, it is ignored for other display types.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "2", "4", and "5".
+#com.ibm.jpos.services.sdi.config.LineDisplay.NumberOfRows=2
+
+# This initializes the cursor state for and EIA232 VFD display 
+# This is only valid for EIA232 VFD displays, it is ignored for other display types.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "ON", "OFF".
+#com.ibm.jpos.services.sdi.config.LineDisplay.CursorState=ON
+
+
+# These are RS232 properties.  These should only be used if the device
+# is directly connected to the RS232 port, not for subdevices.
+
+# This specifies the device is connected via the RS232 bus.
+# This must be specified for a RS232-connected device.
+# The only allowable value is "RS232", no other value should be used.
+# For devices that are not RS232-connected, this should not be specified.
+#deviceBus.1=RS232
+
+# This specifies the port that the device is connected to.
+# This must be specified for a RS232-connected device.
+# The value should be the RS232 port name in DOS nomenclature, i.e. "COM1", "COM2", etc.
+# Note that "COM1" is the first RS232 port, there is no "COM0".
+#portName.1=COM1
+
+# This specifies the baud rate that the device uses.
+# This will default to a predetermined value if not specified.
+# The value should be the baud rate as a decimal number.
+#baudRate.1=9600
+
+# This specifies the flow control that the device uses.
+# This will default to a predetermined value if not specified.
+# Allowable values are "Xon/Xoff", "Hardware", and "None".
+#flowControl.1=Xon/Xoff
+
+# This specifies the ID for RS232-connected LineDisplays.
+# This must be specified for a RS232-connected LineDisplay.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "VFD", "APA" and "LED".
+#com.ibm.posj.bus.rs232.lineDisplayId.1=VFD
+
+
+# This specifies the Character Set that will be used to configure the LineDisplay
+# This will default to a predetermined value if not specified.
+# For APA RS485 this property should be set to 998
+# See the JavaPOS User's Guide for details.
+# 
+#com.ibm.jpos.services.sdi.config.LineDisplay.CharacterSetASCIIBehavior=858
+
+# This specifies the Character Set that will be used to configure the LineDisplay
+# This will default to a predetermined value if not specified.
+# For APA RS485 this property should be set to 998
+# See the JavaPOS User's Guide for details.
+# 
+#com.ibm.jpos.sdi.config.LineDisplay.CharacterSet.1=998''',
+
+'etc/posj.autoconfig.POSKeyboard.properties':'''\
+# Properties for POSKeyboard
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=POSKeyboard1
+
+# This adjusts the audible clicking of the keyboard keys.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "0" (no click), "1" (soft click), and "2" (loud click).
+#com.ibm.jpos.sdi.config.POSKeyboard.Click=0
+
+# This enables or disables the typematic feature of the keyboard.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "true" and "false".
+#com.ibm.jpos.sdi.config.POSKeyboard.Typematic=true
+
+# This adjusts the typematic delay.
+# See the JavaPOS User's Guide for details.
+# Allowable values are:
+#  0 = 250 ms
+#  1 = 500 ms
+#  2 = 750 ms
+#  3 = 1000 ms
+#com.ibm.jpos.sdi.config.POSKeyboard.TypematicDelay=1
+
+# This adjusts the typematic rate.
+# See the JavaPOS User's Guide for details.
+# Allowable values are:
+#  0x00 = 2.0 characters per second
+#  0x01 = 2.1 characters per second
+#  0x02 = 2.3 characters per second
+#  0x03 = 2.5 characters per second
+#  0x04 = 2.7 characters per second
+#  0x05 = 3.0 characters per second
+#  0x06 = 3.3 characters per second
+#  0x07 = 3.7 characters per second
+#  0x08 = 4.0 characters per second
+#  0x09 = 4.3 characters per second
+#  0x0a = 4.6 characters per second
+#  0x0b = 5.0 characters per second
+#  0x0c = 5.5 characters per second
+#  0x0d = 6.0 characters per second
+#  0x0e = 6.7 characters per second
+#  0x0f = 7.5 characters per second
+#  0x10 = 8.0 characters per second
+#  0x11 = 8.6 characters per second
+#  0x12 = 9.2 characters per second
+#  0x13 = 10.0 characters per second
+#  0x14 = 10.9 characters per second
+#  0x15 = 12.0 characters per second
+#  0x16 = 13.3 characters per second
+#  0x17 = 15.0 characters per second
+#  0x18 = 16.0 characters per second
+#  0x19 = 17.1 characters per second
+#  0x1a = 18.5 characters per second
+#  0x1b = 20.0 characters per second
+#  0x1c = 21.8 characters per second
+#  0x1d = 24.0 characters per second
+#  0x1e = 26.7 characters per second
+#  0x1f = 30.0 characters per second
+#com.ibm.jpos.sdi.config.POSKeyboard.TypematicRate=0x14
+
+# This controls whether the keyboard generates make/break scancodes or not.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "true" and "false".
+#com.ibm.jpos.sdi.config.POSKeyboard.KbdScanning=true
+
+# This specifies the time interval between keystrokes that defines a "fat-finger" situation.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "0" (disabled), "1" (10 ms), "2" (20 ms), "3" (30 ms), and "4" (40 ms).
+#com.ibm.jpos.sdi.config.POSKeyboard.FatFingerTimeout=3
+
+# This controls the extended key mapping translation.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "true" and "false".
+#com.ibm.jpos.sdi.config.POSKeyboard.ExtendedKeyMapping=false
+
+# This specifies a key translation file to use.
+# See the JavaPOS User's Guide for details.
+# The value should be the filename to use.
+#KeyTranslationFile=
+
+''',
+
+'config/jpos_self.xml':'''\
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JposEntries PUBLIC "-//JavaPOS//DTD//EN"
+                             "jpos/res/jcl.dtd">
+<JposEntries>
+    <JposEntry logicalName="GuidanceLight">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.GuidanceLights"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="Lights" version="v1.14.10L15 2022-04-28"/>
+        <product description="Lights" name="Lights" url="http://www.toshibagcs.com"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.lights.JposGuidanceLights"/>
+        <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.GuidanceLights"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.GuidanceLightsServiceImp"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+        <prop name="com.tgcs.jpos.GuidanceLights.Color.Primary" type="String" value="000000FF"/>
+        <prop name="com.tgcs.jpos.GuidanceLights.Color.Custom1" type="String" value="FFE00000"/>
+        <prop name="com.tgcs.jpos.GuidanceLights.Color.Custom2" type="String" value="0000FF00"/>
+        <prop name="com.tgcs.jpos.GuidanceLights.Color.Custom3" type="String" value="FF000000"/>
+        <prop name="com.tgcs.jpos.GuidanceLights.Color.Custom4" type="String" value="FFFF0000"/>
+        <prop name="com.tgcs.jpos.GuidanceLights.Color.Custom5" type="String" value="00FFF000"/>
+    </JposEntry>
+    <!-- <JposEntry logicalName="TALLight">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.TALLights"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="Lights" version="v1.14.10L15 2022-04-28"/>
+        <product description="Lights" name="Lights" url="http://www.toshibagcs.com"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.lights.JposTALLights"/>
+        <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.TALLights"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.TALLightsServiceImp"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="2"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="1"/>
+    </JposEntry> -->
+    <JposEntry logicalName="SuperTAFL">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.TALLights"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="Lights" version="v1.14.10L15 2022-04-28"/>
+        <product description="Lights" name="Lights" url="http://www.toshibagcs.com"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.lights.JposSuperTALLights"/>
+        <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.TALLights"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.TALLightsServiceImp"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="2"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="1"/>
+        <prop name="com.tgcs.jpos.Lights.Tal.Mode" type="String" value="com.tgcs.jpos.Lights.Mode.Tal"/>
+        <prop name="com.tgcs.jpos.Lights.Color.Primary" type="String" value="FF000000"/>
+        <prop name="com.tgcs.jpos.Lights.Color.Custom1" type="String" value="00FFFF00"/>
+        <prop name="com.tgcs.jpos.Lights.Color.Custom2" type="String" value="00FF0000"/>
+        <prop name="com.tgcs.jpos.Lights.Color.Custom3" type="String" value="FF00FF00"/>
+        <prop name="com.tgcs.jpos.Lights.Color.Custom4" type="String" value="0000FF00"/>
+        <prop name="com.tgcs.jpos.Lights.Color.Custom5" type="String" value="FFFF0000"/>
+    </JposEntry>
+    <JposEntry logicalName="CouponSensor">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.tgcs.jpos.services.ToshibaAuthCouponSensorService"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="MotionSensor" version="v1.14.10L14 2022-04-19"/>
+        <product description="MotionSensor" name="MotionSensor" url="http://www.toshibagcs.com"/>
+
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.sensors.JposCouponSensor"/>
+        <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+
+        <prop name="abstractionClass" type="String" value="com.tgcs.jpos.services.ToshibaAuthCouponSensorService"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+        <prop name="impClass" type="String" value="com.tgcs.jpos.services.ToshibaAuthCouponSensorServiceImp"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="2"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="3"/>
+    </JposEntry>
+    <JposEntry logicalName="ProximitySensor">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.tgcs.jpos.services.ToshibaAuthProximitySensorService"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="MotionSensor" version="v1.14.10L14 2022-04-19"/>
+        <product description="MotionSensor" name="MotionSensor" url="http://www.toshibagcs.com"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.sensors.JposProximitySensor"/>
+        <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+        <prop name="abstractionClass" type="String" value="com.tgcs.jpos.services.ToshibaAuthProximitySensorService"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+        <prop name="impClass" type="String" value="com.tgcs.jpos.services.ToshibaAuthProximitySensorServiceImp"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="2"/>
+    </JposEntry>
+    <JposEntry logicalName="SecurityScale">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.tgcs.jpos.services.ToshibaAuthScaleService"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="Scale" version="v1.14.11L6 2022-08-30"/>
+        <product description="Scale" name="Scale" url="http://www.toshibagcs.com"/>
+
+        <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+
+        <prop name="abstractionClass" type="String" value="com.tgcs.jpos.services.ToshibaAuthScaleService"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+        <prop name="impClass" type="String" value="com.tgcs.jpos.services.ToshibaAuthScaleServiceImp"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="2"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="4"/>
+        <prop name="com.ibm.jpos.sdi.config.Scale.displayRequired" type="Boolean" value="false"/>
+        <prop name="com.ibm.jpos.sdi.config.Scale.operationMode" type="String" value="US"/>
+        <prop name="com.ibm.jpos.sdi.config.Scale.vibrationSensitivity" type="String" value="0"/>
+        <prop name="com.ibm.jpos.sdi.config.Scale.weighMode" type="String" value="0"/>
+        <prop name="com.ibm.jpos.sdi.config.Scale.enforceZeroReturn" type="Boolean" value="false"/>
+    </JposEntry>
+    <JposEntry logicalName="BNRDevice">
+        <creation factoryClass="com.cranepi.device.bnr.javapos.BNRCashChangerServiceInstanceFactory" serviceClass="com.cranepi.device.bnr.javapos.BNRCashChangerService"/>
+        <vendor name="CPI" url="https://www.cranepi.com"/>
+        <jpos category="CashChanger" version="1.14"/>
+        <product description="BNR" name="CPI BNR Bill Recycler" url="https://www.cranepi.com/en/products/payment-technology/note/recyclers/bnr-advance"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.cashchanger.JposCashChanger"/>
+    </JposEntry>
+    <JposEntry logicalName="BCRDevice">
+        <creation factoryClass="com.cranepi.device.bcr.javapos.BCRCashChangerServiceInstanceFactory" serviceClass="com.cranepi.device.bcr.javapos.BCRCashChangerService"/>
+        <vendor name="CPI" url="http://www.digitalpersona.com"/>
+        <jpos category="CashChanger" version="1.14"/>
+        <product description="BCR" name="U.are.U 4000B Reader" url="http://www.digitalpersona.com"/>
+        <prop name="portName" type="String" value="/dev/ttyUSB0"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.cashchanger.JposCashChanger"/>
+    </JposEntry>
+    <!-- <JposEntry logicalName="CCRDevice">
+        <jpos category="CashChanger" version="1.14"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.cashchanger.JposCashChanger"/>
+        <creation factoryClass="com.cranepi.device.ccr.javapos.CCRCashChangerServiceInstanceFactory"
+        serviceClass="com.cranepi.device.ccr.javapos.CCRCashChangerService" />
+        <vendor name="CPI" url="https://cranepi.com/" />
+        <product description="CCR" name="CCR Coin Recycler" url="https://www.cranepi.com/" />
+        <prop name="cashboxPresent" type="Boolean" value="true"/>
+        <prop name="cashboxCapacity" type="String" value="3000"/>
+    </JposEntry>
+    <JposEntry logicalName="BNFDevice">
+        <creation  factoryClass="com.cranepi.device.bnr.javapos.BNRCashChangerServiceInstanceFactory" serviceClass="com.cranepi.device.bnr.javapos.BNRCashChangerService"/>  
+        <vendor name="CPI" url="https://www.cranepi.com"/>
+        <jpos category="CashChanger" version="1.14"/>
+        <product description="BNR" name="CPI BNR Bill Recycler" url="https://www.cranepi.com/en/products/payment-technology/note/recyclers/bnr-advance"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.cashchanger.JposCashChanger"/>
+    </JposEntry>
+    <JposEntry logicalName="MSR">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.IBMMSR"/>
+        <vendor name="Toshiba" url="https://commerce.toshiba.com/"/>
+        <jpos category="MSR" version="1.14.12"/>
+        <product description="Toshiba JavaPOS(TM) MSR USB Service for Toshiba ANKPOS/Keyboard V/Modular/NANPOS/133 key/4685/4820/50key Keyboard" name="Toshiba JavaPOS for Linux/Windows Version 1.14.12" url="https://commerce.toshiba.com/"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x1600"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.IBMMSR"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.MSRServiceImp"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xFF45"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+    </JposEntry> -->
+    <JposEntry logicalName="DL-Gryphon-GD45XX-USB-OEM">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.ScannerUSBOEM"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="Scanner" version="v1.14.11L32 2022-12-09"/>
+        <product description="Scanner" name="Scanner" url="http://www.toshibagcs.com"/>
+        <prop name="setEnableCODE39" type="Boolean" value="true"/>
+        <prop name="setEnableCode39CheckDigit" type="Boolean" value="false"/>
+        <prop name="setEnableCode128" type="Boolean" value="true"/>
+        <prop name="setEnableInterleaved2of5" type="Boolean" value="false"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.ScannerUSBOEM"/>
+        <prop name="setEnableEAN_JAN_TwoLabelDecoding" type="Boolean" value="false"/>
+        <prop name="setEnableUCC_EAN128" type="Boolean" value="true"/>
+        <prop name="setEnable_5_DigitSupplementals" type="Boolean" value="false"/>
+        <prop name="setEnableCodabar" type="Boolean" value="false"/>
+        <prop name="setEnableCode93" type="Boolean" value="false"/>
+        <prop name="setEnableUPCD1D5" type="Boolean" value="false"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.ScannerServiceImp"/>
+        <prop name="setEnable_2_DigitSupplementals" type="Boolean" value="false"/>
+        <prop name="setEnableUPCAE_EANJAN813" type="Boolean" value="true"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="setEnableITFCheckDigit" type="Boolean" value="false"/>
+        <prop name="setEnableUPC_A_CheckDigit" type="Boolean" value="false"/>
+        <prop name="setEnableUPC_E_CheckDigit" type="Boolean" value="false"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x4b00"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+    </JposEntry>
+    <JposEntry logicalName="Scanner1">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.ScannerUSBOEM"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="Scanner" version="v1.14.11L32 2022-12-09"/>
+        <product description="Scanner" name="Scanner" url="http://www.toshibagcs.com"/>
+        <prop name="setEnableCODE39" type="Boolean" value="true"/>
+        <prop name="setEnableCode128" type="Boolean" value="true"/>
+        <prop name="setITFLengthSpecifiedTwo" type="Boolean" value="true"/>
+        <prop name="setEnableInterleaved2of5" type="Boolean" value="true"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.ScannerUSBOEM"/>
+        <prop name="setEnableUCC_EAN128" type="Boolean" value="true"/>
+        <prop name="setEnable_5_DigitSupplementals" type="Boolean" value="true"/>
+        <prop name="setEnableCodabar" type="Boolean" value="true"/>
+        <prop name="setEnableCode93" type="Boolean" value="true"/>
+        <prop name="setEnableUPCD1D5" type="Boolean" value="true"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.ScannerServiceImp"/>
+        <prop name="setEnable_2_DigitSupplementals" type="Boolean" value="true"/>
+        <prop name="setEnableUPCAE_EANJAN813" type="Boolean" value="true"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="setEnableUPC_A_CheckDigit" type="Boolean" value="true"/>
+        <prop name="setEnableUPC_E_CheckDigit" type="Boolean" value="true"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="setITFLength2" type="Byte" value="16"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x4a00"/>
+        <prop name="setITFLength1" type="Byte" value="12"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+    </JposEntry>
+    <JposEntry logicalName="Scale1">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.SdiOEMScale"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="Scale" version="v1.14.11L32 2022-12-09"/>
+        <product description="Scale" name="Scale" url="http://www.toshibagcs.com"/>
+        <prop name="com.ibm.jpos.sdi.config.Scale.displayRequired" type="Boolean" value="false"/>
+        <prop name="com.ibm.jpos.sdi.config.Scale.fiveDigitWeight" type="Boolean" value="true"/>
+        <prop name="com.ibm.jpos.sdi.config.Scale.centerOfZero" type="Boolean" value="false"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.SdiOEMScale"/>
+        <prop name="com.ibm.jpos.sdi.config.Scale.operationMode" type="String" value="UK"/>
+        <prop name="com.ibm.jpos.sdi.config.Scale.vibrationSensitivity" type="String" value="0"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.ScaleServiceImp"/>
+        <prop name="com.ibm.jpos.sdi.config.Scale.weighMode" type="String" value="1"/>
+        <prop name="com.ibm.jpos.sdi.config.Scale.enforceZeroReturn" type="Boolean" value="false"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x6e00"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+    </JposEntry>
+    <!-- <JposEntry logicalName="MICR1">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.IBM4610MICR"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="MICR" version="v1.14.12L19 2023-04-19"/>
+        <product description="MICR" name="MICR" url="http://www.toshibagcs.com"/>
+
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x3500"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.IBM4610MICR"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.MICRServiceImp"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+    </JposEntry> -->
+    <JposEntry logicalName="POSPrinter1">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.SdiIBM4610EPOSPrinter"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="POSPrinter" version="v1.14.12L19 2023-04-19"/>
+        <product description="POSPrinter" name="POSPrinter" url="http://www.toshibagcs.com"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.SdiIBM4610EPOSPrinter"/>
+        <prop name="SureOneVersion" type="String" value="standard"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.IBM4610PrinterServiceImp"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x3500"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+    </JposEntry>
+    <!-- <JposEntry logicalName="CashDrawer0">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.IBMCashDrawer"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="CashDrawer" version="v1.14.13L22 2023-09-05"/>
+        <product description="CashDrawer" name="CashDrawer" url="http://www.toshibagcs.com"/>
+
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.IBMCashDrawer"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.CashDrawerServiceImp"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="2"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.jpos.sdi.config.CashDrawer.OpenDrawerRetries" type="String" value="0"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x5400"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="2"/>
+    </JposEntry>
+    <JposEntry logicalName="LineDisplay1">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.LineDisplayAnop0"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="LineDisplay" version="v1.14.14L42 2024-04-03"/>
+        <product description="LineDisplay" name="LineDisplay" url="http://www.toshibagcs.com"/>
+
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.LineDisplayAnop0"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.LineDisplayServiceImp"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.jpos.services.sdi.config.LineDisplay.CharacterSetASCIIBehavior" type="String" value="858"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x2400"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+    </JposEntry>
+    <JposEntry logicalName="BeltFront">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.ToshibaBeltService"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="Belt" version="v1.14.15L35 2025-04-02"/>
+        <product description="Belt" name="Belt" url="http://www.toshibagcs.com"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.belt.JposBelt"/>
+        <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.ToshibaBeltService"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.BeltFrontConveyorServiceImp"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="6"/>
+    </JposEntry>
+    <JposEntry logicalName="BeltRear">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.ToshibaBeltService"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="Belt" version="v1.14.15L35 2025-04-02"/>
+        <product description="Belt" name="Belt" url="http://www.toshibagcs.com"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.belt.JposBelt"/>
+        <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.ToshibaBeltService"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.BeltRearConveyorServiceImp"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="2"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="7"/>
+    </JposEntry>
+    <JposEntry logicalName="BeltFrontPlateSensorService">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.tgcs.jpos.services.BeltFrontPlateSensorService"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="MotionSensor" version="v1.14.15L35 2025-04-02"/>
+        <product description="MotionSensor" name="MotionSensor" url="http://www.toshibagcs.com"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.sensors.JposConveyorSensor"/>
+        <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="abstractionClass" type="String" value="com.tgcs.jpos.services.BeltFrontPlateSensorService"/>
+        <prop name="impClass" type="String" value="com.tgcs.jpos.services.BeltFrontPlateSensorServiceImp"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="3"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="2"/>
+    </JposEntry>
+    <JposEntry logicalName="BeltRearPlateSensorService">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.tgcs.jpos.services.BeltRearPlateSensorService"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="MotionSensor" version="v1.14.15L35 2025-04-02"/>
+        <product description="MotionSensor" name="MotionSensor" url="http://www.toshibagcs.com"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.sensors.JposConveyorSensor"/>
+        <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="abstractionClass" type="String" value="com.tgcs.jpos.services.BeltRearPlateSensorService"/>
+        <prop name="impClass" type="String" value="com.tgcs.jpos.services.BeltRearPlateSensorServiceImp"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="4"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="3"/>
+    </JposEntry>
+    <JposEntry logicalName="BeltCurtainSensorService">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.tgcs.jpos.services.BeltCurtainSensorService"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="MotionSensor" version="v1.14.15L35 2025-04-02"/>
+        <product description="MotionSensor" name="MotionSensor" url="http://www.toshibagcs.com"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.sensors.JposConveyorSensor"/>
+        <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="abstractionClass" type="String" value="com.tgcs.jpos.services.BeltCurtainSensorService"/>
+        <prop name="impClass" type="String" value="com.tgcs.jpos.services.BeltCurtainSensorServiceImp"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="5"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="4"/>
+    </JposEntry>
+    <JposEntry logicalName="BeltConveyorExitSensorService">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.tgcs.jpos.services.BeltConveyorExitSensorService"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="MotionSensor" version="v1.14.15L35 2025-04-02"/>
+        <product description="MotionSensor" name="MotionSensor" url="http://www.toshibagcs.com"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.sensors.JposConveyorSensor"/>
+        <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="abstractionClass" type="String" value="com.tgcs.jpos.services.BeltConveyorExitSensorService"/>
+        <prop name="impClass" type="String" value="com.tgcs.jpos.services.BeltConveyorExitSensorServiceImp"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="6"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="5"/>
+    </JposEntry>
+    <JposEntry logicalName="BeltBAFSensorService">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.tgcs.jpos.services.BeltBAFSensorService"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="MotionSensor" version="v1.14.15L35 2025-04-02"/>
+        <product description="MotionSensor" name="MotionSensor" url="http://www.toshibagcs.com"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.sensors.JposConveyorSensor"/>
+        <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="abstractionClass" type="String" value="com.tgcs.jpos.services.BeltBAFSensorService"/>
+        <prop name="impClass" type="String" value="com.tgcs.jpos.services.BeltBAFSensorServiceImp"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+    </JposEntry>
+    <JposEntry logicalName="BeltConveyorFaultSensorService">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.tgcs.jpos.services.BeltConveyorFaultSensorService"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="MotionSensor" version="v1.14.15L35 2025-04-02"/>
+        <product description="MotionSensor" name="MotionSensor" url="http://www.toshibagcs.com"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.sensors.JposConveyorSensor"/>
+        <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="abstractionClass" type="String" value="com.tgcs.jpos.services.BeltConveyorFaultSensorService"/>
+        <prop name="impClass" type="String" value="com.tgcs.jpos.services.BeltConveyorFaultSensorServiceImp"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="2"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="1"/>
+    </JposEntry> -->
+</JposEntries>
+''',
+
+'config/jposX.xml':'''\
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JposEntries PUBLIC "-//JavaPOS//DTD//EN"
+                             "jpos/res/jcl.dtd">
+<JposEntries>
+   <JposEntry logicalName="ProXLight">
+        <creation factoryClass="jpos.tec.Factory.light.JposServiceFactory" serviceClass="jpos.tec.Light.Services.LightService"></creation>
+        <vendor name="TOSHIBA TEC Corporation" url="http://www.toshibatec.co.jp"></vendor>
+        <jpos category="LaneLights" version="1.14"></jpos>
+        <product description="TEC Light Service" name="TECLight" url="http://www.toshibatec.co.jp"/>
+        <!-- This line distinguishes ProX lights from other TALLights -->
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.lights.JposProXLights"/>
+        <prop name="DeviceModel" type="String" value="KLC1X"/>
+        <prop name="InterfaceType" type="String" value="USBIntf"/>
+        <prop name="VendorID" type="String" value="0x8A6"/>
+        <prop name="ProductID" type="String" value="0xA002"/>
+        <!-- Setting to control System Management Information -->
+        <prop name="SMIEnable" type="String" value="FALSE"/>
+        <prop name="SMIPollInterval" type="String" value="30000"/>
+        <prop name="SMIListenPort" type="String" value="9999"/>
+        <prop name="SMIEventPort" type="String" value="9998"/>
+        <prop name="LogLevel" type="String" value="0"/>
+        <prop name="LogFileCount" type="String" value="0"/>
+        <prop name="LogFilename" type="String" value="./log/tecjavapos_LEDHybrid.log"/>
+        <prop name="LibLogLevel" type="String" value="0"/>
+        <prop name="LibLogFileCount" type="String" value="0"/>
+        <prop name="LibLogFilename" type="String" value="./log/tecjposlib.log"/>
+   </JposEntry>
+    <JposEntry logicalName="KOP3X">
+        <creation factoryClass="jpos.tec.Factory.JposServiceFactory" serviceClass="jpos.tec.PosPrinter.Services.POSPrinterService"/>
+        <vendor name="TOSHIBA TEC Corporation" url="http://www.toshibatec.co.jp"/>
+        <jpos category="POSPrinter" version="1.14"/>
+        <product description="TEC POSPrinter Service" name="TECPOSPrinter" url="http://www.toshibatec.co.jp"/>
+
+        <prop name="LibLogLevel" type="String" value="0"/>
+        <prop name="LibLogFilename" type="String" value="./log/tecjposlib.log"/>
+        <prop name="PresenterTimeout" type="String" value="0"/>
+        <prop name="InterfaceType" type="String" value="USBIntf"/>
+        <prop name="BarcodeHeightParam" type="String" value=""/>
+        <prop name="MultiAlignment" type="String" value="FALSE"/>
+        <prop name="VendorID" type="String" value="0x8A6"/>
+        <prop name="SMIEnable" type="String" value="FALSE"/>
+        <prop name="LogFilename" type="String" value="./log/tecjavapos_KOP3X.log"/>
+        <prop name="LogLevel" type="String" value="0"/>
+        <prop name="EnablePartialCut" type="String" value="TRUE"/>
+        <prop name="DeviceModel" type="String" value="KOP3X"/>
+        <prop name="UPCEDataPattern" type="String" value="UPCE7Digits"/>
+        <prop name="CodePage" type="String" value="437"/>
+        <prop name="RetractFunction" type="String" value="FALSE"/>
+        <prop name="BarcodeWidthParam" type="String" value="2"/>
+        <prop name="ProductID" type="String" value="0xC049"/>
+        <prop name="LibLogFileCount" type="String" value="0"/>
+        <prop name="PaperWidth" type="String" value="80mm"/>
+        <prop name="FontType" type="String" value="FontA"/>
+        <prop name="UnicodeConversion" type="String" value="CharacterSetProp"/>
+        <prop name="SMIPollInterval" type="String" value="30000"/>
+        <prop name="Code128Default" type="String" value="A"/>
+        <prop name="LogFileCount" type="String" value="0"/>
+        <prop name="PresenterRetryNumber" type="String" value="3"/>
+        <prop name="FontSize" type="String" value="Font1"/>
+        <prop name="DirectIOWaitDataTimeout" type="String" value="10000"/>
+        <prop name="SMIListenPort" type="String" value="9999"/>
+        <prop name="SMIEventPort" type="String" value="9998"/>
+    </JposEntry>
+    <JposEntry logicalName="Scanner1">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.ScannerUSBOEM"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="Scanner" version="v1.14.11L32 2022-12-09"/>
+        <product description="Scanner" name="Scanner" url="http://www.toshibagcs.com"/>
+        <prop name="setEnableCODE39" type="Boolean" value="true"/>
+        <prop name="setEnableCode128" type="Boolean" value="true"/>
+        <prop name="setITFLengthSpecifiedTwo" type="Boolean" value="true"/>
+        <prop name="setEnableInterleaved2of5" type="Boolean" value="true"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.ScannerUSBOEM"/>
+        <prop name="setEnableUCC_EAN128" type="Boolean" value="true"/>
+        <prop name="setEnable_5_DigitSupplementals" type="Boolean" value="true"/>
+        <prop name="setEnableCodabar" type="Boolean" value="true"/>
+        <prop name="setEnableCode93" type="Boolean" value="true"/>
+        <prop name="setEnableUPCD1D5" type="Boolean" value="true"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.ScannerServiceImp"/>
+        <prop name="setEnable_2_DigitSupplementals" type="Boolean" value="true"/>
+        <prop name="setEnableUPCAE_EANJAN813" type="Boolean" value="true"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="setEnableUPC_A_CheckDigit" type="Boolean" value="true"/>
+        <prop name="setEnableUPC_E_CheckDigit" type="Boolean" value="true"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="setITFLength2" type="Byte" value="16"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x4a00"/>
+        <prop name="setITFLength1" type="Byte" value="12"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+    </JposEntry>
+    <JposEntry logicalName="DL-Gryphon-GD45XX-USB-OEM">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.ScannerUSBOEM"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="Scanner" version="v1.14.11L32 2022-12-09"/>
+        <product description="Scanner" name="Scanner" url="http://www.toshibagcs.com"/>
+        <prop name="setEnableCODE39" type="Boolean" value="true"/>
+        <prop name="setEnableCode39CheckDigit" type="Boolean" value="false"/>
+        <prop name="setEnableCode128" type="Boolean" value="true"/>
+        <prop name="setEnableInterleaved2of5" type="Boolean" value="false"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.ScannerUSBOEM"/>
+        <prop name="setEnableEAN_JAN_TwoLabelDecoding" type="Boolean" value="false"/>
+        <prop name="setEnableUCC_EAN128" type="Boolean" value="true"/>
+        <prop name="setEnable_5_DigitSupplementals" type="Boolean" value="false"/>
+        <prop name="setEnableCodabar" type="Boolean" value="false"/>
+        <prop name="setEnableCode93" type="Boolean" value="false"/>
+        <prop name="setEnableUPCD1D5" type="Boolean" value="false"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.ScannerServiceImp"/>
+        <prop name="setEnable_2_DigitSupplementals" type="Boolean" value="false"/>
+        <prop name="setEnableUPCAE_EANJAN813" type="Boolean" value="true"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="setEnableITFCheckDigit" type="Boolean" value="false"/>
+        <prop name="setEnableUPC_A_CheckDigit" type="Boolean" value="false"/>
+        <prop name="setEnableUPC_E_CheckDigit" type="Boolean" value="false"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x4b00"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+    </JposEntry>
+    <JposEntry logicalName="POSPrinter1">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.SdiIBM4610EPOSPrinter"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="POSPrinter" version="v1.14.12L19 2023-04-19"/>
+        <product description="POSPrinter" name="POSPrinter" url="http://www.toshibagcs.com"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.SdiIBM4610EPOSPrinter"/>
+        <prop name="SureOneVersion" type="String" value="standard"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.IBM4610PrinterServiceImp"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x3500"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+    </JposEntry>
+    <JposEntry logicalName="MSR">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.IBMMSR"/>
+        <vendor name="Toshiba" url="https://commerce.toshiba.com/"/>
+        <jpos category="MSR" version="1.14.12"/>
+        <product description="Toshiba JavaPOS(TM) MSR USB Service for Toshiba ANKPOS/Keyboard V/Modular/NANPOS/133 key/4685/4820/50key Keyboard" name="Toshiba JavaPOS for Linux/Windows Version 1.14.12" url="https://commerce.toshiba.com/"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x1600"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.IBMMSR"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.MSRServiceImp"/>
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xFF45"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+    </JposEntry>
+    <JposEntry logicalName="LineDisplay1">
+        <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.LineDisplayAnop0"/>
+        <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
+        <jpos category="LineDisplay" version="v1.14.14L42 2024-04-03"/>
+        <product description="LineDisplay" name="LineDisplay" url="http://www.toshibagcs.com"/>
+
+        <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
+        <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.LineDisplayAnop0"/>
+        <prop name="impClass" type="String" value="com.ibm.jpos.services.sdi.LineDisplayServiceImp"/>
+        <prop name="com.ibm.jpos.tools.autoconfig.devcat.DevCatAutoConfig.devCatNumber" type="String" value="1"/>
+        <prop name="deviceBus" type="String" value="HID"/>
+        <prop name="com.ibm.jpos.services.sdi.config.LineDisplay.CharacterSetASCIIBehavior" type="String" value="858"/>
+        <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x2400"/>
+        <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
+    </JposEntry>
+</JposEntries>
+''',
+
+'etc/posj.autoconfig.Belt.properties':'''\
+# Properties for Belt
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=Belt1
+''',
+
+'etc/posj.autoconfig.CoinAcceptor.properties':'''\
+# Properties for CoinAcceptor
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=CoinAcceptor1
+''',
+
+'etc/posj.autoconfig.BillAcceptor.properties':'''\
+# Properties for BillAcceptor
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=BillAcceptor1
+''',
+
+'etc/posj.autoconfig.MICR.properties':'''\
+# Properties for MICR
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=MICR1
+
+# This controls if the transit dashes should be stripped.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "true" and "false".
+#com.ibm.jpos.sdi.config.MICR.stripTransitDashes=false
+
+# This controls if the account dashes should be stripped.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "true" and "false".
+#com.ibm.jpos.sdi.config.MICR.stripAccountDashes=false
+
+# This controls if the transit dashes should be switched to spaces.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "true" and "false".
+#com.ibm.jpos.sdi.config.MICR.switchTransitDashToSpace=false
+
+# This specifies a file that contains exceptionTable entries.
+# The file should contain one exceptionTable entry per line.
+# For the format of exception table entries and details on them,
+# see the JavaPOS User's Guide.
+# The value should be the filename to use.
+#autoconfig.exceptionTableFile=
+''',
+
+'etc/com/ibm/jutil/res/text/JUtilResources.properties':'''\
+#
+# %Z%%W% %I%
+# ===========================================================================
+# Licensed Materials - Property of IBM
+# "Restricted Materials of IBM"
+# IBM Java(tm)2 SDK, Standard Edition, v 1.4 
+#
+# (C) Copyright IBM Corp. 2002,2003 . All Rights Reserved
+# ===========================================================================
+#
+#
+# Messages used in different classes of the jutil release
+#
+# The Messages are divided in 3 categories:
+# 
+# MSG prefix - Used for messages with several words and doesn't match with the key name
+#
+# TEXT prefix - Used for messages with 2 or more words matching with the key name
+#
+# WORD prefix - Used for single word matching with the key name
+#
+# @author Julio C. Sanchez
+#
+
+#
+# Language. See the ISO-639 standard for key value
+#
+LANGUAGE=en
+
+#
+# Version of this properties
+#
+VERSION=0.0.1
+
+#
+# TEXT properties - 2 or more words 
+#
+TEXT_ABOUT_DIALOG=About Dialog
+TEXT_ERROR_OPENING_FILE=Error openning file
+TEXT_ERROR_SAVING_FILE=Error saving file
+TEXT_FILE_NOT_FOUND=File not found
+TEXT_FREE_MEMORY=Free memory
+TEXT_JAVA_VERSION=Java version
+TEXT_OS=Operating System
+TEXT_PROPERTIES_EDITOR=Properties Editor
+TEXT_SYSTEM_INFORMATION=System Information
+TEXT_TOTAL_MEMORY=Total memory
+
+#
+# WORD properties - single word 
+#
+WORD_ABOUT=About
+WORD_ARCHITECTURE=Architecture
+WORD_CATEGORY=Category
+WORD_DESCRIPTION=Description
+WORD_EDIT=Edit
+WORD_ERROR=Error
+WORD_EXIT=Exit
+WORD_FILE=File
+WORD_HELP=Help
+WORD_KBYTES=Kb
+WORD_KEY=Key
+WORD_LOGGING=Logging
+WORD_NAME=Name
+WORD_OK=Ok
+WORD_ONLINE=Online
+WORD_PROPERTIES=Properties
+WORD_REFRESH=Refresh
+WORD_SAVE=Save
+WORD_STATISTIC=Statistic
+WORD_STATUS=Status
+WORD_VALUE=Value
+WORD_WARNING=Warning
+''',
+
+'etc/posj.autoconfig.Lights.properties':'''\
+# Properties for Lights
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=Lights1
+''',
+
+'etc/posj.autoconfig.Scanner.properties':'''\
+# Properties for Scanner
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=Scanner1
+
+# These are all properties that control scanner operation.
+# See the JavaPOS User's Guide for details on any of the properties.
+# Allowable values are listed below.
+
+# Allowable values are "true" and "false".
+#setEnableUPCAE_EANJAN813=false
+
+# Allowable values are "true" and "false".
+#setEnableUPCD1D5=false
+
+# Allowable values are "true" and "false".
+#setEnableCODE39=false
+
+# Allowable values are "true" and "false".
+#setEnableInterleaved2of5=false
+
+# Allowable values are "true" and "false".
+#setEnableCodabar=false
+
+# Allowable values are "true" and "false".
+#setEnableCode93=false
+
+# Allowable values are "true" and "false".
+#setEnableCode128=false
+
+# Allowable values are "true" and "false".
+#setEnableUCC_EAN128=false
+
+# Allowable values are "true" and "false".
+#setEnable_2_DigitSupplementals=false
+
+# Allowable values are "true" and "false".
+#setEnable_5_DigitSupplementals=false
+
+# Allowable values are "true" and "false".
+#setEnableCode128Supplementals=false
+
+# Allowable values are "true" and "false".
+#setEnablePDF417=false
+
+# Allowable values are "true" and "false".
+#setEnableStandard2of5=false
+
+# Allowable values are "true" and "false".
+#setEnableUPC_A_CheckDigit=false
+
+# Allowable values are "true" and "false".
+#setEnableUPC_E_CheckDigit=false
+
+# Allowable values are "true" and "false".
+#setEnableCode39CheckDigit=false
+
+# Allowable values are "true" and "false".
+#setEnableITFCheckDigit=false
+
+# Allowable values are "true" and "false".
+#setEnableEAN_JAN_TwoLabelDecoding=false
+
+# Allowable values are "true" and "false".
+#setEnableUPC_A_To_EAN13Expansion=false
+
+# Allowable values are "true" and "false".
+#setEnableUPC_E_To_EAN13Expansion=false
+
+# Allowable values are "true" and "false".
+#setEnableUPC_E_To_UPC_AExpansion=false
+
+# Allowable values are "true" and "false".
+#setEnableVerificationUPC_A_EAN13_fourDigit=false
+
+# Allowable values are "true" and "false".
+#setEnableVerificationUPC_A_EAN13_fiveDigit=false
+
+# Enables or disables the RSS14 barcodes.
+# Allowable values are "true" and "false".
+#setEnableRSS14=false
+
+# Enables or disables the RSS Expanded barcodes.
+# Allowable values are "true" and "false".
+#setEnableRSS_Expanded=false
+
+# Enable or disable if check digits should be transmitted for UPC-A barcodes.
+# Allowable values are "true" and "false".
+#setEnableUPC_A_CheckDigit
+
+# Enable or disable if check digits should be transmitted for UPC-E barcodes.
+# Allowable values are "true" and "false".
+#setEnableUPC_E_CheckDigit
+
+# Allowable values are any integer from 0 to 7
+#setBarCodes1=0
+
+# Allowable values are any integer from 0 to 7
+#setBarCodes2=0
+
+# Allowable values are any integer from 0 to 7
+#setBarCodes3=0
+
+# Allowable values are any integer from 0 to 7
+#setBarCodes4=0
+
+# TBD
+#setSTFLength1=0
+
+# TBD
+#setSTFLength2=0
+
+# TBD
+#setSTFLengths=false
+
+# This controls whether or not the scanner can be programmed using the manufacturer-supplied 
+# programming bar codes
+# Allowable values are "true" and "false".
+#enableProgrammingViaBarcodes=false
+
+# Allowable values are "true" and "false".
+#setEnableGoodReadBeep=false
+
+# The value specified here will be translated, based on the specific Scanner bus type,
+# to the actual values listed in the JavaPOS User's Guide.
+# Allowable values are "lowest", "low", "medium", and "high".
+#setBeeperVolume=lowest
+
+# The value specified here will be translated, based on the specific Scanner bus type,
+# to the actual values listed in the JavaPOS User's Guide.
+# Allowable values are "lowest", "low", "high", and "highest".
+#setBeeperFrequency=lowest
+
+# Allowable values are "0x00" (short), "0x20" (medium), "0x40" (long), and "0x60" (longest).
+#setBeeperDuration=0x00
+
+# The value specified here will be translated, based on the specific Scanner bus type,
+# to the actual values listed in the JavaPOS User's Guide.
+# If the Scanner does not support "alwayson", then "60min" will be used.
+# Allowable values are "alwayson", "5min", "10min", "15min", "30min", and "60min".
+#setMotorTimeOut=alwayson
+
+# The value specified here will be translated, based on the specific Scanner bus type,
+# to the actual values listed in the JavaPOS User's Guide.
+# If the Scanner does not support "alwayson", then "15min" will be used.
+# Allowable values are "alwayson", "5min", "10min", and "15min".
+#setLaserTimeOut=alwayson
+
+# The value specified here will be translated, based on the specific Scanner bus type,
+# to the actual values listed in the JavaPOS User's Guide.
+# Allowable values are "shortest", "moderate", and "longest".
+#setDoubleReadTimeOut=shortest
+
+# Allowable values are "true" and "false".
+#setSupplementals
+
+# Allowable values are any integer from 0 to 100, inclusive.
+#setSupplementalsSecurityLevel=30
+
+# Allowable values are "0" (low), "1" (medium), "2" (high), and "3" (highest).
+#setSecurityLevelForInStore=0
+
+# Allowable values are "true" and "false".
+#setITFLengths=false
+
+# Allowable values are "true" and "false".
+#setITFLengthSpecifiedTwo=false
+
+# Allowable values are any even integer from 4 to 32, inclusive.
+#setITFLength1=12
+
+# Allowable values are any even integer from 4 to 32, inclusive, and 0 to disable a second ITF length.
+#setITFLength2=0
+
+# Allowable values are "0" (short), "1" (medium), "2" (long), and "3" (longest).
+#setLED_goodRead_duration=0
+
+# Allowable values are "true" and "false".
+#setBarCodeProgramming=false
+
+# This controls whether the laser power switch on the scanner 
+# Allowable values are "true" and "false".
+#enableLaserOnOffSwitch=false
+
+# Allowable values are "true" and "false".
+#EnableSwitchControlledVolumeAdjust=false
+
+# Allowable values are any integer from 1 to 4, inclusive, and 0 to use the driver or device default.
+#setCode128ScansPerRead=1
+
+# Allowable values are any integer from 1 to 4, inclusive, and 0 to use the driver or device default.
+#setCode39ScansPerRead=1
+
+# Allowable values are any integer from 1 to 4, inclusive, and 0 to use the driver or device default.
+#setITFScansPerRead=1
+
+# Allowable values are any integer from 1 to 4, inclusive, and 0 to use the driver or device default.
+#setEAN13ScansPerRead=1
+
+# Allowable values are any integer from 1 to 4, inclusive, and 0 to use the driver or device default.
+#setEAN8ScansPerRead=1
+
+# Allowable values are any integer from 1 to 4, inclusive, and 0 to use the driver or device default.
+#setStoreScansPerRead=1
+
+# Allowable values are any integer from 1 to 4, inclusive, and 0 to use the driver or device default.
+#setUPCAScansPerRead=1
+
+# Allowable values are any integer from 1 to 4, inclusive, and 0 to use the driver or device default.
+#setUPCDScansPerRead=1
+
+# Allowable values are any integer from 1 to 4, inclusive, and 0 to use the driver or device default.
+#setUPCEScansPerRead=1
+
+# Allowable values are "true" and "false".
+#setCheckModulo=false
+
+# Allowable values are "0" (label assembly) and "1" (marginless).
+#setDecodeAlgorithm=0
+
+# Allowable values are "true" and "false".
+#setDTouchMode=false
+
+
+# NOTE : The only currently supported RS232 Scanner is the 4836 Scanner.
+# NOTE : See the documentation for the 4836 system for its Scanner settings.
+#
+# These are RS232 properties.  These should only be used if the device
+# is directly connected to the RS232 port, not for subdevices.
+
+# This specifies the device is connected via the RS232 bus.
+# This must be specified for a RS232-connected device.
+# The only allowable value is "RS232", no other value should be used.
+# For devices that are not RS232-connected, this should not be specified.
+#deviceBus.1=RS232
+
+# This specifies the port that the device is connected to.
+# This must be specified for a RS232-connected device.
+# The value should be the RS232 port name in DOS nomenclature, i.e. "COM1", "COM2", etc.
+# Note that "COM1" is the first RS232 port, there is no "COM0".
+#portName.1=COM1
+
+# This specifies the baud rate that the device uses.
+# This will default to a predetermined value if not specified.
+# The value should be the baud rate as a decimal number.
+#baudRate.1=9600
+
+# This specifies the flow control that the device uses.
+# This will default to a predetermined value if not specified.
+# Allowable values are "Xon/Xoff", "Hardware", and "None".
+#flowControl.1=Xon/Xoff
+''',
+
+'etc/posj.autoconfig.MotionSensor.properties':'''\
+# Properties for MotionSensor
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=MotionSensor1
+''',
+
+'etc/posj.autoconfig.MSR.properties':'''\
+# Properties for MSR
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=MSR1
+
+
+# These are RS232 properties.  These should only be used if the device
+# is directly connected to the RS232 port, not for subdevices.
+
+# This specifies the device is connected via the RS232 bus.
+# This must be specified for a RS232-connected device.
+# The only allowable value is "RS232", no other value should be used.
+# For devices that are not RS232-connected, this should not be specified.
+#deviceBus.1=RS232
+
+# This specifies the port that the device is connected to.
+# This must be specified for a RS232-connected device.
+# The value should be the RS232 port name in DOS nomenclature, i.e. "COM1", "COM2", etc.
+# Note that "COM1" is the first RS232 port, there is no "COM0".
+#portName.1=COM1
+
+# This specifies the baud rate that the device uses.
+# This will default to a predetermined value if not specified.
+# The value should be the baud rate as a decimal number.
+#baudRate.1=9600
+
+# This specifies the flow control that the device uses.
+# This will default to a predetermined value if not specified.
+# Allowable values are "Xon/Xoff", "Hardware", and "None".
+#flowControl.1=Xon/Xoff
+
+# This defines the type of RS232-connected MSR.
+# This must be specified for a RS232-connected MSR.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "ISO" and "JUCC".
+#com.ibm.posj.bus.rs232.msrId.1=ISO
+
+# These properties are for any bus 
+
+# This defines the property that will override the default value for tracksToRead
+# There are 15 possible values for this
+# Example of valid values are "MSR_TR_1_2_3_4", "MSR_TR_2_4", "MSR_TR_1_2_4"
+# See the JavaPOS User's Guide for details.
+#com.ibm.jpos.sdi.config.override.MSR.TracksToRead.1=MSR_TR_1_2_3
+
+# This defines the property that will override the default value for ErrorReportingType
+# There are 2 possible values for this
+# "MSR_ERT_CARD", "MSR_ERT_TRACK"
+# See the JavaPOS User's Guide for details.
+#com.ibm.jpos.sdi.config.override.MSR.ErrorReportingType.1=MSR_ERT_CARD''',
+
+'etc/posj.autoconfig.Keylock.properties':'''\
+# Properties for Keylock
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=Keylock1
+
+# This property is provided to define the number of keylock positions.
+# If this property is not defined the hw will automatically detect this value 
+# The devices identified that may not set the right number of key lock positions are:
+# - RS-485 4685-K03 ? 4 positions
+# - RS-485 4685-K02 Keyboard with MSR Encoder ? 6 positions
+# So when using this keyboard the value should be set manually
+#com.ibm.jpos.sdi.config.Keylock.PositionCount=2''',
+
+'etc/posj.properties':'''\
+#
+#  %Z%%W% %I%
+# ===========================================================================
+
+
+#
+# Explicitly specify a com.ibm.posj.bus.HandlePopulator implementing class.
+# The full-qualified class name is specified and its assumed to:
+# 1) have a default ctor
+# 2) implement the com.ibm.posj.bus.HandlePopulator
+#
+
+#Linux OS
+posj.bus.handle.populator.linux.class.0 = com.ibm.posj.bus.poskbd.PosKbdHandlePopulator
+posj.bus.handle.populator.linux.class.1 = com.ibm.posj.bus.hid.javaxusb.UsbHandlePopulator
+posj.bus.handle.populator.linux.class.2 = com.ibm.posj.bus.rs232.javaxcomm.Rs232HandlePopulator
+posj.bus.handle.populator.linux.class.3 = com.ibm.posj.bus.embedded.EmbeddedHandlePopulator
+posj.bus.handle.populator.linux.class.4 = com.ibm.posj.bus.rs485.Rs485HandlePopulator
+posj.bus.handle.populator.linux.class.5 = com.tgcs.posj.bus.net.NetworkHandlePopulator
+ 
+#QNX OS
+posj.bus.handle.populator.qnx.class.0 = com.ibm.posj.bus.hid.javaxusb.UsbHandlePopulator
+
+#Default OS - Windows
+posj.bus.handle.populator.class.0 = com.ibm.posj.bus.poskbd.PosKbdHandlePopulator
+posj.bus.handle.populator.class.1 = com.ibm.posj.bus.hid.javaxusb.UsbHandlePopulator
+posj.bus.handle.populator.class.2 = com.ibm.posj.bus.rs232.javaxcomm.Rs232HandlePopulator
+posj.bus.handle.populator.class.3 = com.ibm.posj.bus.embedded.EmbeddedHandlePopulator
+posj.bus.handle.populator.class.4 = com.ibm.posj.bus.rs485.Rs485HandlePopulator
+posj.bus.handle.populator.class.5 = com.tgcs.posj.bus.net.NetworkHandlePopulator
+
+#
+# Sets the minimum data the printer writer will accept, except in forced write cases.
+#
+posj.IBM4610Writer.minimum = 680
+
+# Location of the CRC File
+# NOTE FOR WINDOWS USERS :
+#    '\' is the line continuation character. 
+#    If you want to specify c:\path\ you must type
+#    c:\\path or c:\\path\\ or  c:/path/
+#
+com.ibm.posj.util.CrcFileLocation = ~/.toshiba/
+
+#------------------------------------------------------------------------------
+# Socket number to use to detect if another instance of the JavaPOS drivers
+# is running.
+#
+# Default = 42116
+#
+# Note : Use zero '0' to disable jvm instance detection.
+com.ibm.posj.PosSystemManager.PORT = 42116
+com.ibm.posj.util.PowerStateStandalone.PORT = 42117
+
+#------------------------------------------------------------------------------
+# FLASH Settings
+#
+
+#
+# Time out ms value to use for Flash commands.
+# Devices: USB supported devices ( *.dat )
+# since 1.13.4, 1.13.6 and later
+com.ibm.posj.Flash.CommandTimeout = 30000
+
+#
+# Sleep time after reset sent
+# Devices: TCx800 Cash Drawer (attached to Head and Base)
+# Minimum of 1 and maximum of 300000 (In miliseconds)
+# since 1.14.4
+#com.ibm.posj.bus.hid.UsbUpdateResetSleepTimeout = 6000
+
+
+# Location of flash files
+#
+# Note: If the directory does not detect the existance of "usb\aip4526.dat" it 
+#       will do a classpath search.
+# 
+#To set a different directory for UPOS to search for flash files please 
+#
+#For Windows replace below c:/pos/javapos/res/flash with the directory that contains 
+#the usb and rs485 flash files.
+#com.ibm.posj.flash.flashDirectory.windows=c:/pos/javapos/res/flash 
+#
+#For Linux replace below /opt/tgcs/javapos/flash with the directory that contains 
+#the usb and rs485 flash files.
+#com.ibm.posj.flash.flashDirectory.linux=/opt/tgcs/javapos/flash
+
+#
+# Padded for flash commands.  
+#
+# default: True (zero's are not padded)
+# 
+# To enable Zero padding, set the property to False 
+#com.ibm.posj.flash.DisableZeroPaddingFlashCommand=TRUE
+
+#
+# Operation In Error
+# Abort device firmware update when hardware reports an error in status response
+# Firmware update will be aborted only for the specific device that is failing, 
+# firmware update should be attempted for the rest of devices
+# This will not cause any exception however an error message will be added to log file
+#
+# Values accepted : true(default) or false
+#
+# Available: 1.14.2 L98, 1.14.6
+#
+#com.ibm.posj.bus.hid.flash.OperationInError = true
+
+#
+# Device SUE Power Notify
+# Use this property as true to use the Power notify as described in UPOS Standard
+# if true, device needs to be enable to notify SUE (online/offline)  
+# if false, notify SUE (online/offline) regardless the device is enabled or disabled
+#
+# Values accepted : true or false(default)
+#
+# Since 1.14.2, 1.14.6 and above
+#
+#com.tgcs.posj.bus.DEVICE_SUE_POWER_NOTIFY = false
+
+#------------------------------------------------------------------------------
+# CashDrawer Settings
+#
+
+# Configurable property for Pulse Width
+# Devices Supported:
+#     - Embedded Connectivity 
+# Values accepted : 
+#     0 - 100 ms Cash Drawer Pulse ( Default)
+#     1 - 200 ms Cash Drawer Pulse
+#
+#com.ibm.posj.CashDrawer.PulseWidth = 1
+
+# Configurable property for Pulse Width (4610)
+# Devices Supported:
+#     - 4610 POSPrinter
+# Values accepted for 4610 Cash Drawer: 
+# 	From 0 to 255 -	Cash Drawer Pulse x 2 milliseconds	
+#	(Default ON value = 100, Default OFF value = 0) 
+#
+#com.ibm.posj.CashDrawer.4610.PulseWidthOn = 100
+#com.ibm.posj.CashDrawer.4610.PulseWidthOff = 0
+
+
+# 
+# Configurable property for Open Drawer command timeout
+# Values accepted : any (milliseconds) - default 400
+#
+#com.ibm.posj.CashDrawer.OpenDrawerCommandTimeout = 400
+
+
+# Set to true when you want to use poller design instead of Interrupts
+#
+# Devices Supported:
+#     - SurePOS 300/700 family built-in cash drawer
+# OS:
+#     - Linux
+#com.ibm.embedded.CashDrawerPciDriverImp.UsePoller = true
+
+
+# Configurable property for CashDrawer ignored events events when blocking
+# its mechanism.
+# Devices Supported:
+#     -  4610 POSPrinter 
+# Values accepted : 
+#     any (milliseconds) - default 300
+#
+#com.ibm.posj.CashDrawer.IgnoreEventsTimeOut= 300
+
+# Sets the delay value used when opening a 4750 cash drawer
+# Devices supported:
+#		- 4750-D10 Systems
+# Values accepted:
+#		any (miliseconds) - default 200
+#com.ibm.embedded.CashDrawer4750D10DriverImp.Delay = 200
+
+#------------------------------------------------------------------------------
+# Fiscal Printer Settings
+#
+
+# Enable\Disable Display Sensing as required by fiscal law.  The driver will set 
+# display addresses to 0x24 and 0x25, and initialize (0x1A, 0x01) command with 
+# 0x24 and 0x25 for detected displays.
+#  
+# Values Accepted : 
+#     - true  : Enable display sensing as described above.  
+#     - false (default): Disable display sensing.
+#
+#com.ibm.posj.FiscalPrinter.EnableDisplaySensing = true  
+
+#
+# Enable\Disable the detection of monitors at driver runtime. 
+# The monitor detected will be considered as valid display
+# Monitors supported:
+#     - SurePoint 4820 RS232
+#     - SurePoint 4820 RS485
+#     - SurePoint 4820 USB
+#     - SurePOS 500 Family
+#     - AnyPlaceKiosk Family
+#     - SurePOS 600 Family
+#     - Mobile POS Tablet
+#     - TCxDisplay 6149 
+# OS :
+#     - Windows 7 and Linux for VIDEO value
+#     - Windows XP, Windows 7 and Linux for DATA value
+#
+# Values Accepted : 
+#     - DATA  : USB 4820 Monitor detection is enabled using USB port, 
+#               RS232 4820 Monitor detection is enabled using touch serial COM port,
+#               it requires ELO touch drivers. (tested versions 4.8.7b and 5.3)      
+#     - Disabled:  Monitor Detection disabled
+#     - VIDEO : (Default) VGA/Display Port Monitor Detection is enabled. 
+#           Windows:
+#               The external display sensing is supported for SurePOS 300 and SurePOS 700 
+#               POS system and on the VGA port 1 only.
+#           Linux:
+#               The external display sensing is supported in all POS systems except the
+#               ones with VIA Chipset:
+#                   -SurePOS 7x3
+#                   -AnyPlace Kiosk
+#
+#com.ibm.posj.FiscalPrinter.MonitorDetection = VIDEO 
+
+
+# 
+# Configurable property for VGA Monitor HardwareID validation
+# Hardware name to be accepted as valid display when MonitorDetection
+# property is set to VIDEO 
+# The HardwareID of the attached display can be gather from the operative system:
+#
+# For Windows:
+#    Use Device Manager:
+#    1) Under Monitors->Select Monitor->Right Click and Properties
+#    2) Select "Details" tab and "HardWare Ids" property
+#    3) Use the value after slash
+#       i.e. Use "IBM4820" for "MONITOR\IBM4820" value
+#
+#com.ibm.posj.FiscalPrinter.MonitorDetection.ValidDisplay = IBM4820,TGC6149,TGC4820
+#
+# For Linux:
+#    Use xrandr command:
+#    1) open a terminal
+#    2) Run the xrandr command and identify the string before "connected" or "disconnected" 
+#    i.e. 
+#       VGA1 connected 1024x768+0+0 (normal left inverted right x axis y axis) 304mm x 2
+#       VGA2 disconnected 1024x768+1024+0 (normal left inverted right x axis y axis) 0mm x 
+#
+#    3) Different values may appear depending in the O.S. 
+#       Some of the possible values are :
+#       - "VGA"  - Default
+#       - "TV"
+#       - "LVDS"
+#
+#com.ibm.posj.FiscalPrinter.MonitorDetection.ValidDisplay = VGA
+
+# 
+# Configurable property for RS232 4820 Monitor Poll Time
+# Values accepted : any (milliseconds) - default 2000
+#
+#com.ibm.posj.FiscalPrinter.MonitorDetection.PollTime = 2000
+
+# 
+# Configurable serial port name property
+# 
+# Devices Supported:
+# - RS232 4820 SurePoint device
+# OS : Linux only
+# Values accepted : COM1-COM4 ( Default COM1 )
+#
+#com.ibm.posj.FiscalPrinter.MonitorDetection.PortName = COM1
+
+# 
+# Flush all the data received from serial port. Set to false when the JavaPOS
+# Monitor detection coexists with Xorg configuration.
+# OS : Linux only
+# Values accepted : true or false ( Default true )
+#
+#com.ibm.posj.FiscalPrinter.MonitorDetection.FlushData = true
+
+#
+# The amount of time the Fiscal Plug-in will wait for a response.
+# This value will affect the time it takes for the command timeout exceptions 
+# to be reported back the the application.
+
+# Devices Supported:
+# - RS232 Italian FiscalPrinter .
+#
+# Values accepted : Range from 15000 to 60000 (milliseconds)  ( Default 60000  )
+
+#com.ibm.posj.FiscalPrinter.FiscalPluginMaxWait = 60000
+
+#
+# USB devices to be identified as Monitors 
+# Property format: ...monitorDevices.<ID number> = <vendorID>,<productID>
+#
+#com.ibm.posj.FiscalPrinter.monitorDevices.1 = <vendorID>,<productId>
+
+#------------------------------------------------------------------------------
+# LineDisplay Settings
+#
+
+# Configurable property for LineDisplay HandleImp command timeout
+# Buses supported: RS485
+#                  USB
+#
+# Values accepted : any (milliseconds) - default 100
+#
+#com.ibm.posj.bus.LineDisplayHandleImp.COMMAND_TIMEOUT = 100
+
+#------------------------------------------------------------------------------
+# MSR Settings
+#
+
+# WaitForData property. Used to read the MSR data before to start the processing  
+# Devices Supported: RS232 SurePOS 500 MSR 
+#                    RS232 Anyplace Kiosk MSR
+#                    RS232 4820 (SurePoint) MSR
+# Values accepted : any (milliseconds) - default 300
+#
+#com.ibm.posj.bus.rs232.Rs232MSRReader.WAIT_FOR_DATA = 300 
+
+#------------------------------------------------------------------------------
+# Scale Settings
+#
+
+# ReadWeightRetry property. Used to retry to submit scale cmd 
+# Values accepted : true, false (default)
+#
+#com.ibm.jpos.sdi.config.Scale.ReadWeightRetry = true
+
+# Used to handle tolerance weight after maximum weight supported by hw
+# Values accepted : Weight integer
+#
+com.ibm.posj.bus.ScaleMaxWeightTolerance = 30090
+
+# Backup value for Max weight
+# this property will be used when ScaleRequestGeneralInformation cmd is not supported by the HW
+# Values accepted : Weight integer
+#
+com.ibm.posj.bus.OverwriteMaxWeight = 35.000
+
+#------------------------------------------------------------------------------
+# USB POSKeyboards as System Keyboards. 
+# The keyboards listed below will default to system keyboard mode.
+# Note: -Only the first keyboard will be used as a system keyboard. Any 
+#       additional keyboards will be converted to non-system (Legacy) mode.
+#       -This property has precedence over "..kbdAsLegacyMode.<ID number>" prop
+# Property format: ...kbdAsSystemKbd.<ID number> = <vendorID>,<productID>
+#
+
+#------------------------------------------------------------------------------
+# USB POSKeyboards as System Keyboards. 
+# The keyboards listed below will default to system keyboard mode.
+# Note: -Only the first keyboard will be used as a system keyboard. Any 
+#       additional keyboards will be converted to non-system (Legacy) mode.
+#       -This property has precedence over "..kbdAsLegacyMode.<ID number>" prop
+# Property format: ...kbdAsSystemKbd.<ID number> = <vendorID>,<productID>
+#
+
+# In Linux, to enable the 67-Key wo/MSR Keyboard as a system keyboard, un-comment
+# the following line.  By default, it will enumerate as a non-system keyboard.
+    
+#com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.1 = 0x04b3,0x4601
+#com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.2 = 0x0f66,0x4601
+
+# In Linux, to enable the 67-Key with Display as a system keyboard, un-comment
+# the following line.  By default, it will enumerate as a non-system keyboard.
+    
+#com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.3 = 0x04b3,0x4602
+#com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.4 = 0x0f66,0x4602
+
+# In Linux, to disable the NANPOS Keyboard as a system keyboard, comment out
+# the following line.  By default, NANPOS will enumerate as a system keyboard.
+    
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.5 = 0x04b3,0x4604
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.6 = 0x0f66,0x4604
+
+# In Linux, to disable the ANKPOS Keyboard as a system keyboard, comment out
+# the following line.  By default, ANKPOS will enumerate as a system keyboard. 
+    
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.7 = 0x04b3,0x4605
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.8 = 0x0f66,0x4605
+
+# In Linux, to enable the 67-Key w/MSR Keyboard as a system keyboard, un-comment
+# the following line.  By default, it will enumerate as a non-system keyboard.
+    
+#com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.9 = 0x04b3,0x4606
+#com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.10 = 0x0f66,0x4606
+
+# In Linux, to disable the CANPOS Keyboard as a system keyboard, comment out
+# the following line.  By default, CANPOS will enumerate as a system keyboard.
+    
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.11 = 0x04b3,0x4609
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.12 = 0x0f66,0x4609
+
+# In Windows, to disable the 67-Key wo/MSR Keyboard Keyboard as a system keyboard, comment out
+# the following line.  By default, it will enumerate as a system keyboard.     
+
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.13 = 0x04b3,0x4701
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.14 = 0x0f66,0x4701
+
+# In Windows, to disable the 67-Key wo/MSR Keyboard Keyboard as a system keyboard, comment out
+# the following line.  By default, it will enumerate as a system keyboard.     
+
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.15 = 0x04b3,0x4702
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.16 = 0x0f66,0x4702
+
+# In Windows, to disable the NANPOS Keyboard as a system keyboard, comment out
+# the following line.  By default, NANPOS will enumerate as a system keyboard.     
+
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.17 = 0x04b3,0x4704
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.18 = 0x0f66,0x4704
+
+# In Windows, to disable the NANPOS Keyboard as a system keyboard, comment out
+# the following line.  By default, ANKPOS will enumerate as a system keyboard.     
+
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.19 = 0x04b3,0x4705
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.20 = 0x0f66,0x4705
+
+# In Windows, to disable the 67-Key w/MSR Keyboard Keyboard as a system keyboard, comment out
+# the following line.  By default, it will enumerate as a system keyboard.     
+
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.21 = 0x04b3,0x4706
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.22 = 0x0f66,0x4706
+
+# In Windows, to disable the CANPOS Keyboard as a system keyboard, comment out
+# the following line.  By default, CANPOS will enumerate as a system keyboard.     
+
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.23 = 0x04b3,0x4709
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.24 = 0x0f66,0x4709
+
+#To disable the Fiscal Printer attached 67-Key w/MSR Keyboard as a system keyboard, comment out
+# the following line.  By default, it will enumerate as a system keyboard.
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsSystemKbd.25 = 0x0f66,0x4538
+
+#------------------------------------------------------------------------------
+# USB POSKeyboards as POS Keyboard (non-system). 
+# The keyboards listed below will be converted to non-system (Legacy) mode.
+# Property format: ...kbdAsLegacyMode.<ID number> = <vendorID>,<productID>
+#
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.1 = 0x04b3,0x4601
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.2 = 0x04b3,0x4602
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.3 = 0x04b3,0x4603
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.4 = 0x04b3,0x4604
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.5 = 0x04b3,0x4605
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.6 = 0x04b3,0x4606
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.7 = 0x04b3,0x4607
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.8 = 0x04b3,0x4611
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.9 = 0x04b3,0x4612
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.10 = 0x04b3,0x4701
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.11 = 0x04b3,0x4702
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.12 = 0x04b3,0x4703
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.13 = 0x04b3,0x4704
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.14 = 0x04b3,0x4705
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.15 = 0x04b3,0x4706
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.16 = 0x04b3,0x4707
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.17 = 0x04b3,0x4711
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.18 = 0x04b3,0x4712
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.19 = 0x04b3,0x4670
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.20 = 0x04b3,0x4671
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.21 = 0x04b3,0x4672
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.22 = 0x04b3,0x4673
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.23 = 0x04b3,0x4674
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.24 = 0x04b3,0x4770
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.25 = 0x04b3,0x4771
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.26 = 0x04b3,0x4772
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.27 = 0x04b3,0x4773
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.28 = 0x04b3,0x4774
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.29 = 0x04b3,0x4616
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.30 = 0x04b3,0x4716
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.31 = 0x04b3,0x4609
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.32 = 0x04b3,0x4709
+
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.33 = 0x0f66,0x4601
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.34 = 0x0f66,0x4602
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.35 = 0x0f66,0x4603
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.36 = 0x0f66,0x4604
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.37 = 0x0f66,0x4605
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.38 = 0x0f66,0x4606
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.39 = 0x0f66,0x4607
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.40 = 0x0f66,0x4611
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.41 = 0x0f66,0x4612
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.42 = 0x0f66,0x4701
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.43 = 0x0f66,0x4702
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.44 = 0x0f66,0x4703
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.45 = 0x0f66,0x4704
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.46 = 0x0f66,0x4705
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.47 = 0x0f66,0x4706
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.48 = 0x0f66,0x4707
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.49 = 0x0f66,0x4711
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.50 = 0x0f66,0x4712
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.51 = 0x0f66,0x4670
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.52 = 0x0f66,0x4671
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.53 = 0x0f66,0x4672
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.54 = 0x0f66,0x4673
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.55 = 0x0f66,0x4674
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.56 = 0x0f66,0x4770
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.57 = 0x0f66,0x4771
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.58 = 0x0f66,0x4772
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.59 = 0x0f66,0x4773
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.60 = 0x0f66,0x4774
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.61 = 0x0f66,0x4616
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.62 = 0x0f66,0x4716
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.63 = 0x0f66,0x4609
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.64 = 0x0f66,0x4709
+
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.65 = 0x0f66,0x467c
+com.ibm.posj.bus.hid.javaxusb.factory.kbdAsLegacyMode.66 = 0x0f66,0x477c
+#---------------------------------------------------------------------------------------------------
+# Scanner Settings
+#
+
+# Scanner protocol converters product IDs
+# Used to submit a OEM Scanner reset command at population time.
+# Property format: ...oemScannerProtocols.<ID number> = <vendorID>,<productID>
+#
+com.ibm.posj.bus.hid.javaxusb.factory.oemScannerProtocols.1 = 0x0886,0x9900
+
+#
+# Time out ms value to use for Scanner commands.
+#
+com.ibm.posj.bus.ScannerHandleImp.COMMAND_TIMEOUT = 1500
+
+#
+# Synchronous Command Submission
+#
+# Description
+# Use this property to enable/disable Synchronous hardware command submission. 
+# When enabled the driver will wait for the hardware to process notifications.
+#
+# Valid Values:
+#    true   Synchronous command submission enabled (default).
+#    false  Asynchronous command submission enabled.
+#
+# com.ibm.posj.bus.rs485.Rs485Scanner.SynchronousSubmission = true
+
+#
+# Scanner Type and Response Length
+# Use this settings to force the scanner to use a specific command set, by default it
+# uses the type identified by POSS
+# Property format: ...Rs485ScannerHandleImp.<port> = <scannerType>
+#     ScannerType: 
+#         - 1520 ( 1 byte command, 3 byte of status response )
+#         - 4500 ( 2 byte command, 2 byte of status response )
+#         - 4501 ( 2 byte command, 2 byte of status response )
+#         - 4696 ( 1 byte command, 3 byte of status response )
+#         - 4697 ( 1 byte command, 3 byte of status response )
+#         - 4698 ( 1 byte command, 3 byte of status response )
+#         - OEM1 ( 1 byte command, 3 byte of status response)
+#         - OEM2 ( 2 byte command, 2 byte of status response)
+#com.ibm.posj.bus.rs485.Rs485ScannerHandleImp.ScannerType.4A = OEM1
+#com.ibm.posj.bus.rs485.Rs485ScannerHandleImp.ScannerType.4B = OEM2
+
+#
+# Scanner Datalogic management infrastructure
+# Used to enable the OEM Scanner Management functionality for RMA.
+# Property format: ...datalogicScannerMgmt = <boolean>
+#
+# Values accepted : true or false(default)
+#
+# Since 1.14.0
+#
+#com.ibm.posj.bus.hid.javaxusb.factory.datalogicScannerMgmt = false
+
+#
+# Time for DirectIO for Command SCANNER_ID
+# This property was created to have the option to change the time 
+# that we need to wait a response for scanner, using DirectIO command
+# for SCANNER_ID command only
+#
+# Values accepted : minimum value = 1000;
+#                   maximum value = 30000;
+# Since 1.14.3
+#
+com.ibm.posj.bus.scanner.SCANNER_ID_TIMEOUT = 1000
+
+#
+# Scanner Datalogic Data 11 byte Padding Managing
+# Used to disable the padding  for Datalogic Scanners
+# Property format: ...DATALOGIC_DATAPADDING_ENABLE = <boolean>
+#
+# Values accepted : true(default) or false
+#
+# Since 1.14.9
+#
+com.ibm.posj.bus.scanner.DATALOGIC_DATAPADDING_ENABLE = true
+
+#------------------------------------------------------------------------------
+# Lights Settings
+#
+
+#
+#Timeout used when sending commands to GuidanceLights
+#	Use this property to change the time it needs to wait
+#	after sending a command to guidance lights
+#
+# Since 1.14.6
+#
+com.tgcs.posj.Lights.GuidangeLights.CmdTimeout = 500
+
+#------------------------------------------------------------------------------
+# ToneIndicator Settings
+#
+
+#
+# MinimumToneDurationTo100 property.
+# 
+# Used to configure the Tone duration behavior. By default when the tone 
+# duration is set to a value between 1 and 99 milliseconds the tone indicator 
+# will not sound(see Tone1Duration and Tone2Duration in UPOS specification). 
+#
+# That behavior can be modified. If the tone indicator is required to sound when
+# setting a duration value in that range this property should be set to true. 
+# That will cause the tone to beep during 100 milliseconds for all values 
+# between 1 and 99 milliseconds.
+#
+# The tone indicator will not sound either way if tone indicator duration is set
+# to 0 milliseconds.
+#
+#  
+# Devices Supported:
+#                    USB  Modular 67 Key Keyboard with Display
+#                    USB  Modular 67 Key Keyboard
+#                    PS/2 Modular 67 Key Keyboard
+#                    PS/2 Modular Compact Alphanumeric Keyboard
+#                    USB  Modular Compact Alphanumeric Keyboard
+#                    PS/2 Modular Alphanumeric Keyboard
+#                    USB  Modular Alphanumeric Keyboard
+#
+# Values accepted : true or false(default)
+#
+# 
+# since 1.14.1
+#
+#com.ibm.posj.ToneIndicator.MinimumToneDurationTo100 = true
+
+# --------------------------------------------------------------------------------------------------
+# HID/javax.usb Populator settings
+#
+
+#Enables/Disables device serial number/device number binding logic.
+#This functionality will be enabled by default when a tablet is detected.
+#This functionality will be disabled by default when any system that is not a tablet is detected
+#  
+# Values Accepted : 
+#     - property commented out ( default ):
+#                   When the driver detect the running system is a Mobile Tablet it will set the property as true, for all
+#                   other systems the property will be set to false.
+#     - true  : Will ignore serial numbers for enumeration
+#     - false : Will NOT ignore serial numbers ( as 1.13.6 and previous ).
+#
+# since 1.13.7
+#
+#com.ibm.posj.bus.hid.javaxusb.factory.ReconnectionIgnoreSerialNumber = true
+
+# 
+# Set the Reports attempted length  in HID  Get Report Command.
+# Property format: ...AttemptLength.<ID number> = <vendorID>,<productID>,<attempt_length>
+#  Example com.ibm.posj.bus.hid.javaxusb.factory.attemptLength.1 = 0x04b3,0x4873,0x122
+# com.ibm.posj.bus.hid.javaxusb.factory.reportAttemptLength.1 = 0x04b3,0x4873,0x122
+
+#
+# Number of milliseconds to wait while starting populator
+#
+com.ibm.posj.bus.hid.javaxusb.UsbHandlePopulator.WINDOWS_INIT_DELAY = 0
+com.ibm.posj.bus.hid.javaxusb.UsbHandlePopulator.LINUX_INIT_DELAY = 0
+
+#
+# Number of milliseconds to wait before to reinitialize USB devices after suspend
+#
+com.ibm.posj.bus.hid.javaxusb.UsbHandlePopulator.WINDOWS_S3_DELAY = 12000
+com.ibm.posj.bus.hid.javaxusb.UsbHandlePopulator.LINUX_S3_DELAY = 0
+
+#
+# Number of milliseconds to wait before processing a newly connected device
+# (multiply by number of concurrently connected devices)
+#
+com.ibm.posj.bus.hid.javaxusb.UsbHandlePopulator.CONNECT_DELAY = 100
+
+#
+# Maximum number of milliseconds to wait for a device to re-enumerate.
+#
+com.ibm.posj.bus.hid.javaxusb.UsbHandlePopulator.MAX_REENUMERATION_DELAY = 30000;
+
+#
+# Determines if the 4610 per bus will use EC commands.
+# To activate EC for a certain bus uncomment that particular line.
+#
+
+#rs232.4610.EC
+#rs485.4610.EC
+#usb.4610.EC
+#posj.printer.error.timeout=2000
+#Giving apps an option to further limit us ECs, at a risk of early completion.
+#LineCount.LOOSE
+
+#
+# Determines if the POSPrinter will use line counting.
+# To activate LC for a certain bus uncomment that particular line.
+#
+
+#rs232.POSPrinter.LC
+#rs485.POSPrinter.LC
+#usb.POSPrinter.LC
+
+#
+# Disable the status for each LineCount increment.
+# When the property is defined there will be only one status for every 15 LineCount
+# increments instead of one each.
+# for a certain bus uncomment that particular line.
+#
+
+#rs232.DisableStatusforLineCountInc
+#rs485.DisableStatusforLineCountInc
+#usb.DisableStatusforLineCountInc
+
+#
+# Set the value of the Command Timeout in the printer service  
+# Note: Value should be in MILLISECONDS
+#
+# com.ibm.posj.bus.printer.COMMAND_TIMEOUT = 30800
+#
+# Set the value of the Offline Timeout for the 4610 Rs232 printers  
+# Note: Value should be in MILLISECONDS and the minimum accepted is 5000
+#
+# com.ibm.posj.bus.rs232.Rs2324610PrinterHandleImp.OFFLINE_TIMEOUT = 12800
+
+#
+# Sets the Printer to work in Compatiblity(TI3/4 Emulation) mode when true or in
+# Native Mode when false. 
+# Devices Supported: 4610-2xR, 6145-2xA
+# Note: Values accepted True(Compatibility) and False(Native)
+#       Any invalid value will change the printer to Native Mode
+#       If the property is disabled, no change will be performed in the printer
+com.ibm.posj.POSPrinter.SetCompatibilityMode = false
+
+#
+# Sets the Driver to work by allowing multiple JVM  mode when true or Single JVM
+#when other values
+# Note: Values accepted True(Multiple JVMS) and False (Default Value)(Single JVM)
+# Any invalid value will change the printer to work with a Single JVM
+#com.tgcs.posj.EnableMultipleJVM = false
+
+#
+#com.ibm.posj.printer.concurrent_printing.NetworkIdleTime
+#
+# Description:
+# This property controls the amount of seconds that the Network printer interface 
+# will wait after USB print job finishes. Property value represent the number of
+# seconds the printer should wait.
+#
+#Default: No update will be performed.
+#Minimum:1
+#Maximum: 655
+# com.ibm.posj.printer.concurrent_printing.NetworkIdleTime = 1
+
+#
+#com.ibm.posj.printer.concurrent_printing.ConcurrencyTimeout
+#
+# Description:
+# This property controls the amount of seconds that JavaPOS driver will wait 
+# for Printer hardware to be released of a concurrent job. Property value
+# represents the number of seconds the printer will wait.
+#
+#Default:  30
+#Minimum:1
+#Maximum: 655
+# com.ibm.posj.printer.concurrent_printing.ConcurrencyTimeout = 30
+
+#
+# Set the value for the top limit to say a printer has a low
+# USB BCD level(invalid level)
+# example: 0x0208 means all printer's with a value equal or less
+# will be handled as a invalid BCD level.  
+# Note: Value should be in hexadecimal representation
+com.ibm.posj.bus.hid.printer.INVALID_BCD_LEVEL.1 = 0x0106
+com.ibm.posj.bus.hid.printer.INVALID_BCD_LEVEL.2 = 0x0208
+
+#
+# Sets the Printer to Change the print order for Compound Vietnamese Characters 
+# mode when true or into print normal order when false. 
+# Devices Supported: 4610-2xR, 6145-2xA
+# Note: Values accepted True(Change order for Compound Vietnamese Order) 
+# and False(Normal Order)
+#       Any invalid value will change the printer to print Normal Order
+#       If the property is disabled, no change will be performed in the printer
+#com.ibm.posj.POSPrinter.CompoundVietnameseCharacters = false
+
+# -----------------------------------------------------------------------------
+# Ignore interface for the following known POS Devices. 
+# Property format: 
+# ...ignoreInterface.<ID number> = <vendorID>,<productID>,<usbInterfacenumber>
+# 
+#
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.1  = 0x04b3,0x4537,0
+
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.2  = 0x0f66,0x4537,0
+
+#Ignore touchpad interface # 5 for IBM Modular Keyboards
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.3  = 0x04b3,0x4604,5
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.4  = 0x04b3,0x4609,5
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.5  = 0x04b3,0x4804,5
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.6  = 0x04b3,0x4809,5
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.7  = 0x0f66,0x4500,0
+
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.8  = 0x0f66,0x4604,5
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.9  = 0x0f66,0x4609,5
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.10 = 0x0f66,0x4804,5
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.11 = 0x0f66,0x4809,5
+#Ignoring the touch interface for 4820 ELO touch monitors
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.12 = 0x04e7,0x0030,0
+#Ignoring the keyboard interface for 6149 MSR
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.13 = 0x0f66,0x4501,2
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.14 = 0x0f66,0x467b,2
+#Ignoring the Monitor & Flash interface for 6149
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.15  = 0x0f66,0x467a,0
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.16  = 0x0f66,0x467a,1
+#Ignoring interfaces for 67-Key with Display, for windows those interfaces
+#are used on wedge mode
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.17  = 0x04b3,0x4602,0
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.18  = 0x04b3,0x4602,1
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.19  = 0x04b3,0x4602,2
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.20  = 0x04b3,0x4602,3
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.21  = 0x0f66,0x4602,0
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.22  = 0x0f66,0x4602,1
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.23  = 0x0f66,0x4602,2
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.24  = 0x0f66,0x4602,3
+# Ignore CANPOS Line Display interface ( not physical HW )
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.25  = 0x04b3,0x4709,4
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.26  = 0x0f66,0x4709,4
+#Ignoring the keyboard interface for 6200 MSR
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.27 = 0x0f66,0x467d,2
+#Ignoring the keyboard interface for 6140-A3R Electronic Keylock
+com.ibm.posj.bus.hid.javaxusb.factory.ignoreInterface.28 = 0x0f66,0x4502,2
+# -----------------------------------------------------------------------------
+# Known POS Devices. Accept only the USB devices defined in this multiproperty
+# Property format: ...knownPosDevices.<ID number> = <vendorID>,<productID>
+# 
+#
+
+# Cash Drawer
+#
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.1  = 0x04b3,0x4554
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.2  = 0x04b3,0x4555
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.3  = 0x04b3,0x4557
+
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.4  = 0x0f66,0x4554
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.5  = 0x0f66,0x4555
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.6  = 0x0f66,0x4557
+
+
+#USB CD 4846/76
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.7  = 0x0F66,0x4558
+
+# Hard Totals
+#
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.8  = 0x04b3,0x4550
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.9  = 0x04b3,0x4551
+
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.10 = 0x0F66,0x4550
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.11 = 0x0F66,0x4551
+
+# Line Display
+#
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.12 = 0x04b3,0x4524
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.13 = 0x0f66,0x4524
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.14 = 0x04b3,0x4525
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.15 = 0x0f66,0x4525
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.16 = 0x04b3,0x4526
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.17 = 0x0f66,0x4526
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.18 = 0x04b3,0x452A
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.19 = 0x0f66,0x452A
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.20 = 0x0f66,0x4500
+
+# POSKeyboard
+#
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.21 = 0x04b3,0x4601
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.22 = 0x04b3,0x4602
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.23 = 0x04b3,0x4603
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.24 = 0x04b3,0x4604
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.25 = 0x04b3,0x4605
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.26 = 0x04b3,0x4606
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.27 = 0x04b3,0x4607
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.28 = 0x04b3,0x4611
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.29 = 0x04b3,0x4612
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.30 = 0x04b3,0x4701
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.31 = 0x04b3,0x4702
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.32 = 0x04b3,0x4703
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.33 = 0x04b3,0x4704
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.34 = 0x04b3,0x4705
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.35 = 0x04b3,0x4706
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.36 = 0x04b3,0x4707
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.37 = 0x04b3,0x4711
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.38 = 0x04b3,0x4712
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.39 = 0x04b3,0x4801
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.40 = 0x04b3,0x4802
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.41 = 0x04b3,0x4803
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.42 = 0x04b3,0x4804
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.43 = 0x04b3,0x4805
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.44 = 0x04b3,0x4806
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.45 = 0x04b3,0x4807
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.46 = 0x04b3,0x4811
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.47 = 0x04b3,0x4812
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.48 = 0x04b3,0x4616
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.49 = 0x04b3,0x4716
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.50 = 0x04b3,0x4816
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.51 = 0x04b3,0x4609
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.52 = 0x04b3,0x4709
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.53 = 0x04b3,0x4809
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.54 = 0x0F66,0x467c
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.55 = 0x0F66,0x477c
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.56 = 0x0F66,0x487c
+
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.57 = 0x0f66,0x4601
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.58 = 0x0f66,0x4602
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.59 = 0x0f66,0x4603
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.60 = 0x0f66,0x4604
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.61 = 0x0f66,0x4605
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.62 = 0x0f66,0x4606
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.63 = 0x0f66,0x4607
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.64 = 0x0f66,0x4611
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.65 = 0x0f66,0x4612
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.66 = 0x0f66,0x4701
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.67 = 0x0f66,0x4702
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.68 = 0x0f66,0x4703
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.69 = 0x0f66,0x4704
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.70 = 0x0f66,0x4705
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.71 = 0x0f66,0x4706
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.72 = 0x0f66,0x4707
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.73 = 0x0f66,0x4711
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.74 = 0x0f66,0x4712
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.75 = 0x0f66,0x4801
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.76 = 0x0f66,0x4802
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.77 = 0x0f66,0x4803
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.78 = 0x0f66,0x4804
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.79 = 0x0f66,0x4805
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.80 = 0x0f66,0x4806
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.81 = 0x0f66,0x4807
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.82 = 0x0f66,0x4811
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.83 = 0x0f66,0x4812
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.84 = 0x0f66,0x4616
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.85 = 0x0f66,0x4716
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.86 = 0x0f66,0x4816
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.87 = 0x0f66,0x4609
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.88 = 0x0f66,0x4709
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.89 = 0x0f66,0x4809
+
+
+# POSPrinter
+#
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.90 = 0x04b3,0x4530
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.91 = 0x04b3,0x4533
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.92 = 0x04b3,0x4534
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.93 = 0x04b3,0x4535
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.94 = 0x04b3,0x4536
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.95 = 0x04b3,0x4537
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.96 = 0x04b3,0x4538
+
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.97 = 0x0f66,0x4530
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.98 = 0x0f66,0x4533
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.99 = 0x0f66,0x4534
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.100 = 0x0f66,0x4535
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.101 = 0x0f66,0x4536
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.102 = 0x0f66,0x4537
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.103 = 0x0f66,0x4538
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.104 = 0x0f66,0x4538
+
+# SurePoint
+#
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.105 = 0x04b3,0x4670
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.106 = 0x04b3,0x4671
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.107 = 0x04b3,0x4672
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.108 = 0x04b3,0x4673
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.109 = 0x04b3,0x4674
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.110 = 0x04b3,0x4770
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.111 = 0x04b3,0x4771
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.112 = 0x04b3,0x4772
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.113 = 0x04b3,0x4773
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.114 = 0x04b3,0x4774
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.115 = 0x04b3,0x4870
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.116 = 0x04b3,0x4871
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.117 = 0x04b3,0x4872
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.118 = 0x04b3,0x4873
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.119 = 0x04b3,0x4874
+
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.120 = 0x0f66,0x4670
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.121 = 0x0f66,0x4671
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.122 = 0x0f66,0x4672
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.123 = 0x0f66,0x4673
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.124 = 0x0f66,0x4674
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.125 = 0x0f66,0x4770
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.126 = 0x0f66,0x4771
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.127 = 0x0f66,0x4772
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.128 = 0x0f66,0x4773
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.129 = 0x0f66,0x4774
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.130 = 0x0f66,0x4870
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.131 = 0x0f66,0x4871
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.132 = 0x0f66,0x4872
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.133 = 0x0f66,0x4873
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.134 = 0x0f66,0x4874
+                                                       
+# Other USB Devices ( HUB, UPS, etc )
+#
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.135 = 0x04b3,0x4580
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.136 = 0x04b3,0x4581
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.137 = 0x04b3,0x4582
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.138 = 0x04b3,0x4583
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.139 = 0x04b3,0x45A0
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.140 = 0x04b3,0x4590
+
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.141 = 0x0f66,0x4580
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.142 = 0x0f66,0x4581
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.143 = 0x0f66,0x4582
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.144 = 0x0f66,0x4583
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.145 = 0x0f66,0x45A0
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.146 = 0x0f66,0x4590
+
+# OEM Scales
+# Note: This PSC Magellan Scanner\Scale Mod 384 uses IBM vendor ID
+#
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.147 = 0x04b3,0x4901
+
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.148 = 0x0f66,0x4901
+
+# IBM OEM Scanners
+#
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.149 = 0x04b3,0x454A
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.150 = 0x04b3,0x4900
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.151 = 0x04b3,0x4901
+
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.152 = 0x0f66,0x454A
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.153 = 0x0f66,0x4900
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.154 = 0x0f66,0x4901
+# Datalogic QS6000 (IBM)
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.155 = 0x04b3,0x4902
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.156 = 0x04b3,0x4903
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.157 = 0x04b3,0x4904
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.158 = 0x04b3,0x4905
+
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.159 = 0x0f66,0x4902
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.160 = 0x0f66,0x4903
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.161 = 0x0f66,0x4904
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.162 = 0x0f66,0x4905
+# Honeywell \ Metrologic
+# Metrologic MS2400/MS9590
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.163 = 0x0C2E,0x0009
+# Honeywell Xenon 1900 Hand Held mode
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.164 = 0x0C2E,0x0903
+# Honeywell Xenon 1900 Table Top mode
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.165 = 0x0C2E,0x0904
+# Honeywell Xenon 1902 Hand Held mode
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.166 = 0x0C2E,0x0923
+# Honeywell Xenon 1902 Table Top mode
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.167 = 0x0C2E,0x0924
+# Honeywell N5680
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.168 = 0x0C2E,0x0963
+# Honeywell Voyager 1470g Hand Held Scanner
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.169 = 0x0C2E,0x1003
+# Honeywell 1952a Hand Held Scanner
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.170 = 0x0C2E,0x1191
+# PSC \ Datalogic OEM Scanner
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.171 = 0x05f9,0x0101
+# PSC Magellan 2300
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.172 = 0x05f9,0x0104
+# PSC Magellan 8200
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.173 = 0x05f9,0x0110
+# PSC Scanner
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.174 = 0x05f9,0x0120
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.175 = 0x05f9,0x0180
+# Datalogic Powerscan 2D/PDF Imagers
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.176 = 0x05f9,0x0303
+# Datalogic PowerScan 7000 (Hawkeye) 2D
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.177 = 0x05f9,0x0313
+# Datalogic Magellan 8500 Scanner/Scale
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.178 = 0x05f9,0x1101
+# Datalogic Magellan 8500 Scanner Only
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.179 = 0x05f9,0x1102
+# Datalogic Magellan 2200VS/2300HS
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.180 = 0x05f9,0x1104
+# Datalogic Magellan 8200 Scanner/Scale
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.181 = 0x05f9,0x1110
+# Datalogic Magellan 8100 Scanner/Scale
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.182 = 0x05f9,0x1111
+# Datalogic Magellan 9500 Scanner/Scale
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.183 = 0x05f9,0x1180
+# Datalogic Magellan 9500 Scanner Only
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.184 = 0x05f9,0x1181
+# Datalogic Magellan 8200 Scanner Only
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.185 = 0x05f9,0x1120
+# Datalogic Magellan 8100 scanner Only
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.186 = 0x05f9,0x1121
+# Datalogic QS2500
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.187 = 0x05f9,0x1201
+# Datalogic QS6500
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.188 = 0x05f9,0x1202
+# Datalogic QuickScan I QD2100
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.189 = 0x05f9,0x1203
+# Datalogic PowerScan 7000 Corded
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.190 = 0x05f9,0x1204
+# Datalogic PowerScan 7000 BT Base Station
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.191 = 0x05f9,0x1205
+# Datalogic Gryphon I QD4100
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.192 = 0x05f9,0x1206
+# Datalogic PowerScan PD7100
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.193 = 0x05f9,0x1207
+# Datalogic PowerScan PBT7100
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.194 = 0x05f9,0x1208
+# Datalogic Gryphon L GD4100
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.195 = 0x05f9,0x1209
+# Datalogic Gryphon I BT GBT4100
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.196 = 0x05f9,0x120A
+# Datalogic Gryphon I STAR GM4100
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.197 = 0x05f9,0x120B
+# Datalogic Gryphon GD44XX
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.198 = 0x05f9,0x120C
+# Datalogic Gryphon GM44XX
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.199 = 0x05f9,0x120E
+# Datalogic Gryphon GBT44XX
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.200 = 0x05f9,0x120F
+# Datalogic Gryphon I GFS 4400
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.201 = 0x05f9,0x1216
+# Datalogic QD24xx
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.202 = 0x05f9,0x1218
+# Datalogic Handheld Barcode Scanner
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.203 = 0x05f9,0x122F
+# Datalogic PSC Gryphon BT GBT4500
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.204 = 0x05f9,0x1231
+# Datalogic GBT4500
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.205 = 0x05f9,0x1238
+# Datalogic QD2590
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.206 = 0x05f9,0x1239
+# Datalogic Magellan 8300 Scanner/Scale
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.207 = 0x05f9,0x1501
+# Datalogic Magellan 8300 Scanner Only
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.208 = 0x05f9,0x1502
+# Datalogic Magellan 8400 Scanner/Scale
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.209 = 0x05f9,0x1503
+# Datalogic Magellan 8400 Scanner Only
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.210 = 0x05f9,0x1504
+# Datalogic Magellan 2300 Enhanced
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.211 = 0x05f9,0x1506
+# Datalogic Magellan 8500 XT scanner Only
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.212 = 0x05f9,0x1507
+# Datalogic Magellan 8500 XT Scanner/Scale
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.213 = 0x05f9,0x1508
+# Datalogic Magellan 8500 XT w/Sensormatic Scanner Only
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.214 = 0x05f9,0x1509
+# Datalogic Magellan 9800i
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.215 = 0x05f9,0x1511
+# Datalogic Magellan 9300/9400i
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.216 = 0x05f9,0x1512
+# Datalogic Magellan 3410 Scanner
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.217 = 0x05f9,0x1513
+# Datalogic Magellan 3450/3550
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.218 = 0x05f9,0x1514
+# Datalogic 9600i
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.219 = 0x05f9,0x1515
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.220 = 0x05f9,0x1516
+# Datalogic Magellan 8500 XT w/Sensormatic Scanner/Scale
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.221 = 0x05f9,0x150A
+# Datalogic Magellan 3200/3300
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.222 = 0x05f9,0x150B
+# Datalogic Magellan 1000i/1400i
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.223 = 0x05f9,0x1601
+# Datalogic Magellan 1100i (Table Top)
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.224 = 0x05f9,0x1602
+# Datalogic Magellan i800
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.225 = 0x05f9,0x1603
+# Datalogic Magellan 1500i 
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.226 = 0x05f9,0x1604
+# Datalogic 900i
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.227 = 0x05f9,0x1605
+# Datalogic 9900i
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.228 = 0x05f9,0x4005
+# Datalogic Magellan SL
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.229 = 0x05f9,0x4901
+# Datalogic QS6000
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.230 = 0x05f9,0x4902
+# Datalogic QuickScan Mobile (Table Top)
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.231 = 0x080C,0x0500
+# Datalogic QuickScan Mobile (Hand Held)
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.232 = 0x080C,0x0600
+
+# Mettler-Toledo
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.233 = 0x0eb8,0x2200
+# Symbol \ motorola OEM Scanner
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.234 = 0x05e0,0x0101
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.235 = 0x05e0,0x0200
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.236 = 0x05e0,0x0300
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.237 = 0x05e0,0x038a
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.238 = 0x05e0,0x1900
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.239 = 0x05e0,0x0820
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.240 = 0x05e0,0x08af
+# Motorola LS7808
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.241 = 0x05e0,0x1400
+# XAC converter with OEM Scanner
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.242 = 0x0886,0x9901
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.243 = 0x0886,0x9902
+# OEM Scanners - Protocol converter
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.244 = 0x0886,0x9900
+# HPP IT5600
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.245 = 0x0536,0x0163
+
+# 6149 Devices
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.246 = 0x0f66,0x467a
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.247 = 0x0f66,0x467b
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.248 = 0x0f66,0x4501
+#6140-A3R Electronic Keylock
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.249 = 0x0f66,0x4502
+# Motorola DS9808
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.250 = 0x05e0,0x1300
+# 6200 MSR
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.251 = 0x0f66,0x467d
+# 6200 Line Display 2x20
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.252 = 0x0f66,0x452b
+# 6200 Line Display APA
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.253 = 0x0f66,0x452c
+# 6200 CashDrawer
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.254 = 0x0f66,0x4559
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.255 = 0x0f66,0x455a
+
+#Zebra/Symbol
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.256 = 0x05e0,0x0863
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.257 = 0x05e0,0x0873
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.258 = 0x05e0,0x0882
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.259 = 0x05e0,0x0883
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.260 = 0x05e0,0x0884
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.261 = 0x05e0,0x0885
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.262 = 0x05e0,0x088a
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.263 = 0x05e0,0x088b
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.264 = 0x05e0,0x088c
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.265 = 0x05e0,0x088d
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.266 = 0x05e0,0x0890
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.267 = 0x05e0,0x0892
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.268 = 0x05e0,0x0893
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.269 = 0x05e0,0x0894
+
+#CUC S6,S7 & S8
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.270 = 0x04b3,0x4575
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.271 = 0x0f66,0x4578
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.272 = 0x0f66,0x457C
+
+#S8 Proximity sensor
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.273 = 0x0f66,0x457a
+# System 8 lights
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.274 = 0x0f66,0x457d
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.275 = 0x0f66,0x457f
+# System 8 Scale Converter
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.276 = 0x0f66,0x457b
+#S8 Cash Door Controller (Coupon Sensor - Coupon/Cash LED)
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.277 = 0x0f66,0x457E
+#Belted Lane. Conveyor Controller.
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.278 = 0x04b3,0x4577
+
+# Datalogic GFS4520
+com.ibm.posj.bus.hid.javaxusb.factory.knownPosDevices.279 = 0x05f9,0x123f
+
+#-----------------------------------------------------------------------------
+# JSIO custom values for RS485 Devices. 
+# Use the following values for the mentioned devices at population time
+# Property format: 
+# ...<Device descriptive name>.<Device ID> = <addressWaitTime>,<InterByteWaitTime>
+#
+#Device Name			SIO Device Address(es)
+#  cashDrawer                    0x54
+#  displayA                      0x24
+#  displayB                      0x25
+#  displayOperatorA              0x22
+#  keyboardA                     0x1C
+#  keyboardB                     0x1D
+#  msr3_4_trackA                 0x48
+#  msr3_4_trackB                 0x49
+#  printer4610                   0x35
+#  scaleA                        0x6A
+#  scaleB                        0x6E
+#  scannerA                      0x4A
+#  scannerB                      0x4B
+#
+
+com.ibm.posj.bus.rs485.waitTime.cashDrawer.54       = 0xC0,0x90
+com.ibm.posj.bus.rs485.waitTime.displayA.24         = 0x60,0x48
+com.ibm.posj.bus.rs485.waitTime.displayB.25         = 0x60,0x48
+com.ibm.posj.bus.rs485.waitTime.displayOperatorA.22 = 0x23,0x10
+com.ibm.posj.bus.rs485.waitTime.keyboardA.1C        = 0x20,0x10
+com.ibm.posj.bus.rs485.waitTime.keyboardB.1D        = 0x20,0x10
+com.ibm.posj.bus.rs485.waitTime.msr3_4_trackA.48    = 0x20,0x10
+com.ibm.posj.bus.rs485.waitTime.msr3_4_trackA.49    = 0x20,0x10
+com.ibm.posj.bus.rs485.waitTime.printer4610.35      = 0x90,0x48
+com.ibm.posj.bus.rs485.waitTime.scaleA.6A           = 0x30,0x00
+com.ibm.posj.bus.rs485.waitTime.scaleB.6E           = 0x30,0x00
+com.ibm.posj.bus.rs485.waitTime.scannerA.4A         = 0x30,0x00
+com.ibm.posj.bus.rs485.waitTime.scannerB.4B         = 0x30,0x00
+
+#-----------------------------------------------------------------------------
+# JSIO delay population for RS485 Devices. 
+# Delay the device processing by the number of milliseconds specified in the
+# property
+# Property format: 
+# com.ibm.posj.bus.rs485.delayDevicePopulation.<Device ID> = <delayTime>
+#
+# com.ibm.posj.bus.rs485.delayDevicePopulation.4a = 1000
+
+# -----------------------------------------------------------------------------
+# Set the value of the Timeout to wait after a power management
+# event is received(S3)before to reinitialize the bus code  
+# Note: Value should be in MILLISECONDS
+# Default: 60000.
+#
+#com.ibm.posj.bus.powermanagement.REINITIALIZE_TIMEOUT = 60000
+
+#-----------------------------------------------------------------------------
+# Poll time values values for RS232 handle of online/offline events
+# Use the following values to configure the Watcher for the events
+# ...<Device name> = <timeout>
+#
+
+com.ibm.posj.bus.rs232.onLineWatcherPollTime.MSR    = 10000
+com.ibm.posj.bus.rs232.onLineWatcherPollTime.Scanner= 10000
+
+# -----------------------------------------------------------------------------
+# Set the value of the Timeout to wait after a power management
+# event is received(S3)before to reinitialize the rs232 bus  
+# Note: Value should be in MILLISECONDS
+# Default: 10000.
+#
+#com.ibm.posj.bus.rs232.powermanagement.S3_DELAY_TIMEOUT = 10000
+
+# -----------------------------------------------------------------------------
+# Known PS2 Keyboard Devices. Accept only the PS2 devices defined in this multiproperty
+# The versionID is get from the node information, this only applies for Linux
+# with kernel 2.6.
+# Property format: ...knownPS2Keyboard.<ID number> = <versionID>
+# 
+#NANPOS/ANKPOS/4820KEYPAD PS2
+com.ibm.posj.bus.poskbd.PoskbdHandlePopulator.knownPS2Keyboard.1  = 0xab87
+#CANPOS PS2
+com.ibm.posj.bus.poskbd.PoskbdHandlePopulator.knownPS2Keyboard.2  = 0xab41
+
+# -----------------------------------------------------------------------------
+# Used to handle POSKeyboard Compatiblity option. If true POSKeyboard
+# will work in compatibility mode, if false POSKeyboard mode is changed to Native 
+# Devices Supported: USB CANPOS V2 POSKeyboard
+#                    USB ANPOS V2 POSKeyboard
+#                    USB 67-Key POSKeyboard
+# Values accepted : 
+#                 True(Compatibility) 
+#                 False(Native)
+
+com.ibm.posj.POSKeyboard.SetCompatibilityMode = false
+
+
+# -----------------------------------------------------------------------------
+# Name of file containing the jposEntries
+# 
+com.ibm.posj.bus.rs232.jposEntriesFileName = jpos.xml
+''',
+
+'etc/posj.autoconfig.HardTotals.properties':'''\
+# Properties for HardTotals
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=HardTotals1
+''',
+
+'/usr/share/pos/config/aiptrace.cfg':'''\
+  Enable: Off
+  Filename: /cdrive/ext/logs/adxjpos/trace.log
+  FileSize: 10485760
+  BackupCount: 5
+  StartupMode: Disabled
+  FileMode: Append
+  OposCashDrawer: Off
+  OposCheckScanner: Off
+  OposHardTotals: Off
+  OposKeylock: Off
+  OposLineDisplay: Off
+  OposMsr: Off
+  OposMicr: Off
+  OposPosKeyboard: Off
+  OposPosPrinter: Off
+  OposPresenceSensor: Off
+  OposScale: Off
+  OposScanner: Off
+  OposToneIndicator: Off
+  OposSystem: Off
+  OposFiscalPrinter: Off
+  ScsBillDispenser: Off
+  ScsCoinAcceptor: Off
+  ScsCoupon: Off
+  ScsMisc: Off
+  ScsPresenceSensor: Off
+  ScsSecurityScale: Off
+  PossAll: Off
+  PossSio: Off
+  Rs232CommPorts: Off
+  SystemManagement: Off
+  Override: Disabled
+  AllowCommands: Disabled
+  JavaposCashDrawer: Off
+  JavaposCheckScanner: Off
+  JavaposHardTotals: Off
+  JavaposKeylock: Off
+  JavaposLineDisplay: Off
+  JavaposMsr: Off
+  JavaposMicr: Off
+  JavaposPosKeyboard: Off
+  JavaposPosPrinter: Off
+  JavaposPresenceSensor: Off
+  JavaposScale: Off
+  JavaposScanner: Off
+  JavaposToneIndicator: Off
+  JavaposFiscalPrinter: Off
+  JavaxUsb: Off
+  ''',
+
+'etc/jnet.properties':'''\
+#
+#  %Z%%W% %I%
+# ===========================================================================
+
+#
+# Property used to specify the implementation of the
+# NetServices interface
+#
+net.services = com.tgcs.net.NetServicesImp
+
+#
+# Multi-property  used to turn on or off the discovery features
+# to use and configure the network devices 
+#
+net.discovery.1= com.tgcs.net.NetPOSDeviceDiscoveryEfg
+#net.discovery.2= com.tgcs.net.NetPOSDeviceDiscoveryBroadcast
+#net.discovery.3= com.tgcs.net.NetPOSDeviceDiscoveryJposXml
+
+#
+# Timeout property for control socket messages 
+#
+net.netposdevice.CONTROL_MESSAGE_TIMEOUT = 300
+
+#
+# Configurable property that controls the number of retries the driver will do
+# to reach the network device.
+#
+# Values: 
+#    Minimum: 0 (no retries, single attempt)
+#    Default: 3
+#    Maximum: 2147483647  
+#
+#net.netposdevice.QueryRequestRetries = 3
+
+# net.discovery.broadcast.polling.time is used to set the pooling intervals 
+# for the broadcast discovery service. This is measured in milliseconds
+
+#com.tgcs.net.NetPOSDeviceDiscoveryBroadcast.pollingTime=30000
+
+# net.discovery.broadcast.polling.enable is used to turn on/off the polling
+# feature for the broadcast discovery meaning that the devices plugged after
+# the API initialization are not going to be found 
+
+#com.tgcs.net.NetPOSDeviceDiscoveryBroadcast.pollingEnable=false
+
+#
+# Configurable property to define the time to wait for a status response after open the TCP socket
+#
+# Values : <any in milliseconds> Default 1000
+#
+#net.NetPOSDeviceImp.CLAIM_TCP_STATUS_TIMEOUT=1000
+
+#
+# Configurable property to define the polling time when there is no response for the UDP claim command 
+#
+# Values : <any in milliseconds> Default : 1000 
+#
+#net.NetPOSDeviceImp.CLAIM_POLLING_TIME=1000
+
+#
+# Configurable property to change the tpc hand shake timeout
+#
+# Values : <any in milliseconds> Default : 2000 
+#
+# net.NetPOSDeviceTcpHandshakeTimeout = 2000''',
+
+'etc/Log.properties':'''\
+#
+# %Z%%W% %I%
+# ===========================================================================
+
+
+#Logging Properties
+#Tue Mar 26 16:41:40 CST 2002
+com.ibm.jutil.logging.LogStoreMethodMask.serial=8
+com.ibm.jutil.logging.LogStoreMethodMask.stdout=1
+com.ibm.jutil.logging.default.Logger.Threshold=1
+com.ibm.jutil.logging.LogStoreMethodMask.socket=16
+com.ibm.jutil.logging.JDKLogStore.LogFileName=jTuxLog
+
+# The prefix "<home>" is used to indicate the user's home directory
+# to change the value of this property to a path different than
+# user's home directory is needed to put the full path
+# of the configuration file (Example:  /tmp/logging/Config.properties)
+com.ibm.jutil.logging.default.Log4jLogStore.ConfigureFileName=<home>/.toshiba/properties/log4jConfiguration.properties
+com.ibm.jutil.logging.LogEntryFactory.initialStackSize=8
+com.ibm.jutil.logging.LogEntryName=com.ibm.jutil.logging.DefaultLogEntry
+com.ibm.jutil.logging.LogStoreMethodMask.file=4
+com.ibm.jutil.logging.default.Log4jLogStore.LogFilePath=<home>/.toshiba/logging
+com.ibm.jutil.logging.JDKLogStore.LogSerFileNameExt=.ser
+com.ibm.jutil.logging.default.LogStoreName=com.ibm.jutil.logging.DefaultLogStore
+com.ibm.jutil.logging.LogStoreMethodMask.stderr=2
+
+# The default logStore used is NONE. No log is enabled by default.
+# Possible values:
+# - com.ibm.jutil.logging.Log4jLogStore
+# - com.ibm.jutil.logging.JDKLogStore
+com.ibm.jutil.logging.LogStoreName=NONE
+com.ibm.jutil.logging.default.LogEntryFactoryName=com.ibm.jutil.logging.DefaultLogEntryFactory
+com.ibm.jutil.logging.default.Log4jLogStore.LogTextFileNameExt=.log
+com.ibm.jutil.logging.LogStoreMethodMask.multifile=32
+com.ibm.jutil.logging.default.Log4jLogStore.LogFileName=jTuxLog
+com.ibm.jutil.logging.JDKLogStore.LogTextFileNameExt=.log
+com.ibm.jutil.logging.LogEntryFactoryName=com.ibm.jutil.logging.DefaultLogEntryFactory
+com.ibm.jutil.logging.JDKLogStore.LogFilePath=<home>/.toshiba/logging
+
+#The following properties are for the option of logging to a remote server
+com.ibm.jutil.logging.LoggingToRemoteServer=false
+com.ibm.jutil.logging.LogServerHostName=noHost
+com.ibm.jutil.logging.LogServerIP=127.0.0.1
+com.ibm.jutil.logging.LogServerPort=2053
+
+##########################################################################
+# Logging Filtering Options
+##########################################################################
+
+#all logging
+com.ibm.jutil.logging.AllLoggingOff = false
+
+#device logging
+com.ibm.jutil.logging.LoggingPrinter = true
+com.ibm.jutil.logging.LoggingScanner = true
+com.ibm.jutil.logging.LoggingLineDisplay = true
+com.ibm.jutil.logging.LoggingMSR = true
+com.ibm.jutil.logging.LoggingPOSKeyboard = true
+com.ibm.jutil.logging.LoggingKeylock = true
+com.ibm.jutil.logging.LoggingToneIndicator = true
+com.ibm.jutil.logging.LoggingCashDrawer = true
+com.ibm.jutil.logging.LoggingAllDevices = true
+com.ibm.jutil.logging.LoggingUniversalSerialBus = true
+com.ibm.jutil.logging.LoggingMICR = true
+
+#priority logging
+#NOTE: IF the first two variables below (LogAllPrioritiesBelow and
+#	  LogAllPrioritiesAbove) are set different from the defaults
+#     (LogAllPriorityAbove = -1 and LogAllPriorityBelow = 6)
+#     then they will control the filtering for all priorities 
+#	  REGARDLESS of individual priorities being set to true or 
+#     false 	
+#(0 is minimum and 5 is maximum for priorities)
+
+com.ibm.jutil.logging.LogAllPriorityAbove = -1
+com.ibm.jutil.logging.LogAllPriorityBelow = 6
+
+com.ibm.jutil.logging.LoggingDEBUGPriority = true
+com.ibm.jutil.logging.LoggingINFOPriority = true
+com.ibm.jutil.logging.LoggingWARNPriority = true
+com.ibm.jutil.logging.LoggingERRORPriority = true
+com.ibm.jutil.logging.LoggingFATALPriority = true
+
+''',
+
+'etc/jsio.properties':'''\
+
+#
+# Properties file for com.ibm.jsio
+#
+
+# This is required by the API, this is the class that the API will create
+# to implement SioServices.
+jsio.services = com.ibm.jsio.os.sockets.SioServicesImp
+
+# This is required by the JSIO Sockets Implementation
+# These are TCP parameters for JSIO communication
+
+jsio.os.sockets.ip = 127.0.0.1
+jsio.os.sockets.port = 42104
+jsio.os.sockets.timeout = 15000
+jsio.os.sockets.maxattempts = 3
+jsio.os.sockets.connect_timeout = 2000
+''',
+
+'etc/posj.autoconfig.POSPrinter.properties':'''\
+# Properties for POSPrinter
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=POSPrinter1
+
+# This enables two color printing on printers that support it.
+# See the JavaPOS User's Guide for details.
+# Allowable values are "0" (disabled) and "2" (enabled).
+#colorMode=0
+
+# These specify if there is a CashDrawer connected to port A or B of the POSPrinter.
+# If a physical CashDrawer is connected to port A or port B, you must specify this.
+# This can only be set as a number-specific property, this cannot be set as a default property.
+# Some POSPrinters require a Y-cable to use port B, without the Y-cable only port A is available.
+# These default to false.
+#autoconfig.hasCashDrawerA.1=false
+#autoconfig.hasCashDrawerB.1=false
+
+
+# These are RS232 properties.  These should only be used if the device
+# is directly connected to the RS232 port, not for subdevices.
+
+# This specifies the device is connected via the RS232 bus.
+# This must be specified for a RS232-connected device.
+# The only allowable value is "RS232", no other value should be used.
+# For devices that are not RS232-connected, this should not be specified.
+#deviceBus.1=RS232
+
+# This specifies the port that the device is connected to.
+# This must be specified for a RS232-connected device.
+# The value should be the RS232 port name in DOS nomenclature, i.e. "COM1", "COM2", etc.
+# Note that "COM1" is the first RS232 port, there is no "COM0".
+#portName.1=COM1
+
+# This specifies the baud rate that the device uses.
+# This will default to a predetermined value if not specified.
+# The value should be the baud rate as a decimal number.
+#baudRate.1=9600
+
+# This specifies the flow control that the device uses.
+# This will default to a predetermined value if not specified.
+# Allowable values are "Xon/Xoff", "Hardware", and "None".
+#flowControl.1=Xon/Xoff
+
+# This specifies the character that SureOne printer will use
+# This property is not used for other printers
+# Allowable values are "standard", "japanese", "korean", "chineseTrad", "chineseSimp"
+#SureOneVersion.1=standard
+
+''',
+
+'etc/jutil.properties':'''\
+#
+# %Z%%W% %I%
+# ===========================================================================
+# Licensed Materials - Property of Toshiba
+# "Restricted Materials of Toshiba"
+# IBM Java(tm)2 SDK, Standard Edition, v 1.4 
+#
+# (C) Copyright IBM Corp. 2002,2003,2005,2007,2012 . All Rights Reserved
+# Copyright (c) 2012, 2015 Toshiba Global Commerce Solutions, Inc.  
+#
+# ===========================================================================
+#
+# Tracing facility properties.
+# Set the following property to ON or TRUE and OFF or FALSE) to turn tracing on/off
+#
+# NOTE: Use the TurnOnAllNamedTracers to turn all tracers.
+#            ON  = Enable tracers
+#            OFF = Disable tracers
+
+#com.ibm.jutil.tracing.TurnOnAllNamedTracers = ON
+
+#
+# TracerLevel: indicates the level of the trace information ( Maximum is 
+#                 the default level)
+#    - Minimum
+#    - Normal
+#    - Critical
+#    - Maximum
+#com.ibm.jutil.tracing.TracerLevel = Minimum
+#com.ibm.jutil.tracing.TracerLevel = Normal
+#com.ibm.jutil.tracing.TracerLevel = Critical
+com.ibm.jutil.tracing.TracerLevel = Maximum
+
+#
+# TracerOutputTo: indicates the output of the trace information
+#
+# For AipTraced output the default output file location is  
+#     /var/log/tgcspostrc.log
+# The file location can be modified at aiptrace.cfg
+#
+# Possible outputs :
+#    - Console       
+#    - File
+#    - Logging
+#    - RemoteAipTraced
+#    - AipTraced
+com.ibm.jutil.tracing.TracerOutputTo = AipTraced
+
+#
+# Specifies some information about how jutil tracing will output content to
+# a file.  The properties definition are as follows (the com.ibm.jutil.tracing is
+# ommitted for brevity):
+# 1) TracerOutputFileName: the filename that should be used for the tracer output
+#    file if TracerOutputToFile is true.  Default is a file name tgcsjavapostrace.txt
+# 2) TracerOutputFileLocation: the directory where the tracer output file will be located
+#    the default value is: <defaultLocation>. This keyword is internally resolved to default
+#    location depending on the OS: On Linux '~/.toshiba', on Windows '<installdir>/Log' (where
+#    <installdir> = installation directory, Example: C:/POS).
+# 3) TracerOutputFileThreshold: this value indicate the threshold in number of characters
+#    that will be buffered before the contents of the tracer are flushed into the file
+#    the default value is 200 characters.
+# 4) TracerOutputToFileFlushFrequency: this is the FileTracerOutput flush frequency
+#    timeout.  Indicates how often the file will be flushed (in miliseconds)--default
+#    is 5000 ms.
+# 5) TracerOutputFileMaxSize: contents the maximum number of bytes that a file can
+#    handle and store --default is 10000000 ( 10 Mbytes ).
+# 6) TracerOutputFileMaxFiles: contents the maximum number of files where the the 
+#    data traced is stored  --default 10 file.
+#
+com.ibm.jutil.tracing.TracerOutputFileName = tgcsjavapostrace.txt
+
+#
+# TracerOutputFileLocation NOTE FOR WINDOWS USERS :
+#    '\' is the line continuation character. 
+#    If you want to specify c:\path\ you must type
+#    c:\\path or c:\\path\\ or  c:/path/
+#
+com.ibm.jutil.tracing.TracerOutputFileLocation = <defaultLocation>
+
+com.ibm.jutil.tracing.TracerOutputFileThreshold = 200
+com.ibm.jutil.tracing.TracerOutputFileFlushFrequency = 5000
+com.ibm.jutil.tracing.TracerOutputFileMaxSize = 10000000
+com.ibm.jutil.tracing.TracerOutputFileMaxFiles = 10
+
+#
+# Indicates the MaxSize of the jposerr.log file
+com.ibm.jutil.tracing.TracerErrorFileMaxSize = 4000
+
+
+''',
+
+'etc/posj.autoconfig.properties':'''\
+# Properties file for autoconfig
+
+# This defines the implementation class for the DeviceProperties.
+# This defaults as shown.
+#com.ibm.posj.autoconfig.props.DeviceProperties=com.ibm.posj.autoconfig.props.DefaultDeviceProperties
+
+# This defines the implementation class for the SystemProperties.
+# This defaults as shown.
+#com.ibm.posj.autoconfig.props.SystemProperties=com.ibm.posj.autoconfig.props.DefaultSystemProperties
+''',
+
+'etc/posj.autoconfig.CoinDispenser.properties':'''\
+# Properties for CoinDispenser
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=CoinDispenser1
+''',
+
+'etc/com/ibm/jpos/tools/sdicc/res/SdiccResources.properties':'''\
+#
+# SdiccResources.properties   v3.0.0
+# Messages for SDI Control Center Tool App
+#
+# The Messages are divided in 3 categories:
+# 
+# MSG prefix - Used for messages with several words and doesn't match with the key name
+#
+# TEXT prefix - Used for messages with 2 or more words matching with the key name
+#
+# WORD prefix - Used for single word matching with the key name
+#
+#
+
+#
+# Language. See the ISO-639 standard for key value
+#
+LANGUAGE=en
+
+#
+# Version of this properties
+#
+VERSION=3.0.0
+
+#
+# File location properties
+#
+FILE_PROPERTIES_INFORMATION=/com/ibm/jpos/tools/sdicc/res/en/UserManual.html
+FILE_USEFUL_TIPS=/com/ibm/jpos/tools/sdicc/res/en/UsefulTips.txt
+
+#
+# MSG properties - Several words
+#
+MSG_CONFIG_CD_A_OFFLINE_SUGGESTION=Check the Cash Drawer is attached to the 3A port
+MSG_CONFIG_CD_B_OFFLINE_SUGGESTION=Check the Cash Drawer is attached to the 3B port
+MSG_CONFIG_CABLE_OFFLINE_SUGGESTION=Check the cable and/or try a different serial port
+MSG_CONFIG_NETWORK_CABLE_OFFLINE_SUGGESTION=Check the cable and/or try a different IP address
+MSG_CONFIG_MSR_OFFLINE_SUGGESTION=-Check the MSR device is connected.\n-Check the jumper is set to 'Serial' mode at MSR device
+MSG_CONFIG_SCANNER_OFFLINE_NOTYPE_SUGGESTION=-Unable to identify Scanner type
+MSG_CONFIG_SCANNER_OFFLINE_SUGGESTION=-Check the Scanner device is connected
+MSG_CONFIG_NET_POSPRINTER_OFFLINE_SUGGESTION=Print the offline test and compare the IP address
+MSG_DEVICE_ONLINE_READY=The device is powered on and ready for use.
+MSG_DEVICE_OFF=The device is powered off or detached from the terminal.
+MSG_ERROR_RUNNING_ADDJPOSENTRY_TOOL=Error running AddJposEntry tool
+MSG_ERROR_RUNNING_JCL_EDITOR = "Error running JCL Editor.  Make sure JCL 2.0.1 or later is installed.
+MSG_ERROR_RUNNING_USB_VIEW=Error running javax.usb USB View tool
+MSG_ERROR_STARTING_THE_POSSYSTEM=Error while starting the PosSystem
+MSG_FONT_DOWNLOAD_SUCCESSFUL=Font downloaded successfully
+MSG_CONFIGURATION_DOWNLOAD_SUCCESSFUL=Configuration downloaded successfully
+MSG_FONT_DOWNLOAD_FAIL=Font download fail
+MSG_CALIBRATION_SUCCESSFUL=Calibration end successfully
+MSG_CALIBRATION_FAIL=Calibration fail
+MSG_INCORRECT_PARAMETERS=Incorrect Parameters, expected 6 digits
+MSG_WRONG_FILE=Invalid file or fonts too big
+MSG_FONT_FILE_EXIST=There is another font saved in the selected code page. Erase the eprom before downloading the font.
+MSG_UNEXPECTED_JPOS_EXCEPTION=An unexpected error happened.
+MSG_INSERT_PAPER_IN_DI=Please insert a paper in the DI station.
+MSG_PRINT_SUCCESSFUL=Text using the downloaded fonts has been printed successfully!
+MSG_PLEASE_WAIT=Please wait...
+MSG_DOWNLOADING_FONTS=Downloading fonts.
+MSG_FONTS_ERASED_SUCCESSFUL=Fonts erased successfully!
+MSG_CONFIRM_ERASE_FONT=Do you really want to erase all the fonts?
+MSG_SELECT_FONT_TYPE_TO_ERASE1=Select the type of font that
+MSG_SELECT_FONT_TYPE_TO_ERASE2=you want to erase
+MSG_FLASH_DEVICE_SUCCESSFULLY=The device flash completed successfully!
+MSG_FLASH_ALL_DEVICES_SUCCESSFULLY=All devices flashed successfully!
+MSG_FLASH_STATUS=Flash status:
+MSG_COULD_NOT_START_POS_SYSTEM_MANAGER=Could not start POS System Manager
+MSG_FLASH1=Flashing Device ... Please wait ...
+MSG_FLASH2=Depending on the device, the flash operation could take several minutes to complete.
+MSG_FLASH3=Do not disturb the system during flash.
+MSG_FLASH4=Configuring Device ... Please wait ...
+MSG_FLASH_DEVICE=Flash device   
+MSG_CONFIGURE_DEVICE=Configure device   
+MSG_COULD_NOT_START_POS_SYSTEM_MANAGER=Could not start Pos System Manager
+MSG_FLASH_WARNING1=Warning:  Selecting wrong flash file could potential damage the device.\nSelect Yes to continue\nSelect No to quit  
+MSG_FLASH_WARNING2=Select flash file.
+MSG_FLASH_WARNING3=Select Firmware file to download or click Flash device to 
+MSG_FLASH_WARNING4=accept default file.
+MSG_FLASH_WARNING5=No flash was necessary as the file EC level is less than or equal to the device EC level
+MSG_AUTODETECT_NO_DEV_FOUND=No devices detected by Auto-Detection.
+MSG_AUTODETECT_SAVE_DIALOG=Do you want to save auto-detected devices in the jpos.xml ?
+MSG_AUTODETECT_CANCELED=AutoDetection canceled.
+MSG_AUTODETECT_SAVED_STATUS=Entries saved in registry. 
+MSG_AUTODETECT_ERROR=Error while saving registry to file.
+MSG_AUTODETECT_FILE_WRITE_DENIED=You do not have write access to
+MSG_AUTODETECT_SCN_SCL=Scanner/Scale detected:\nPlease verify all barcodes and/or other settings required for\nyour scanner/scale are configured in the jpos.xml.
+MSG_REGISTRY_LOAD=JavaPOS registry loaded
+MSG_NO_REGISTRY=JavaPOS registry not found 
+MSG_OVERWRITE_FILE=Already exist. Would you like to replace the existing file ?
+MSG_NO_ENTRY=JposEntry not found for this device.
+MSG_LEGACY_MANUALLY_CONFIG=This device can not be configured automatically. \nPlease configure the device manually using the sample jpos.xml provided with this installation.
+MSG_UNKNOWN=Unknown - Click the test button to check the status of the device.
+MSG_FONT1=Downloading font ... Please wait ...
+MSG_FONT2=Depending on the font, the font download could take several minutes to complete.
+MSG_FONT3=Do not unplug the line display during the download.
+MSG_CALIBRATION1=Calibrating device ... Please wait ...
+MSG_CALIBRATION2=Do not unplug the device.
+MSG_CFU_FW_ERROR=Firmware file is needed
+MSG_CFU_CG_ERROR=Configuration file is needed
+MSG_CFU_FT_ERROR=Font file is needed
+MSG_CFU_ERROR_TYPE_FILE=Attempting to update using an invalid type of file.
+#
+# TEXT properties - 2 or more words 
+#
+
+TEXT_ABOUT_SDICC=About \"POS Control Center\"
+TEXT_ADD_DEVICE=Add Device
+TEXT_CREATE_DEVICE=Create device...
+TEXT_DEVICE_CATEGORY=Device Category
+TEXT_DEVICE_TYPE=Device Type
+TEXT_DID_YOU_KNOW=Did you know...?
+TEXT_ERROR_CREATING_COMPONENT=Error creating component
+TEXT_ERROR_ENDING_COMPONENT=Error ending component
+TEXT_FLASH_UPDATE=Flash update
+TEXT_CONFIGURATION_UPDATE=Configuration update
+TEXT_FONT_DOWNLOAD=Font download
+TEXT_CALIBRATION=Calibration
+TEXT_START_CALIBRATION=Start Calibration
+TEXT_CODE_PAGE_DEMO=Code Page Demo
+TEXT_LOGICAL_DEVICE_NAME=Logical Device Name
+TEXT_DEVICE_INFO=Device Information
+TEXT_TOSHIBA_SDICC_APP=Toshiba POS Control Center Application
+TEXT_JCL_EDITOR=JCL Editor
+TEXT_PROPERTIES_CONFIGURABLE=Configurable Properties
+TEXT_PROPERTIES_INFORMATION=Properties information
+TEXT_POS_DEVICES=POS Devices
+TEXT_SDICC=Serial Port
+TEXT_SDICC=POS Control Center
+TEXT_SDICC_ERROR=POS Control Center Error
+TEXT_SHOW_START=Show on Start
+TEXT_USB_VIEW=USB View
+TEXT_USEFUL_TIPS=Useful Tips
+TEXT_THERMAL_CODE_PAGE_1=Thermal station. CharacterSet 101
+TEXT_THERMAL_CODE_PAGE_2=Thermal station. CharacterSet 102
+TEXT_THERMAL_CODE_PAGE_3=Thermal station. CharacterSet 103
+TEXT_THERMAL_CODE_PAGE_4=Thermal station. CharacterSet 104
+TEXT_IMPACT_CODE_PAGE_5=Impact station. CharacterSet 101
+TEXT_IMPACT_CODE_PAGE_6=Impact station. CharacterSet 103
+TEXT_FONTFILE=Font File
+TEXT_FONTTYPE=Font Type
+TEXT_FONTNUMBER=Font Number
+TEXT_FILE_CHOOSER=File Chooser
+TEXT_ENTERTEXT=Enter Text
+TEXT_PRINT_TEXT=Print Text
+TEXT_ERASE_EPROM_SECTOR=Erase Eprom Sector
+TEXT_FLASH_INFORMATION=Flash information
+TEXT_DEVICE_NAME=Device name
+TEXT_CHARACTERSET=Character Set
+TEXT_CURRENT_LEVEL=Current level
+TEXT_CURRENT_FILE=Current file
+TEXT_RANGE=Range (Hex)
+TEXT_LEAD_BYTE=Lead Byte (Hex)
+
+TEXT_FILE_TO_APPLY=File to apply
+TEXT_PRINTER_MICROCODE=Printer microcode
+TEXT_FLASH_ALL=Flash all
+TEXT_FIRMWARE_LEVEL=Usb flash level
+TEXT_FIRMWARE_FILE=Usb flash file
+TEXT_CURRENT_MICROCODE_LEVEL=Current Microcode Level
+TEXT_UPDATE_FIRMWARE_TYPE=Update Firmware Type
+TEXT_CURRENT_FLASH_LEVEL=Current Flash Level
+TEXT_MICROCODE_AND_BOOT_SECTOR=Microcode and Boot Sector
+TEXT_DEMOPLUGIN=Device Demo
+TEXT_DEVICE_DETAILS=Device details
+TEXT_AUTODETEC_READY_LEGEND=Online and Configured
+TEXT_AUTODETEC_ONLINE_LEGEND=Online but not Configured
+TEXT_AUTODETEC_OFFLINE_LEGEND=Offline
+TEXT_AUTODETEC_CONFIGURED_LEGEND=Configured but not attached
+TEXT_AUTODETEC_READ_ONLY=Read Only
+TEXT_AUTODETEC_BAD_FLASH_LEGEND=Firmware update error
+TEXT_AUTODETEC_BAD_FLASH_LONG_LEGEND=Firmware update error: Flash the printer microcode to fix
+TEXT_AUTODETEC_LOW_BCD_FLASH_LEGEND=USB BCD Adapter level old
+TEXT_AUTODETEC_LOW_BCD_FLASH_LONG_LEGEND=USB BCD Adapter level old: Flash the usb adapter code to fix
+TEXT_SAVEAS=Save As
+TEXT_SERIAL_PORT=Serial Port
+TEXT_NOTES=6 digits are expected, i.e. to calibrate 32.56lbs, parameter must be: 032560
+
+#
+# WORD properties - single word 
+#
+WORD_ADD=Add
+WORD_ASYNCMODE=asyncMode
+WORD_CLOSE=Close
+WORD_DEVICES=Devices
+WORD_IS_INIT=isInit
+WORD_IS_FLASHEABLE=isFlashable
+WORD_MANUAL=Manual
+WORD_RS485=RS485
+WORD_RS232=RS232
+WORD_NET=Network
+WORD_USB=USB
+WORD_BROWSE=Browse
+WORD_DOWNLOAD=Download
+WORD_CALIBRATION=Calibration
+WORD_PRINT=Print
+WORD_PROPORTIONAL=Proportional
+WORD_FIXED=Fixed
+WORD_DBCS=Double Byte
+WORD_INFORMATION=Information
+WORD_QUESTION=Question
+WORD_THERMAL=Thermal
+WORD_IMPACT=Impact
+WORD_WAIT=Wait
+WORD_FLASH=Flash
+WORD_MICROCODE=Microcode
+WORD_AUTODETECTION=AutoDetection
+WORD_BUS=Bus
+WORD_CANCEL=Cancel
+WORD_SET=Set
+WORD_TEST=Test
+WORD_TYPE=Type
+WORD_SYSTEM=System
+WORD_PARAMETER=Parameter
+''',
+
+'etc/posj.autoconfig.FiscalPrinter.properties':'''\
+# Properties for FiscalPrinter
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=FiscalPrinter1
+
+
+# These are RS232 properties.  These should only be used if the device
+# is directly connected to the RS232 port, not for subdevices.
+
+# This specifies the device is connected via the RS232 bus.
+# This must be specified for a RS232-connected device.
+# The only allowable value is "RS232", no other value should be used.
+# For devices that are not RS232-connected, this should not be specified.
+#deviceBus.1=RS232
+
+# This specifies the port that the device is connected to.
+# This must be specified for a RS232-connected device.
+# The value should be the RS232 port name in DOS nomenclature, i.e. "COM1", "COM2", etc.
+# Note that "COM1" is the first RS232 port, there is no "COM0".
+#portName.1=COM1
+
+# This specifies the baud rate that the device uses.
+# This will default to a predetermined value if not specified.
+# The value should be the baud rate as a decimal number.
+# This baudRate is the default 
+#baudRate.1=19200
+# The FiscalPrinter model 4610-Sx6 must set the baudRate to 115200 to work
+#baudRate.1=115200
+
+''',
+
+'etc/posj.autoconfig.CheckScanner.properties':'''\
+# Properties for CheckScanner
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=CheckScanner1
+''',
+
+'etc/posj.autoconfig.BillDispenser.properties':'''\
+# Properties for BillDispenser
+
+# See "User's Guide" for a general description of this file.
+
+# This will override the automatically-generated logical name for the corresponding device.
+#logicalName.1=BillDispenser1
+'''
+
+}
+
+
+# This function may be used to create required files and
+# directories
+def createFiles(contentDict):
+
+    if not isinstance(contentDict, dict):
+        raise Exception("The createFiles function requires a dictionary argument")
+
+    os.chdir("/opt/tgcs/javapos")
+
+    for pathName in list(contentDict):
+        dirName = os.path.dirname(pathName)
+        if os.path.exists(dirName):
+          pass
+        else:
+          os.makedirs(dirName, 0750)
+        with open(pathName, "w") as f:
+          f.write(contentDict[pathName])
+
+    keystore = "/mnt/f/adxetc/ext/adxqrsdk/conf/keystore"
+    if not os.path.isdir(keystore):
+        os.makedirs(keystore)
+
+    passwd = "tcxsdk"
+
+    # ca
+    cmd = "keytool -genkeypair -alias sdk-ca -keyalg RSA -keysize 2048 -dname \"CN=localhost, O=Toshiba Global Commerce Solutions, OU=SDK development, L=Zapopan, ST=Jalisco, C=MX\" -keystore \"" + os.path.join(keystore, "sdk-ca.jks") + "\" -storepass " + passwd + " -keypass " + passwd +" -noprompt"
+    os.system(cmd)
+    cmd = "keytool -exportcert -alias sdk-ca -keystore \"" + os.path.join(keystore, "sdk-ca.jks") + "\" -file \"" + os.path.join(keystore, "sdk-ca.cer") + "\" -storepass " + passwd + " -noprompt"
+    os.system(cmd)
+    cmd = "keytool -importkeystore -srckeystore \"" + os.path.join(keystore, "sdk-ca.jks") + "\" -destkeystore \"" + os.path.join(keystore, "sdk-ca.p12") + "\" -deststoretype PKCS12 -srcstorepass " + passwd + " -deststorepass " + passwd + " -noprompt"
+    os.system(cmd)
+    cmd = "openssl pkcs12 -in \"" + os.path.join(keystore, "sdk-ca.p12") + "\" -nocerts -nodes -out \"" + os.path.join(keystore, "sdk-ca.key") + "\" -passin pass:" + passwd
+    os.system(cmd)
+    cmd = "openssl rsa -in \"" + os.path.join(keystore, "sdk-ca.key") + "\" -out \"" + os.path.join(keystore, "sdk-ca.pem") + "\""
+    os.system(cmd)
+
+    # client
+    cmd = "keytool -genkeypair -alias sdk-client -keyalg RSA -keysize 2048 -dname \"CN=localhost, O=Toshiba Global Commerce Solutions, OU=SDK development, L=Zapopan, ST=Jalisco, C=MX\" -keystore \"" + os.path.join(keystore, "sdk-client.jks") + "\" -storepass " + passwd + " -keypass " + passwd +" -noprompt"
+    os.system(cmd)
+    cmd = "keytool -exportcert -alias sdk-client -keystore \"" + os.path.join(keystore, "sdk-client.jks") + "\" -file \"" + os.path.join(keystore, "sdk-client.cer") + "\" -storepass " + passwd + " -noprompt"
+    os.system(cmd)
+    cmd = "keytool -importkeystore -srckeystore \"" + os.path.join(keystore, "sdk-client.jks") + "\" -destkeystore \"" + os.path.join(keystore, "sdk-client.p12") + "\" -deststoretype PKCS12 -srcstorepass " + passwd + " -deststorepass " + passwd + " -noprompt"
+    os.system(cmd)
+    cmd = "openssl pkcs12 -in \"" + os.path.join(keystore, "sdk-client.p12") + "\" -nocerts -nodes -out \"" + os.path.join(keystore, "sdk-client.key") + "\" -passin pass:" + passwd
+    os.system(cmd)
+    cmd = "openssl rsa -in \"" + os.path.join(keystore, "sdk-client.key") + "\" -out \"" + os.path.join(keystore, "sdk-client.pem") + "\""
+    os.system(cmd)
+
+    # server
+    cmd = "keytool -genkeypair -alias sdk-wss -keyalg RSA -keysize 2048 -dname \"CN=localhost, O=Toshiba Global Commerce Solutions, OU=SDK development, L=Zapopan, ST=Jalisco, C=MX\" -keystore \"" + os.path.join(keystore, "sdk-wss.jks") + "\" -storepass " + passwd + " -keypass " + passwd +" -noprompt"
+    os.system(cmd)
+    cmd = "keytool -exportcert -alias sdk-wss -keystore \"" + os.path.join(keystore, "sdk-wss.jks") + "\" -file \"" + os.path.join(keystore, "sdk-wss.cer") + "\" -storepass " + passwd + " -noprompt"
+    os.system(cmd)
+    cmd = "keytool -importkeystore -srckeystore \"" + os.path.join(keystore, "sdk-wss.jks") + "\" -destkeystore \"" + os.path.join(keystore, "sdk-wss.p12") + "\" -deststoretype PKCS12 -srcstorepass " + passwd + " -deststorepass " + passwd + " -noprompt"
+    os.system(cmd)
+    cmd = "openssl pkcs12 -in \"" + os.path.join(keystore, "sdk-wss.p12") + "\" -nocerts -nodes -out \"" + os.path.join(keystore, "sdk-wss.key") + "\" -passin pass:" + passwd
+    os.system(cmd)
+    cmd = "openssl rsa -in \"" + os.path.join(keystore, "sdk-wss.key") + "\" -out \"" + os.path.join(keystore, "sdk-wss.pem") + "\""
+    os.system(cmd)
+
+
+if __name__ == "__main__":
+    createFiles(defaults)

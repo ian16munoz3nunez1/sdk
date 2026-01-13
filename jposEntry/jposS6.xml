@@ -10,7 +10,7 @@
         <product description="Lights" name="Lights" url="http://www.toshibagcs.com"/>
         <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.lights.JposTALLights"/>
         <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
-		<!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+
         <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
         <prop name="deviceBus" type="String" value="HID"/>
         <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.TALLights"/>
@@ -25,8 +25,8 @@
         <jpos category="MotionSensor" version="v1.14.14L62 2024-07-04"/>
         <product description="MotionSensor" name="MotionSensor" url="http://www.toshibagcs.com"/>
         <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.sensors.JposProximitySensor"/>
-		<prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
-        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+        <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
+
         <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
         <prop name="deviceBus" type="String" value="HID"/>
         <prop name="abstractionClass" type="String" value="com.tgcs.jpos.services.ToshibaAuthProximitySensorService"/>
@@ -42,7 +42,7 @@
         <product description="MotionSensor" name="MotionSensor" url="http://www.toshibagcs.com"/>
         <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.sensors.JposCouponSensor"/>
         <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
-        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+
         <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
         <prop name="deviceBus" type="String" value="HID"/>
         <prop name="abstractionClass" type="String" value="com.tgcs.jpos.services.ToshibaAuthCouponSensorService"/>
@@ -57,7 +57,6 @@
         <jpos category="POSPrinter" version="v1.14.14L62 2024-07-04"/>
         <product description="POSPrinter" name="POSPrinter" url="http://www.toshibagcs.com"/>
 
-        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
         <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0xff45"/>
         <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.SdiIBM4610EPOSPrinter"/>
         <prop name="SureOneVersion" type="String" value="standard"/>
@@ -67,7 +66,7 @@
         <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x3500"/>
         <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
     </JposEntry> 
-	<JposEntry logicalName="DL-Gryphon-GD45XX-USB-OEM">
+    <JposEntry logicalName="DL-Gryphon-GD45XX-USB-OEM">
         <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.ScannerUSBOEM"/>
         <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
         <jpos category="Scanner" version="v1.14.11L32 2022-12-09"/>
@@ -101,7 +100,7 @@
         <jpos category="Scale" version="v1.14.14L62 2024-07-04"/>
         <product description="Scale" name="Scale" url="http://www.toshibagcs.com"/>
         <prop name="authClass" type="String" value="com.tgcs.tcx.gravity.base.device.jpos.authentication.Authenticate"/>
-        <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+
         <prop name="com.ibm.jpos.sdi.config.Scale.displayRequired" type="Boolean" value="false"/>
         <prop name="com.ibm.posj.bus.hid.usagePage" type="String" value="0x0"/>
         <prop name="abstractionClass" type="String" value="com.tgcs.jpos.services.ToshibaAuthScaleService"/>
@@ -130,13 +129,27 @@
         <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x5400"/>
         <prop name="com.ibm.posj.bus.deviceNumber" type="String" value="0"/>
     </JposEntry>
+    <JposEntry logicalName="BNRDevice">
+        <creation factoryClass="com.cranepi.device.bnr.javapos.BNRCashChangerServiceInstanceFactory" serviceClass="com.cranepi.device.bnr.javapos.BNRCashChangerService"/>
+        <vendor name="CPI" url="https://www.cranepi.com"/>
+        <jpos category="CashChanger" version="1.14"/>
+        <product description="BNR" name="CPI BNR Bill Recycler" url="https://www.cranepi.com/en/products/payment-technology/note/recyclers/bnr-advance"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.cashchanger.JposCashChanger"/>
+    </JposEntry>
+    <JposEntry logicalName="BCRDevice">
+        <creation factoryClass="com.cranepi.device.bcr.javapos.BCRCashChangerServiceInstanceFactory" serviceClass="com.cranepi.device.bcr.javapos.BCRCashChangerService"/>
+        <vendor name="CPI" url="http://www.digitalpersona.com"/>
+        <jpos category="CashChanger" version="1.14"/>
+        <product description="BCR" name="U.are.U 4000B Reader" url="http://www.digitalpersona.com"/>
+        <prop name="portName" type="String" value="/dev/ttyUSB0"/>
+        <prop name="com.tgcs.tcx.gravity.broker.device.jpos.Device" type="String" value="com.tgcs.tcx.gravity.broker.device.jpos.cashchanger.JposCashChanger"/>
+    </JposEntry>
     <JposEntry logicalName="Belt2">
         <creation factoryClass="com.ibm.jpos.services.IBMJposServiceInstanceFactory" serviceClass="com.ibm.jpos.services.ToshibaBeltService"/>
         <vendor name="Toshiba" url="http://www.toshibagcs.com"/>
         <jpos category="Belt" version="v1.14.14L80 2024-09-23"/>
         <product description="Belt" name="Belt" url="http://www.toshibagcs.com"/>
 
-        <!-- Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 ) -->
         <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
         <prop name="deviceBus" type="String" value="HID"/>
         <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.ToshibaBeltService"/>
@@ -153,7 +166,6 @@
         <jpos category="Belt" version="v1.14.14L80 2024-09-23"/>
         <product description="Belt" name="Belt" url="http://www.toshibagcs.com"/>
 
-        <!-- Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 ) -->
         <prop name="com.ibm.posj.bus.hid.usageId" type="String" value="0x0"/>
         <prop name="deviceBus" type="String" value="HID"/>
         <prop name="abstractionClass" type="String" value="com.ibm.jpos.services.ToshibaBeltService"/>
